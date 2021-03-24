@@ -1,5 +1,7 @@
 /Game/branding/target/
 /Game/application/target/
+/Game/Common/target/
+/Game/Core/target/
 .idea/
 
 # IntelliJ project files
