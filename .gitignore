@@ -1,2 +1,5 @@
 /Game/branding/target/
 /Game/application/target/
+/Game/Common/target/
+/Game/Core/target/
+/Game/SilentUpdate/target/
