@@ -1,2 +1,9 @@
 /Game/branding/target/
 /Game/application/target/
+.idea/
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
