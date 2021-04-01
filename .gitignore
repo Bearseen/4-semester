@@ -90,3 +90,8 @@ dist/
 nbdist/
 .nb-gradle/
 
+/Game/SilentUpdate/target/
+/Game/application/target/
+/Game/branding/target/
+/Game/Core/target/
+/Game/Common/target/
