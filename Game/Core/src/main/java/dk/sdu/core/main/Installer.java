@@ -18,7 +18,7 @@ public class Installer extends ModuleInstall {
         g = new Game();
 
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-        cfg.title = "Asteroids";
+        cfg.title = "Zombie spil";
         cfg.width = 800;
         cfg.height = 600;
         cfg.useGL30 = false;
