@@ -95,3 +95,7 @@ nbdist/
 /Game/branding/target/
 /Game/Core/target/
 /Game/Common/target/
+/Game/CommonEnemy/target/
+/Game/Enemy/target/
+/Game/CommonPlayer/target/
+/Game/Player/target/

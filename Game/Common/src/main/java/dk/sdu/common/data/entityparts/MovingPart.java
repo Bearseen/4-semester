@@ -22,13 +22,11 @@ public class MovingPart
         implements EntityPart {
 
     private float dx, dy;
-    private float deceleration, acceleration;
+   
     private float maxSpeed, rotationSpeed;
-    private boolean left, right, up;
+    private boolean left, right, up, down;
 
-    public MovingPart(float deceleration, float acceleration, float maxSpeed, float rotationSpeed) {
-        this.deceleration = deceleration;
-        this.acceleration = acceleration;
+    public MovingPart(float maxSpeed, float rotationSpeed) {
         this.maxSpeed = maxSpeed;
         this.rotationSpeed = rotationSpeed;
     }
@@ -41,20 +39,12 @@ public class MovingPart
         return dy;
     }
 
-    public void setDeceleration(float deceleration) {
-        this.deceleration = deceleration;
-    }
-
-    public void setAcceleration(float acceleration) {
-        this.acceleration = acceleration;
-    }
-
     public void setMaxSpeed(float maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
     public void setSpeed(float speed) {
-        this.acceleration = speed;
+        
         this.maxSpeed = speed;
     }
 
@@ -73,6 +63,9 @@ public class MovingPart
     public void setUp(boolean up) {
         this.up = up;
     }
+    public void setDown(boolean down){
+        this.down = down;
+    }
 
     @Override
     public void process(GameData gameData, Entity entity) {
@@ -82,30 +75,22 @@ public class MovingPart
         float radians = positionPart.getRadians();
         float dt = gameData.getDelta();
 
-        // turning
         if (left) {
             radians += rotationSpeed * dt;
-        }
-
-        if (right) {
+        } else if (right) {
             radians -= rotationSpeed * dt;
         }
 
-        // accelerating            
-        if (up) {
-            dx += cos(radians) * acceleration * dt;
-            dy += sin(radians) * acceleration * dt;
-        }
 
-        // deccelerating
-        float vec = (float) sqrt(dx * dx + dy * dy);
-        if (vec > 0) {
-            dx -= (dx / vec) * deceleration * dt;
-            dy -= (dy / vec) * deceleration * dt;
-        }
-        if (vec > maxSpeed) {
-            dx = (dx / vec) * maxSpeed;
-            dy = (dy / vec) * maxSpeed;
+        // accelerating
+        if (up) {
+            x += Math.cos(radians) * maxSpeed * dt;
+            y += Math.sin(radians) * maxSpeed * dt;
+        } else if (down) {
+            x -= Math.cos(radians) * maxSpeed * dt;
+            y -= Math.sin(radians) * maxSpeed * dt;
+        } else {
+            dt = 0;
         }
 
         // set position

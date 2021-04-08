@@ -65,6 +65,10 @@
         <module>Core</module>
         <module>Common</module>
         <module>SilentUpdate</module>
+        <module>CommonEnemy</module>
+        <module>Enemy</module>
+        <module>CommonPlayer</module>
+        <module>Player</module>
     </modules>
 
     <properties>
