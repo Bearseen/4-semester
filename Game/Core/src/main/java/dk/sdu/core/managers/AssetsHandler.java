@@ -32,9 +32,9 @@ public class AssetsHandler {
 
     private void loadAssets() {
         assetManager.load("assets/grass.png", Texture.class);
-        System.out.println("Test");
         assetManager.load("assets/tree.png", Texture.class);
         assetManager.load("assets/wall.png", Texture.class);
+        assetManager.load("assets/player.png", Texture.class);
         //Loader all assets png - ADD HERE
     }
 

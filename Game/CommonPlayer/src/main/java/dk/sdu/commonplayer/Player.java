@@ -13,4 +13,12 @@ import dk.sdu.common.data.Entity;
  */
 public class Player extends Entity {
     
+    public Player() {
+        super();
+    }
+
+    public Player(String image) {
+        super(image);
+    } 
+    
 }

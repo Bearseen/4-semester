@@ -23,7 +23,6 @@ public class Entity implements Serializable {
 
     public Entity() {
         parts = new ConcurrentHashMap<>();
-        this.components = new HashMap<>();
     }
     
     public Entity(String image) {

@@ -32,7 +32,6 @@ public class PlayerProcessor implements IEntityProcessingService  {
         for (Entity player : world.getEntities(Player.class)) {
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
-            LifePart lifePart = player.getPart(LifePart.class);
 
             movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
@@ -42,36 +41,7 @@ public class PlayerProcessor implements IEntityProcessingService  {
           
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
-            lifePart.process(gameData, player);
 
-            updateShape(player);
+        } 
     }
-    
-        
-    }
-    private void updateShape(Entity entity) {
-            float[] shapex = new float[4];
-            float[] shapey = new float[4];
-            PositionPart positionPart = entity.getPart(PositionPart.class);
-            float x = positionPart.getX();
-            float y = positionPart.getY();
-            float radians = positionPart.getRadians();
-            
-
-            shapex[0] = (float) (x + Math.cos(radians - 2 * 3.1415f / 4) * (entity.getRadius()-2*3.1415f));
-            shapey[0] = (float) (y + Math.sin(radians - 2 * 3.1415f / 4) * (entity.getRadius()-2*3.1415f));
-
-            shapex[1] = (float) (x + Math.cos(radians + 2 * 3.1415f / 4) * (entity.getRadius()-2*3.1415f));
-            shapey[1] = (float) (y + Math.sin(radians + 2 * 3.1415f / 4) * (entity.getRadius()-2*3.1415f));
-
-            shapex[2] =(float)  (x + Math.cos(radians + 3 * 3.1415f / 4) * entity.getRadius());
-            shapey[2] =(float)  (y + Math.sin(radians + 3 * 3.1415f / 4) * entity.getRadius());
-
-            shapex[3] =(float)  (x + Math.cos(radians - 3 * 3.1415f / 4) * entity.getRadius());
-            shapey[3] =(float)  (y + Math.sin(radians - 3 * 3.1415f / 4) * entity.getRadius());
-
-            entity.setShapeX(shapex);
-            entity.setShapeY(shapey);
-        }
-
 }
