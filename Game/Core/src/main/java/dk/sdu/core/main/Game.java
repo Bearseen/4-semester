@@ -22,6 +22,7 @@ import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
 
+
 public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
@@ -49,8 +50,6 @@ public class Game implements ApplicationListener {
         cam.update();
 
         sr = new ShapeRenderer();
-        
-  
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
@@ -112,6 +111,10 @@ public class Game implements ApplicationListener {
         for (Entity entity : world.getEntities(Tile.class)){
             assetshandler.drawEntity(entity, spriteBatch);
         }
+        for (Entity entity : world.getEntities()){
+            assetshandler.drawEntity(entity, spriteBatch);
+        }
+        
         spriteBatch.end();
     }
 
