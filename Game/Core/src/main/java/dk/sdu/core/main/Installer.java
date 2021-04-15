@@ -19,8 +19,8 @@ public class Installer extends ModuleInstall {
 
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Zombie spil";
-        cfg.width = 800;
-        cfg.height = 600;
+        cfg.width = 840;
+        cfg.height = 840;
         cfg.useGL30 = false;
         cfg.resizable = false;
 

@@ -6,8 +6,8 @@
 package dk.sdu.map.map;
 
 import org.openide.util.lookup.ServiceProvider;
-import dk.sdu.common.assets.map.Tiletype;
-import dk.sdu.common.assets.map.Tile;
+import dk.sdu.common.assets.Tiletype;
+import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
@@ -21,8 +21,9 @@ import org.openide.util.lookup.ServiceProviders;
  * @author Samuel
  */
 
-@ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class),})
+ 
+@ServiceProvider(service = IGamePluginService.class)
+
 public class MapPlugin implements IGamePluginService {
     
     private Tile[][] map;

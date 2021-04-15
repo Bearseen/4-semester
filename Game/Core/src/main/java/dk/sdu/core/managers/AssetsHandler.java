@@ -32,6 +32,7 @@ public class AssetsHandler {
 
     private void loadAssets() {
         assetManager.load("assets/grass.png", Texture.class);
+        System.out.println("Test");
         assetManager.load("assets/tree.png", Texture.class);
         assetManager.load("assets/wall.png", Texture.class);
         //Loader all assets png - ADD HERE
@@ -45,7 +46,7 @@ public class AssetsHandler {
         if (entity.getImage() != null) {
             Texture texture = this.assetManager.get("assets/" + entity.getImage());
             Sprite sprite = new Sprite(texture);
-            PositionPart position = entity.getComponent(PositionPart.class);
+            PositionPart position = entity.getPart(PositionPart.class);
 
             sprite.setScale(0.35f);
             if (position.getRadians() > Math.PI / 2 || position.getRadians() < -(Math.PI / 2)) {

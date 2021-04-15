@@ -3,12 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.core.states;
+package dk.sdu.common.assets;
+
+import dk.sdu.common.data.Entity;
 
 /**
  *
  * @author Samuel
  */
-public class Load {
+public class Tile extends Entity {
     
+    public Tile() {
+        super();
+    }
+
+    public Tile(String image) {
+        super(image);
+    } 
 }

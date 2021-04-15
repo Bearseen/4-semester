@@ -1,7 +1,6 @@
 package dk.sdu.common.data;
 
 import dk.sdu.common.data.entityparts.EntityPart;
-import dk.sdu.common.services.IComponentProcessingService;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
-    private HashMap<Class, IComponentProcessingService> components;
+    private HashMap<Class, EntityPart> components;
 
     private float[] shapeX = new float[4];
     private float[] shapeY = new float[4];
@@ -43,7 +42,15 @@ public class Entity implements Serializable {
     public <E extends EntityPart> E getPart(Class partClass) {
         return (E) parts.get(partClass);
     }
-
+     public boolean hasPart (Class partClass) {
+        return parts.containsKey(partClass);
+    }
+      public void removePart(Class partClass) {
+        if (parts.containsKey(partClass)) {
+            parts.remove(partClass);
+        }
+    }
+   
     public void setRadius(float r) {
         this.radius = r;
     }
@@ -88,21 +95,5 @@ public class Entity implements Serializable {
         this.colour = c;
     }
     
-    public void addComponent(IComponentProcessingService component) {
-        this.components.put(component.getClass(), component);
-    }
-
-    public void removeComponent(Class componentClass) {
-        if (this.components.containsKey(componentClass)) {
-            this.components.remove(componentClass);
-        }
-    }
-
-    public <O extends IComponentProcessingService> O getComponent(Class componentClass) {
-        return (O) this.components.get(componentClass);
-    }
-
-    public boolean hasComponent(Class componentClass) {
-        return this.components.containsKey(componentClass);
-    }
+   
 }

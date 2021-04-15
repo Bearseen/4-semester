@@ -5,7 +5,7 @@
  */
 package dk.sdu.map.map;
 
-import dk.sdu.common.assets.map.Tiletype;
+import dk.sdu.common.assets.Tiletype;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 
