@@ -18,6 +18,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publicPackages>
+                        <publicPackage>dk.sdu.common.assets.map</publicPackage>
                         <publicPackage>dk.sdu.common.data</publicPackage>
                         <publicPackage>dk.sdu.common.data.entityparts</publicPackage>
                         <publicPackage>dk.sdu.common.events</publicPackage>

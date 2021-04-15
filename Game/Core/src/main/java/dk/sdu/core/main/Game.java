@@ -11,6 +11,7 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
+import dk.sdu.core.managers.AssetsHandler;
 import dk.sdu.core.managers.GameInputProcessor;
 import java.util.Collection;
 import java.util.List;
@@ -22,12 +23,16 @@ import org.openide.util.LookupListener;
 public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
-    private ShapeRenderer sr;
-    private final Lookup lookup = Lookup.getDefault();
+
     private final GameData gameData = new GameData();
     private World world = new World();
+    
+    private final Lookup lookup = Lookup.getDefault();
     private List<IGamePluginService> gamePlugins = new CopyOnWriteArrayList<>();
     private Lookup.Result<IGamePluginService> result;
+    
+    private ShapeRenderer sr;
+    private AssetsHandler assetshandler;
 
     @Override
     public void create() {
@@ -39,6 +44,8 @@ public class Game implements ApplicationListener {
         cam.update();
 
         sr = new ShapeRenderer();
+        
+        assetshandler = new AssetsHandler();
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
@@ -55,7 +62,7 @@ public class Game implements ApplicationListener {
     @Override
     public void render() {
         // clear screen to black
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        // Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         gameData.setDelta(Gdx.graphics.getDeltaTime());
@@ -145,4 +152,12 @@ public class Game implements ApplicationListener {
         }
 
     };
+    
+    public World getWorld() {
+        return world;
+    }
+    
+      public AssetsHandler getAssetsHandler() {
+        return assetshandler;
+    }
 }
