@@ -101,3 +101,4 @@ nbdist/
 /Game/Player/target/
 /Game/Map/target/
 /Game/CommonBullet/target/
+/Game/Bullet/target/

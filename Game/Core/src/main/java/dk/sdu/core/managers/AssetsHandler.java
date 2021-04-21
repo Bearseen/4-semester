@@ -30,13 +30,15 @@ public class AssetsHandler {
         this.sr = new ShapeRenderer();
     }
 
-    private void loadAssets() {
+    private void loadAssets(){
+        //Loader all assets png - ADD HERE
         assetManager.load("assets/grass.png", Texture.class);
         assetManager.load("assets/tree.png", Texture.class);
         assetManager.load("assets/wall.png", Texture.class);
         assetManager.load("assets/player.png", Texture.class);
         assetManager.load("assets/enemy.png", Texture.class);
-        //Loader all assets png - ADD HERE
+        assetManager.load("assets/bullet.png", Texture.class);
+        
     }
 
     public Texture getAsset(String name) {

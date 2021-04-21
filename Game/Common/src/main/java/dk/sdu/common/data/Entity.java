@@ -19,7 +19,7 @@ public class Entity implements Serializable {
     private float[] colour;
     private Map<Class, EntityPart> parts;
     
-    private String image;
+    public String image;
 
     public Entity() {
         parts = new ConcurrentHashMap<>();

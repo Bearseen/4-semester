@@ -13,6 +13,14 @@ import dk.sdu.common.data.Entity;
  */
 public class Bullet extends Entity {
     private float Speed;
+    
+    public Bullet() {
+        super();
+    }
+    
+    public Bullet(String image){
+        super(image);
+    }
 
     public Bullet(float Speed) {
         this.Speed = Speed;

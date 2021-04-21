@@ -24,11 +24,18 @@ public class MovingPart
         implements EntityPart {
 
     private float dx, dy;
-   
+    private float deceleration, acceleration;
     private float maxSpeed, rotationSpeed;
     private boolean left, right, up, down;
 
     public MovingPart(float maxSpeed, float rotationSpeed) {
+        this.maxSpeed = maxSpeed;
+        this.rotationSpeed = rotationSpeed;
+    }
+    
+    public MovingPart(float deceleration, float acceleration, float maxSpeed, float rotationSpeed) {
+        this.deceleration = deceleration;
+        this.acceleration = acceleration;
         this.maxSpeed = maxSpeed;
         this.rotationSpeed = rotationSpeed;
     }
