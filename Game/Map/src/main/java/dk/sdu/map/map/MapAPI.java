@@ -5,7 +5,7 @@
  */
 package dk.sdu.map.map;
 
-import dk.sdu.common.assets.Tiletype;
+import dk.sdu.common.assets.TileType;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 
@@ -15,6 +15,6 @@ import dk.sdu.common.data.World;
  */
 public interface MapAPI {
     
-    void createMap(Tiletype[][] d, GameData gamedata, World world);
+    void createMap(TileType[][] d, GameData gamedata, World world);
     
 }

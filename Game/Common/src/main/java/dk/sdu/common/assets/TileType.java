@@ -9,44 +9,44 @@ package dk.sdu.common.assets;
  *
  * @author Samuel
  */
-public enum  Tiletype {
+public enum TileType {
     GRASS(0, "grass.png", false),
     TREE(1, "tree.png", true),
     WALL(2, "wall.png", true);
 
 
-    private int numbervalue;
+    private int numberValue;
     private String image;
-    private boolean hascollider; 
+    private boolean hasCollider;
 
-    public void setHascollider(boolean hascollider) {
-        this.hascollider = hascollider;
+    public void setHasCollider(boolean hasCollider) {
+        this.hasCollider = hasCollider;
     }
 
-    public boolean isHascollider() {
-        return hascollider;
+    public boolean isHasCollider() {
+        return hasCollider;
     }
 
-    private Tiletype(int numbervalue, String image, Boolean hascollider) {
-        this.numbervalue = numbervalue;
+    private TileType(int numberValue, String image, Boolean hasCollider) {
+        this.numberValue = numberValue;
         this.image = image;
-        this.hascollider = hascollider;
+        this.hasCollider = hasCollider;
     }
 
-    public void setNumbervalue(int numbervalue) {
-        this.numbervalue = numbervalue;
+    public void setNumberValue(int numberValue) {
+        this.numberValue = numberValue;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
 
-    public static Tiletype getGRASS() {
+    public static TileType getGRASS() {
         return GRASS;
     }
 
-    public int getNumbervalue() {
-        return numbervalue;
+    public int getNumberValue() {
+        return numberValue;
     }
 
     public String getImage() {

@@ -6,7 +6,7 @@
 package dk.sdu.map.map;
 
 import org.openide.util.lookup.ServiceProvider;
-import dk.sdu.common.assets.Tiletype;
+import dk.sdu.common.assets.TileType;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
@@ -47,7 +47,7 @@ public class MapPlugin implements IGamePluginService {
     @Override
     public void start(GameData gameData, World world) {
         // loadFromFile(currentMapName, gameData, world);
-        Tiletype[][] tileMap = convertIntArrayToTileArray(this.numberMap);
+        TileType[][] tileMap = convertIntArrayToTileArray(this.numberMap);
         createMap(tileMap, world);
     }
     
@@ -58,17 +58,17 @@ public class MapPlugin implements IGamePluginService {
         }
     }
     
-    private Tiletype[][] convertIntArrayToTileArray(int[][] mapArray) {
-        Tiletype[][] tileMap = new Tiletype[mapArray.length][mapArray[0].length];
+    private TileType[][] convertIntArrayToTileArray(int[][] mapArray) {
+        TileType[][] tileMap = new TileType[mapArray.length][mapArray[0].length];
         for (int x = 0; x < mapArray.length; x++) {
             for (int y = 0; y < mapArray[x].length; y++) {
-                tileMap[x][y] = Tiletype.values()[mapArray[x][y]];
+                tileMap[x][y] = TileType.values()[mapArray[x][y]];
             }
         }
         return tileMap;
     }
     
-    private void createMap(Tiletype[][] tileTypeMap, World world) {
+    private void createMap(TileType[][] tileTypeMap, World world) {
         float tileHeight = 70;
         float tileWidth = 70;
         
