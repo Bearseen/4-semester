@@ -100,3 +100,4 @@ nbdist/
 /Game/CommonPlayer/target/
 /Game/Player/target/
 /Game/Map/target/
+/Game/CommonBullet/target/
