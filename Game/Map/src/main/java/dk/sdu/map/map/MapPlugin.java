@@ -22,7 +22,8 @@ import org.openide.util.lookup.ServiceProviders;
  */
 
  
-@ServiceProvider(service = IGamePluginService.class)
+@ServiceProviders(value = {
+    @ServiceProvider(service = IGamePluginService.class),})
 
 public class MapPlugin implements IGamePluginService {
     

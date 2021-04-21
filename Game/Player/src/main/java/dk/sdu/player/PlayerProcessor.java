@@ -5,6 +5,8 @@
  */
 package dk.sdu.player;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.GameKeys;
@@ -14,13 +16,12 @@ import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.commonplayer.Player;
-
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
  *
- * @author musta
+ * @author Samuel & Mustafa
  */
 
 @ServiceProviders(value = {
@@ -38,10 +39,9 @@ public class PlayerProcessor implements IEntityProcessingService  {
             movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
             movingPart.setDown(gameData.getKeys().isDown(GameKeys.DOWN));
             
-          
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
-
-        } 
-    }
+            
+        }                
+    }  
 }

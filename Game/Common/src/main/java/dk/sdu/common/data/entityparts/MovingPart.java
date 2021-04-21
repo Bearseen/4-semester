@@ -5,6 +5,8 @@
  */
 package dk.sdu.common.data.entityparts;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import static dk.sdu.common.data.GameKeys.LEFT;
@@ -16,7 +18,7 @@ import static java.lang.Math.sqrt;
 
 /**
  *
- * @author Alexander
+ * @author Samuel
  */
 public class MovingPart
         implements EntityPart {
@@ -74,10 +76,10 @@ public class MovingPart
         float y = positionPart.getY();
         float radians = positionPart.getRadians();
         float dt = gameData.getDelta();
-
+        
         if (left) {
             radians += rotationSpeed * dt;
-        } else if (right) {
+        } else if (right) {            
             radians -= rotationSpeed * dt;
         }
 

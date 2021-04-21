@@ -26,14 +26,13 @@ import dk.sdu.common.assets.Tile;
 public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
-
-    private final GameData gameData = new GameData();
-    private World world = new World();
     
     private final Lookup lookup = Lookup.getDefault();
     private List<IGamePluginService> gamePlugins = new CopyOnWriteArrayList<>();
     private Lookup.Result<IGamePluginService> result;
-    
+
+    private final GameData gameData = new GameData();
+    private World world = new World();
     private ShapeRenderer sr;
     private AssetsHandler assetshandler;
     private SpriteBatch spriteBatch;
@@ -42,14 +41,14 @@ public class Game implements ApplicationListener {
     public void create() {
         assetshandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
+        sr = new ShapeRenderer();
+        
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
 
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
-
-        sr = new ShapeRenderer();
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
@@ -66,7 +65,8 @@ public class Game implements ApplicationListener {
     @Override
     public void render() {
         // clear screen to black
-        // Gdx.gl.glClearColor(0, 0, 0, 1);
+//        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         gameData.setDelta(Gdx.graphics.getDeltaTime());
@@ -89,6 +89,25 @@ public class Game implements ApplicationListener {
     }
 
     private void draw() {
+        try {
+            spriteBatch.begin();
+            
+            for (Entity tiles : world.getEntities(Tile.class)){
+                assetshandler.drawEntity(tiles, spriteBatch);
+            }
+            for (Entity entity : world.getEntities()){
+                if (!entity.getClass().equals(Tile.class)) {
+                    assetshandler.drawEntity(entity, spriteBatch);
+                }
+            }
+ 
+        } catch (Exception e){
+            System.out.println(e);
+            
+        } finally {
+            spriteBatch.end();   
+        }
+        
         
 //        for (Entity entity : world.getEntities()) {
 //            sr.setColor(1, 1, 1, 1);
@@ -107,15 +126,7 @@ public class Game implements ApplicationListener {
 //
 //            sr.end();
 //        }
-        spriteBatch.begin();
-        for (Entity entity : world.getEntities(Tile.class)){
-            assetshandler.drawEntity(entity, spriteBatch);
-        }
-        for (Entity entity : world.getEntities()){
-            assetshandler.drawEntity(entity, spriteBatch);
-        }
         
-        spriteBatch.end();
     }
 
     @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.5//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_5.dtd">
-<module_updates timestamp="29/04/14/15/04/2021">
+<module_updates timestamp="39/17/14/16/04/2021">
 
 
 
@@ -15,8 +15,8 @@
     
 </module>
 
-<module codenamebase="dk.sdu.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="15102" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Common" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="8906746" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Common" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -25,23 +25,23 @@
     
 </module>
 
-<module codenamebase="dk.sdu.CommonEnemy" distribution="CommonEnemy-1.0-SNAPSHOT.nbm" downloadsize="3857" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.CommonEnemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonEnemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.CommonEnemy" distribution="CommonEnemy-1.0-SNAPSHOT.nbm" downloadsize="3855" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.CommonEnemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonEnemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
-<module codenamebase="dk.sdu.CommonPlayer" distribution="CommonPlayer-1.0-SNAPSHOT.nbm" downloadsize="3946" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.CommonPlayer" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonPlayer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.CommonPlayer" distribution="CommonPlayer-1.0-SNAPSHOT.nbm" downloadsize="3946" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.CommonPlayer" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonPlayer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
-<module codenamebase="dk.sdu.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="10470254" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Core" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util &gt; 9.13, org.openide.util.lookup &gt; 8.39, dk.sdu.Common &gt; 1.0, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="10470352" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Core" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util &gt; 9.13, org.openide.util.lookup &gt; 8.39, dk.sdu.Common &gt; 1.0, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
-<module codenamebase="dk.sdu.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="6377" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Enemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonEnemy &gt; 1.0, dk.sdu.Common &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="6383" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Enemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonEnemy &gt; 1.0, dk.sdu.Common &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -50,8 +50,8 @@
     
 </module>
 
-<module codenamebase="dk.sdu.Game.branding" distribution="Game-branding-1.0-SNAPSHOT.nbm" downloadsize="5606" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="dk.sdu.Game.branding" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33" OpenIDE-Module-Name="Game-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Game.branding" distribution="Game-branding-1.0-SNAPSHOT.nbm" downloadsize="5600" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="dk.sdu.Game.branding" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33" OpenIDE-Module-Name="Game-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -60,8 +60,8 @@
     
 </module>
 
-<module codenamebase="dk.sdu.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="5354" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Map" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="5353" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Map" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
@@ -90,8 +90,8 @@
     
 </module>
 
-<module codenamebase="dk.sdu.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="5618" license="13255ACB" needsrestart="false" releasedate="2021/04/15" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Player" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210415" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonPlayer &gt; 1.0, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+<module codenamebase="dk.sdu.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="8897227" license="13255ACB" needsrestart="false" releasedate="2021/04/16" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Player" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210416" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonPlayer &gt; 1.0, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
     
 </module>
 
