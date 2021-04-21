@@ -38,15 +38,8 @@ public class EnemyPlugin implements IGamePluginService {
         float y = new Random().nextFloat() * gameData.getDisplayHeight();
         float radians = 3.1415f / 2;
 
-        float[] colour = new float[4];
-        colour[0] = 1.0f;
-        colour[1] = 0.0f;
-        colour[2] = 0.0f;
-        colour[3] = 1.0f;
-
-        Entity enemy = new Enemy();
-        enemy.setRadius(10);
-        enemy.setColour(colour);
+        Entity enemy = new Enemy("enemy.png");
+        enemy.setRadius(8);
         enemy.add(new SimpleMovingPart(maxSpeed));
         enemy.add(new PositionPart(x, y));
         enemy.add(new LifePart(1));

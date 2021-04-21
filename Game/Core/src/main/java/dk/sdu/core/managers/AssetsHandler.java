@@ -35,6 +35,7 @@ public class AssetsHandler {
         assetManager.load("assets/tree.png", Texture.class);
         assetManager.load("assets/wall.png", Texture.class);
         assetManager.load("assets/player.png", Texture.class);
+        assetManager.load("assets/enemy.png", Texture.class);
         //Loader all assets png - ADD HERE
     }
 
