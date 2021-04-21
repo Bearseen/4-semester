@@ -1,21 +1,24 @@
 package dk.sdu.core.main;
 
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
+import dk.sdu.common.services.IMapService;
 import dk.sdu.common.services.IPostEntityProcessingService;
 import dk.sdu.core.managers.GameInputProcessor;
 import java.util.Collection;
@@ -25,7 +28,7 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 
-public class Game extends ApplicationAdapter implements ApplicationListener  {
+public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
@@ -34,54 +37,40 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
     private World world = new World();
     private List<IGamePluginService> gamePlugins = new CopyOnWriteArrayList<>();
     private Lookup.Result<IGamePluginService> result;
-    
-            private TiledMap map;
-        private AssetManager manager;
-        
-   
-	// Camera and render
-	private OrthographicCamera camera;
-	private OrthogonalTiledMapRenderer renderer;
-        
+
+  
+
     @Override
     public void create() {
-       
-            /*
-            manager = new AssetManager();
-            manager.setLoader(TiledMap.class, new TmxMapLoader());
-            manager.load("Map2.tmx", TiledMap.class);
-            manager.finishLoading();
-            map = manager.get("Map2.tmx", TiledMap.class);
-            */
-            
-            map = new TmxMapLoader().load("Map2.tmx");
-            
-            
-            
-            		// Read properties
-		
-  
-                    
-		// Set up the camera
-                float w = Gdx.graphics.getWidth();
-                float h = Gdx.graphics.getHeight();
-		camera = new OrthographicCamera();
-                camera.setToOrtho(false,w,h);
-                camera.update();
-                
-		
-		// Instantiation of the render for the map object
-		renderer = new OrthogonalTiledMapRenderer(map);
         
         /*
-                gameData.setDisplayWidth(Gdx.graphics.getWidth());
+        AssetManager manager = new AssetManager();
+        manager.setLoader(TiledMap.class, new TmxMapLoader());
+        manager.load("assets/images/Map2.tmx", TiledMap.class);
+        manager.finishLoading();
+
+        map = manager.get("assets/images/Map2.tmx", TiledMap.class);
+      
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        cam = new OrthographicCamera(100, 100 * (h / w));
+
+        float unitScale = 1 / 8f;
+        renderer = new OrthogonalTiledMapRenderer(map, unitScale);
+
+
+        gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
 
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
-                */
-
+        */
+        
+        for (IMapService map : getMapServices() ) {
+            map.create(gameData);
+            
+        }
+        
         sr = new ShapeRenderer();
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
@@ -89,33 +78,41 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
         result = lookup.lookupResult(IGamePluginService.class);
         result.addLookupListener(lookupListener);
         result.allItems();
+        
+
 
         for (IGamePluginService plugin : result.allInstances()) {
             plugin.start(gameData, world);
             gamePlugins.add(plugin);
-        }       
+        }
+        
+        
+  
     }
 
     @Override
     public void render() {
+        
+        for (IMapService map : getMapServices()) {
+            map.render();
+
+        }
+        
         /*
-        // clear screen to black
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(.5f, .7f, .9f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // Update the camera and render
+        cam.update();
+        renderer.setView(cam);
+        renderer.render();
+*/
 
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
 
         update();
         draw();
-        */
-        		Gdx.gl.glClearColor(.5f, .7f, .9f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		// Update the camera and render
-		camera.update();
-		renderer.setView(camera);
-		renderer.render();
     }
 
     private void update() {
@@ -128,6 +125,7 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
         for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
             postEntityProcessorService.process(gameData, world);
         }
+        
     }
 
     private void draw() {
@@ -164,7 +162,7 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
 
     @Override
     public void dispose() {
-        manager.dispose();
+
     }
 
     private Collection<? extends IEntityProcessingService> getEntityProcessingServices() {
@@ -173,6 +171,10 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
 
     private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
         return lookup.lookupAll(IPostEntityProcessingService.class);
+    }
+    
+    private Collection<? extends IMapService> getMapServices() {
+        return lookup.lookupAll(IMapService.class);
     }
 
     private final LookupListener lookupListener = new LookupListener() {
@@ -199,4 +201,7 @@ public class Game extends ApplicationAdapter implements ApplicationListener  {
         }
 
     };
+
+    
+
 }

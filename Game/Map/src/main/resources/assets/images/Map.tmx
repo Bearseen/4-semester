@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="18">
+ <tileset firstgid="1" source="PC_Computer_-_RPG_Maker_VX_-_Tile_A1-A5.tsx"/>
+ <layer id="1" name="background" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJyTYmRgkBrFo5jGuIUZN6a1Xlr4ZSjaiy8cCekbiv6lpb3UcsOo3lG9I1nvSCs3BqO9o/UCde0diHbOKB7F1MAA+auArQ==
+  </data>
+ </layer>
+ <objectgroup id="3" name="Walls">
+  <object id="5" x="128" y="161.333" width="30.6667" height="190.667"/>
+  <object id="7" x="161.333" y="161.333" width="190.667" height="30.6667"/>
+  <object id="8" x="353.333" y="254.667" width="256" height="34.6667"/>
+  <object id="9" x="608" y="161.333" width="193.333" height="29.3333"/>
+  <object id="10" x="802.667" y="158.667" width="29.3333" height="190.667"/>
+  <object id="11" x="704" y="350.667" width="33.3333" height="226.667"/>
+  <object id="12" x="801.333" y="574.667" width="30.6667" height="224"/>
+  <object id="13" x="608" y="766.667" width="190.667" height="33.3333"/>
+  <object id="14" x="352" y="670.667" width="254.667" height="33.3333"/>
+  <object id="15" x="128" y="576" width="32" height="222.667"/>
+  <object id="16" x="162.667" y="766.667" width="189.333" height="33.3333"/>
+  <object id="17" x="224" y="350.667" width="32" height="226.667"/>
+ </objectgroup>
+</map>
