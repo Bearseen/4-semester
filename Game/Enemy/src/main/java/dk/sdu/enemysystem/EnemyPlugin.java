@@ -3,6 +3,7 @@ package dk.sdu.enemysystem;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
@@ -42,8 +43,10 @@ public class EnemyPlugin implements IGamePluginService {
         enemy.setRadius(8);
         enemy.add(new SimpleMovingPart(maxSpeed));
         enemy.add(new PositionPart(x, y));
-        enemy.add(new LifePart(1));
-
+        enemy.add(new LifePart(4));
+        enemy.add(new CollisionPart(70,30));
+        
+        
         return enemy;
     }
 

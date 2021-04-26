@@ -8,6 +8,7 @@ package dk.sdu.player;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
@@ -50,7 +51,8 @@ public class PlayerPlugin implements IGamePluginService {
         player.add(new MovingPart(maxSpeed, rotationSpeed));
         player.add(new PositionPart(x, y, radians));
         
-        player.add(new LifePart(1));
+        player.add(new LifePart(4));
+        player.add(new CollisionPart(75,35));
 
         return player;
     }

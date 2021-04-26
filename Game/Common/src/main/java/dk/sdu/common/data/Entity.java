@@ -34,9 +34,7 @@ public class Entity implements Serializable {
         parts.put(part.getClass(), part);
     }
 
-    public void remove(Class partClass) {
-        parts.remove(partClass);
-    }
+    
 
     public <E extends EntityPart> E getPart(Class partClass) {
         return (E) parts.get(partClass);
@@ -93,6 +91,7 @@ public class Entity implements Serializable {
     public void setColour(float[] c) {
         this.colour = c;
     }
+    
     
    
 }

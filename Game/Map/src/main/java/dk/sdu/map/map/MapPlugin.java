@@ -11,6 +11,7 @@ import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.services.IGamePluginService;
 import org.openide.util.lookup.ServiceProviders;
@@ -81,10 +82,10 @@ public class MapPlugin implements IGamePluginService {
                 PositionPart position = new PositionPart(y * tileWidth + tileWidth / 2, x * tileHeight + tileHeight / 2, 0);
                 tile.add(position);
                 
-//                Collission detectino
-//                if (tileTypeMap[x][y].isHascollider()) {
-//                    tile.addComponent(new BoxCollider(tileHeight - 10, tileWidth - 10));
-//                }
+                
+                if (tileTypeMap[x][y].isHascollider()) {
+                    tile.add(new CollisionPart(tileHeight - 10, tileWidth - 10));
+                }
                 
                 world.addEntity(tile);
                 map[x][y] = tile;
