@@ -65,7 +65,7 @@ public class BulletPart extends Entity{
         this.remove = remove;
     }
     
-    public void update(Entity entity, GameData gameData) {
+    public void process(Entity entity, GameData gameData) {
         lifeTimer += gameData.getDelta();
         if (lifetime <= lifeTimer) {
             remove = true;

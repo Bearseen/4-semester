@@ -12,6 +12,7 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.commonbullet.BulletSPI;
 import dk.sdu.commonplayer.Player;
@@ -34,6 +35,7 @@ public class PlayerProcessor implements IEntityProcessingService{
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
             LifePart lifePart = player.getPart(LifePart.class);
+            RangedWeaponPart rangedWeaponPart = player.getPart(RangedWeaponPart.class);
 
             movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
@@ -41,8 +43,9 @@ public class PlayerProcessor implements IEntityProcessingService{
             movingPart.setDown(gameData.getKeys().isDown(GameKeys.DOWN));
             
             if (gameData.getKeys().isDown(GameKeys.SPACE)) {
-                Entity bullet = Lookup.getDefault().lookup(BulletSPI.class).createBullet(player, gameData);
-                world.addEntity(bullet);
+                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));
+                Entity weapon = Lookup.getDefault().lookup(BulletSPI.class).createBullet(player, gameData);
+                world.addEntity(weapon);
             }
             
             movingPart.process(gameData, player);

@@ -6,7 +6,7 @@
         <artifactId>Game-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>Bullet</artifactId>
+    <artifactId>Weapon</artifactId>
     <packaging>nbm</packaging>
     <build>
         <plugins>

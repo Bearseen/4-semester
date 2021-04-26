@@ -11,6 +11,7 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.commonplayer.Player;
 import org.openide.util.lookup.ServiceProvider;
@@ -44,14 +45,23 @@ public class PlayerPlugin implements IGamePluginService {
         float x = gameData.getDisplayWidth() / 2;
         float y = gameData.getDisplayHeight() / 2;
         float radians = 3.1415f / 2;
-
+        
+        //Player
         Entity player = new Player("player.png");
         player.setRadius(4);
         player.add(new MovingPart(maxSpeed, rotationSpeed));
-        player.add(new PositionPart(x, y, radians));
+        player.add(new PositionPart(x, y, radians));        
+        player.add(new LifePart(1));    
         
-        player.add(new LifePart(1));
+        // Weapon
+        int ammo = 5;
+        float reloadTime = 3;
+        float cooldown = 0.1f;
+        String entityID = player.getID();
+        int damage = 1;
+        player.add(new RangedWeaponPart(ammo, reloadTime, cooldown, entityID, damage));
 
+       
         return player;
     }
     
