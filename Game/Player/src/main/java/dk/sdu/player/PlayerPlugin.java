@@ -54,12 +54,12 @@ public class PlayerPlugin implements IGamePluginService {
         player.add(new LifePart(1));    
         
         // Weapon
-        int ammo = 5;
+        int maxAmmo = 5;
         float reloadTime = 3;
         float cooldown = 0.1f;
         String entityID = player.getID();
         int damage = 1;
-        player.add(new RangedWeaponPart(ammo, reloadTime, cooldown, entityID, damage));
+        player.add(new RangedWeaponPart(maxAmmo, cooldown, entityID, damage));
 
        
         return player;

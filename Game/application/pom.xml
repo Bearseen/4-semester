@@ -103,7 +103,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Bullet</artifactId>
+            <artifactId>Weapon</artifactId>
             <version>${project.version}</version>
         </dependency>
         

@@ -41,17 +41,22 @@ public class PlayerProcessor implements IEntityProcessingService{
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
             movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
             movingPart.setDown(gameData.getKeys().isDown(GameKeys.DOWN));
+                      
             
-            if (gameData.getKeys().isDown(GameKeys.SPACE)) {
-                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));
-                Entity weapon = Lookup.getDefault().lookup(BulletSPI.class).createBullet(player, gameData);
-                world.addEntity(weapon);
+            if (gameData.getKeys().isDown(GameKeys.SPACE)) {               
+                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));                
+                
+                for (int count = 0; count < rangedWeaponPart.getAmmo(); count++) {
+                    Entity bullet = Lookup.getDefault().lookup(BulletSPI.class).createBullet(player, gameData);
+                    world.addEntity(bullet);
+                }
+                
             }
             
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
             lifePart.process(gameData, player);
-            
+            rangedWeaponPart.process(gameData, player);
             
         }                
     }  
