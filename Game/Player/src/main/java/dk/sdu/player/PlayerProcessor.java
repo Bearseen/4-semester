@@ -44,13 +44,8 @@ public class PlayerProcessor implements IEntityProcessingService{
                       
             
             if (gameData.getKeys().isDown(GameKeys.SPACE)) {               
-                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));                
-                
-                for (int count = 0; count < rangedWeaponPart.getAmmo(); count++) {
-                    Entity bullet = Lookup.getDefault().lookup(BulletSPI.class).createBullet(player, gameData);
-                    world.addEntity(bullet);
-                }
-                
+                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));
+                System.out.println("SPACE PRESSED");
             }
             
             movingPart.process(gameData, player);
@@ -59,5 +54,6 @@ public class PlayerProcessor implements IEntityProcessingService{
             rangedWeaponPart.process(gameData, player);
             
         }                
-    }  
+    }
+    
 }

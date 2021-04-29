@@ -28,55 +28,60 @@ import org.openide.util.lookup.ServiceProviders;
     @ServiceProvider(service = BulletSPI.class)
 public class WeaponPlugin implements IGamePluginService, BulletSPI {
 
-    private Entity bullet;
-    private int MAX_BULLETS = 4;
-
     @Override
     public void start(GameData gameData, World world) {
 
     }
     
     @Override
-    public Entity createBullet(Entity shooter, GameData gameData) {
-        PositionPart shooterPos = shooter.getPart(PositionPart.class);
-        MovingPart shooterMovingPart = shooter.getPart(MovingPart.class);
-        RangedWeaponPart rangedWeaponPart = shooter.getPart(RangedWeaponPart.class);
+    public Entity createBullet(Entity entity, GameData gameData) {
+        PositionPart entityPosition = entity.getPart(PositionPart.class);
+        RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
         
-        rangedWeaponPart.setAmmo(MAX_BULLETS);
-
-        float x = shooterPos.getX();
-        float y = shooterPos.getY();
-        float radians = shooterPos.getRadians();
-        float dt = gameData.getDelta();
-        float speed = 350;
-
-        Entity bullet = new Bullet("bullet.png");
-        bullet.setRadius(2);
+        Bullet bullet = new Bullet(600f, "bullet.png");
+        PositionPart positionPart = new PositionPart(entityPosition.getX(), entityPosition.getY(), entityPosition.getRadians());
+        BulletPart bulletPart = new BulletPart(entity.getID(), rangedWeaponPart.getDamage(), 5);
         
-
-        float bx = (float) cos(radians) * shooter.getRadius() * bullet.getRadius();
-        float by = (float) sin(radians) * shooter.getRadius() * bullet.getRadius();
-
-        bullet.add(new PositionPart(bx + x, by + y, radians));
-        bullet.add(new LifePart(1));
-        bullet.add(new MovingPart(0, 5000000, speed, 5));
-        bullet.add(new TimerPart(1));
-        bullet.add(new RangedWeaponPart(rangedWeaponPart.getAmmo(),rangedWeaponPart.getEntityId(), 1));
-
-        bullet.setShapeX(new float[2]);
-        bullet.setShapeY(new float[2]);
+        bullet.add(bulletPart);
+        bullet.add(positionPart);
         
-        
-
         return bullet;
+        
+//        PositionPart shooterPos = shooter.getPart(PositionPart.class);
+//        MovingPart shooterMovingPart = shooter.getPart(MovingPart.class);
+//        RangedWeaponPart rangedWeaponPart = shooter.getPart(RangedWeaponPart.class);
+//
+//        rangedWeaponPart.setAmmo(MAX_BULLETS);
+//
+//        float x = shooterPos.getX();
+//        float y = shooterPos.getY();
+//        float radians = shooterPos.getRadians();
+//        float dt = gameData.getDelta();
+//        float speed = 350;
+//
+//        Entity bullet = new Bullet("bullet.png");
+//        bullet.setRadius(2);
+//
+//
+//        float bx = (float) cos(radians) * shooter.getRadius() * bullet.getRadius();
+//        float by = (float) sin(radians) * shooter.getRadius() * bullet.getRadius();
+//
+//        bullet.add(new PositionPart(bx + x, by + y, radians));
+//        bullet.add(new LifePart(1));
+//        bullet.add(new MovingPart(0, 5000000, speed, 5));
+//        bullet.add(new TimerPart(1));
+//        bullet.add(new RangedWeaponPart(rangedWeaponPart.getAmmo(),rangedWeaponPart.getEntityId(), 1));
+//
+//        bullet.setShapeX(new float[2]);
+//        bullet.setShapeY(new float[2]);
+//
+//        return bullet;
     }
 
     @Override
     public void stop(GameData gameData, World world) {
-        for (Entity entity : world.getEntities()) {
-            if (entity.getClass() == Bullet.class) {
-                world.removeEntity(entity);
-            }
+        for (Entity bullet : world.getEntities(Bullet.class)) {  
+        world.removeEntity(bullet);
         }
     }
 }

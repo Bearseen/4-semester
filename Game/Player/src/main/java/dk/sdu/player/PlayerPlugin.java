@@ -39,7 +39,6 @@ public class PlayerPlugin implements IGamePluginService {
     }
 
     private Entity createPlayer(GameData gameData) {
-
         float maxSpeed = 125;
         float rotationSpeed = 2;
         float x = gameData.getDisplayWidth() / 2;
@@ -54,12 +53,12 @@ public class PlayerPlugin implements IGamePluginService {
         player.add(new LifePart(1));    
         
         // Weapon
-        int maxAmmo = 5;
-        float reloadTime = 3;
+        int ammo = 5;
+        float reload = 3;
         float cooldown = 0.1f;
         String entityID = player.getID();
         int damage = 1;
-        player.add(new RangedWeaponPart(maxAmmo, cooldown, entityID, damage));
+        player.add(new RangedWeaponPart(ammo, reload, cooldown, entityID, damage));
 
        
         return player;
@@ -69,7 +68,9 @@ public class PlayerPlugin implements IGamePluginService {
     @Override
     public void stop(GameData gameData, World world) {
         // Remove entities
-        world.removeEntity(player);
+        for (Entity player : world.getEntities(Player.class)) {  
+            world.removeEntity(player);
+        }
     }
     
     

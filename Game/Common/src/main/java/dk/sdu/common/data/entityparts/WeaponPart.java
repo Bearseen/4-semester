@@ -5,6 +5,9 @@
  */
 package dk.sdu.common.data.entityparts;
 
+import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.GameData;
+
 /**
  *
  * @author Samuel
@@ -42,5 +45,5 @@ public abstract class WeaponPart implements EntityPart {
     public void setIsAttacking(boolean isAttacking) {
         this.isAttacking = isAttacking;
     }
-    
+
 }

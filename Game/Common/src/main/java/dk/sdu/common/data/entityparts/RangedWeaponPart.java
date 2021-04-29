@@ -17,15 +17,11 @@ public class RangedWeaponPart extends WeaponPart{
     private float reloadTime, reloadTimer;
     private float shotCooldown, shotTimer;
     
-    public RangedWeaponPart(int ammo, float shotCooldown, String entityId, int damage) {
+    public RangedWeaponPart(int ammo, float reloadTime, float shotCooldown, String entityId, int damage) {
         super(entityId, damage);
         this.ammo = ammo;
+        this.reloadTime = reloadTime;
         this.shotCooldown = shotCooldown;
-    }
-    
-    public RangedWeaponPart(int ammo, String entityId, int damage){
-        super(entityId, damage);
-        this.ammo = ammo;
     }
 
     public int getAmmo() {
