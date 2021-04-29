@@ -63,17 +63,22 @@ public class WeaponProcessor implements IEntityProcessingService {
 //    }
     private void updateRangedWeapon(GameData gameData, World world, Entity entity) {
         RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
-        if (rangedWeaponPart.isIsAttacking() != false) {
+        
+        if (rangedWeaponPart.isIsAttacking() != false && !emptyMagazine(rangedWeaponPart)) {
+            
             System.out.println(rangedWeaponPart.getShotTimer());
             if (rangedWeaponPart.getShotTimer() <= 0) {
                 rangedWeaponPart.setShotTimer(rangedWeaponPart.getShotCooldown());
                 WeaponPlugin w = new WeaponPlugin();
                 world.addEntity(w.createBullet(entity, gameData));
-                System.out.println("Bullet added");
+                decreaseAmmo(rangedWeaponPart);
             }
+            
+            System.out.println(rangedWeaponPart.getAmmo());
             rangedWeaponPart.process(gameData, entity);
-            rangedWeaponPart.setIsAttacking(false);
+            
         }
+        rangedWeaponPart.setIsAttacking(false);
     }
     
     private void updateBullet(GameData gameData, World world, Bullet bullet) {
@@ -102,6 +107,19 @@ public class WeaponProcessor implements IEntityProcessingService {
         
 //        projectileHit(bullet, world);
         
+    }
+    
+    private void decreaseAmmo(RangedWeaponPart part){
+        part.setAmmo(part.getAmmo()-1);
+    }
+    
+    private boolean emptyMagazine(RangedWeaponPart part){
+        boolean empty = false;
+        if(part.getAmmo() <= 0){
+            empty = true;
+        }
+        
+        return empty;
     }
     
 }

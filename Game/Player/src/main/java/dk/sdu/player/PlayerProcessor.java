@@ -44,9 +44,14 @@ public class PlayerProcessor implements IEntityProcessingService{
                       
             
             if (gameData.getKeys().isDown(GameKeys.SPACE)) {               
-                rangedWeaponPart.setIsAttacking(gameData.getKeys().isDown(GameKeys.SPACE));
+                rangedWeaponPart.setIsAttacking(true);
                 System.out.println("SPACE PRESSED");
             }
+            if (gameData.getKeys().isDown(GameKeys.SHIFT)){
+                rangedWeaponPart.setIsAttacking(false);
+                rangedWeaponPart.setAmmo(5);
+            }
+            
             
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
