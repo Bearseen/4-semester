@@ -1,5 +1,7 @@
 package dk.sdu.core.managers;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import dk.sdu.common.data.GameData;
@@ -38,6 +40,7 @@ public class GameInputProcessor extends InputAdapter {
         if (k == Keys.SHIFT_LEFT || k == Keys.SHIFT_RIGHT) {
             gameData.getKeys().setKey(GameKeys.SHIFT, true);
         }
+ 
         return true;
     }
 
@@ -65,6 +68,22 @@ public class GameInputProcessor extends InputAdapter {
         }
         if (k == Keys.SHIFT_LEFT || k == Keys.SHIFT_RIGHT) {
             gameData.getKeys().setKey(GameKeys.SHIFT, false);
+        }
+        return true;
+    }
+    
+     @Override
+    public boolean touchDown(int x, int y, int pointer, int button) {
+        if (button == Buttons.LEFT) {
+            gameData.getKeys().setKey(GameKeys.MOUSE_LEFT, true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int x, int y, int pointer, int button) {
+        if (button == Buttons.LEFT) {
+            gameData.getKeys().setKey(GameKeys.MOUSE_LEFT, false);
         }
         return true;
     }
