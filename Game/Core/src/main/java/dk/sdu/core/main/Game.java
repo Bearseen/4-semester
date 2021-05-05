@@ -25,7 +25,7 @@ import dk.sdu.common.assets.Tile;
 
 public class Game implements ApplicationListener {
 
-    private static OrthographicCamera cam;
+    public static OrthographicCamera cam;
     
     private final Lookup lookup = Lookup.getDefault();
     private List<IGamePluginService> gamePlugins = new CopyOnWriteArrayList<>();

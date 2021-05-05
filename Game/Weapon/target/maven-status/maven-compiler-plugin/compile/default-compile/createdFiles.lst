@@ -1,5 +1,5 @@
-META-INF\services\dk.sdu.commonbullet.BulletSPI
-dk\sdu\weapon\WeaponProcessor.class
-META-INF\services\dk.sdu.common.services.IGamePluginService
-META-INF\services\dk.sdu.common.services.IEntityProcessingService
-dk\sdu\weapon\WeaponPlugin.class
+META-INF/services/dk.sdu.common.services.IGamePluginService
+dk/sdu/weapon/WeaponPlugin.class
+dk/sdu/weapon/WeaponProcessor.class
+META-INF/services/dk.sdu.common.services.IEntityProcessingService
+META-INF/services/dk.sdu.commonbullet.BulletSPI
