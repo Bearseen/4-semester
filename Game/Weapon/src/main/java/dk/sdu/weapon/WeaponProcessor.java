@@ -21,12 +21,13 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
- *
  * @author Samuel
  */
+
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class)})
 public class WeaponProcessor implements IEntityProcessingService {
+
     
     @Override
     public void process(GameData gameData, World world) {
@@ -64,7 +65,7 @@ public class WeaponProcessor implements IEntityProcessingService {
     private void updateRangedWeapon(GameData gameData, World world, Entity entity) {
         RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
         
-        if (rangedWeaponPart.isIsAttacking() != false && !emptyMagazine(rangedWeaponPart)) {
+        if (rangedWeaponPart.isIsAttacking() && !emptyMagazine(rangedWeaponPart)) {
             
             System.out.println(rangedWeaponPart.getShotTimer());
             if (rangedWeaponPart.getShotTimer() <= 0) {
@@ -76,7 +77,9 @@ public class WeaponProcessor implements IEntityProcessingService {
             
             System.out.println(rangedWeaponPart.getAmmo());
             rangedWeaponPart.process(gameData, entity);
-            
+
+            // draw ammo counter
+
         }
         rangedWeaponPart.setIsAttacking(false);
     }
@@ -88,7 +91,8 @@ public class WeaponProcessor implements IEntityProcessingService {
         if (bulletPart == null && positionPart == null) {
             return;
         }
-        
+
+        assert bulletPart != null;
         if (bulletPart.getRemove()) {
             world.removeEntity(bullet);
             return;

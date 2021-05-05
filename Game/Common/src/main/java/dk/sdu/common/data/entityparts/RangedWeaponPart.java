@@ -12,7 +12,7 @@ import dk.sdu.common.data.GameData;
  *
  * @author Samuel
  */
-public class RangedWeaponPart extends WeaponPart{
+public class RangedWeaponPart extends WeaponPart {
     private int ammo;
     private float reloadTime, reloadTimer;
     private float shotCooldown, shotTimer;

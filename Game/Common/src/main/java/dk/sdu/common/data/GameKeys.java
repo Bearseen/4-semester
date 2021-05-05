@@ -15,6 +15,7 @@ public class GameKeys {
     public static final int SPACE = 6;
     public static final int SHIFT = 7;
     public static final int MOUSE_LEFT = 8;
+    public static final int R = 9;
     
     public static float mouse_X;
     public static float mouse_Y;

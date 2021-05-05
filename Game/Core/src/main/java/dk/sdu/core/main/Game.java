@@ -2,12 +2,16 @@ package dk.sdu.core.main;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -16,6 +20,7 @@ import dk.sdu.core.managers.GameInputProcessor;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -36,12 +41,22 @@ public class Game implements ApplicationListener {
     private ShapeRenderer sr;
     private AssetsHandler assetshandler;
     private SpriteBatch spriteBatch;
+    private BitmapFont font;
+    private RangedWeaponPart rangedWeaponPart; // skal måske instantieres
 
     @Override
     public void create() {
         assetshandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
         sr = new ShapeRenderer();
+
+        /** ToDo: SET FONT
+         *
+         * Burde hente font fra fonts folder: "Core/src/Main/resources/fonts/"
+         * Ikke sikker på om den henter fonten, derfor har jeg udkommenteret det...
+         * */
+        //FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Hyperspace Bold.ttf")); // todo: hent font
+        //font = gen.generateFont(20);
         
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
@@ -102,6 +117,13 @@ public class Game implements ApplicationListener {
                     assetshandler.drawEntity(entity, spriteBatch);
                 }
             }
+
+            /**
+             * ToDo: Draw Ammo Counter:
+             *
+             * Bliver ikke drawet, måske drawes det bag tiles?
+             **/
+            font.draw(spriteBatch, /*Integer.toString(rangedWeaponPart.getAmmo())*/"ammo: 5", 10, 10);
  
         } catch (Exception e){
             System.out.println(e);

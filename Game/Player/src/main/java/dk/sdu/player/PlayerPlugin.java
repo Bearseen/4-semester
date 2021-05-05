@@ -18,14 +18,17 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
- *
  * @author Samuel & Mustafa
  */
-@ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class),})
+
+@ServiceProviders(value = {@ServiceProvider(service = IGamePluginService.class),})
+
 public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
+
+    private long scoreCounter;
+    private int ammoCounter;
 
     public PlayerPlugin() {
     }
@@ -36,6 +39,9 @@ public class PlayerPlugin implements IGamePluginService {
         // Add entities to the world
         player = createPlayer(gameData);
         world.addEntity(player);
+
+        this.ammoCounter = 5;
+        this.scoreCounter = 0;
     }
 
     private Entity createPlayer(GameData gameData) {
@@ -59,7 +65,6 @@ public class PlayerPlugin implements IGamePluginService {
         String entityID = player.getID();
         int damage = 1;
         player.add(new RangedWeaponPart(ammo, reload, cooldown, entityID, damage));
-
        
         return player;
     }

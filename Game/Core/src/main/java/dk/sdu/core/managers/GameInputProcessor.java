@@ -16,16 +16,16 @@ public class GameInputProcessor extends InputAdapter {
     }
 
     public boolean keyDown(int k) {
-        if (k == Keys.UP) {
+        if (k == Keys.W/*Keys.UP*/) {
             gameData.getKeys().setKey(GameKeys.UP, true);
         }
-        if (k == Keys.LEFT) {
+        if (k == Keys.A/*Keys.LEFT*/) {
             gameData.getKeys().setKey(GameKeys.LEFT, true);
         }
-        if (k == Keys.DOWN) {
+        if (k == Keys.S/*Keys.DOWN*/) {
             gameData.getKeys().setKey(GameKeys.DOWN, true);
         }
-        if (k == Keys.RIGHT) {
+        if (k == Keys.D/*Keys.RIGHT*/) {
             gameData.getKeys().setKey(GameKeys.RIGHT, true);
         }
         if (k == Keys.ENTER) {
@@ -40,21 +40,24 @@ public class GameInputProcessor extends InputAdapter {
         if (k == Keys.SHIFT_LEFT || k == Keys.SHIFT_RIGHT) {
             gameData.getKeys().setKey(GameKeys.SHIFT, true);
         }
+        if (k == Keys.R) {
+            gameData.getKeys().setKey(GameKeys.R, true);
+        }
  
         return true;
     }
 
     public boolean keyUp(int k) {
-        if (k == Keys.UP) {
+        if (k == Keys.W/*Keys.UP*/) {
             gameData.getKeys().setKey(GameKeys.UP, false);
         }
-        if (k == Keys.LEFT) {
+        if (k == Keys.A/*Keys.LEFT*/) {
             gameData.getKeys().setKey(GameKeys.LEFT, false);
         }
-        if (k == Keys.DOWN) {
+        if (k == Keys.S/*Keys.DOWN*/) {
             gameData.getKeys().setKey(GameKeys.DOWN, false);
         }
-        if (k == Keys.RIGHT) {
+        if (k == Keys.D/*Keys.RIGHT*/) {
             gameData.getKeys().setKey(GameKeys.RIGHT, false);
         }
         if (k == Keys.ENTER) {
@@ -68,6 +71,9 @@ public class GameInputProcessor extends InputAdapter {
         }
         if (k == Keys.SHIFT_LEFT || k == Keys.SHIFT_RIGHT) {
             gameData.getKeys().setKey(GameKeys.SHIFT, false);
+        }
+        if (k == Keys.R) {
+            gameData.getKeys().setKey(GameKeys.R, false);
         }
         return true;
     }

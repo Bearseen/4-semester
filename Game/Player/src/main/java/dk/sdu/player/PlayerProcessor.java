@@ -49,12 +49,15 @@ public class PlayerProcessor implements IEntityProcessingService{
             float diffY = GameKeys.mouse_Y - positionPart.getY();
             
             positionPart.setRadians((float) Math.atan2(diffY, diffX));
-            
+
+            // shooting
             if (gameData.getKeys().isDown(GameKeys.MOUSE_LEFT) || gameData.getKeys().isDown(GameKeys.SPACE)) {               
                 rangedWeaponPart.setIsAttacking(true);
                 System.out.println("Left click");
             }
-            if (gameData.getKeys().isDown(GameKeys.SHIFT)){
+
+            // reload weapon
+            if (gameData.getKeys().isDown(GameKeys.R)){
                 rangedWeaponPart.setIsAttacking(false);
                 rangedWeaponPart.setAmmo(5);
             }
