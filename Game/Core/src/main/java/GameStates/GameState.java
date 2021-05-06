@@ -12,7 +12,6 @@ import dk.sdu.core.main.Game;
  * @author Samuel
  */
 public abstract class GameState {
-    
     private Game game;
 
     public GameState(Game game) {
@@ -20,12 +19,8 @@ public abstract class GameState {
     }
 
     public abstract void dispose();
-    
-    public abstract void update(float dt);
 
     public abstract void render();
-    
-    public abstract void draw();
 
     public Game getGame() {
         return game;
@@ -34,6 +29,5 @@ public abstract class GameState {
     public void setGame(Game game) {
         this.game = game;
     }
-    
-    
+
 }

@@ -1,5 +1,7 @@
 package dk.sdu.core.main;
 
+import GameStates.GameState;
+import GameStates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +23,7 @@ import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
+import java.util.Stack;
 
 
 public class Game implements ApplicationListener {
@@ -36,12 +39,15 @@ public class Game implements ApplicationListener {
     private ShapeRenderer sr;
     private AssetsHandler assetshandler;
     private SpriteBatch spriteBatch;
+    
+    private Stack<GameState> gameStates;
 
     @Override
     public void create() {
         assetshandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
         sr = new ShapeRenderer();
+        this.gameStates = new Stack<>();
         
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
@@ -49,6 +55,8 @@ public class Game implements ApplicationListener {
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
+        
+        gameStates.push(new MenuState(this));
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
@@ -64,7 +72,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void render() {
-        // clear screen to black
+//        clear screen to black
 //        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -72,10 +80,11 @@ public class Game implements ApplicationListener {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
         gameData.getKeys().updateMouse(Gdx.input.getX(), gameData.getDisplayHeight() - Gdx.input.getY());
-        
 
         update();
         draw();
+        
+        this.gameStates.peek().render();
     }
 
     private void update() {
@@ -191,4 +200,29 @@ public class Game implements ApplicationListener {
     public SpriteBatch getSpriteBatch(){
         return spriteBatch;
     }
+    
+    public Stack<GameState> getGameStates() {
+        return gameStates;
+    }
+    
+    public GameData getGameData() {
+        return gameData;
+    }
+    
+    public LookupListener getLookupListener() {
+        return lookupListener;
+    }
+    
+    public List<IGamePluginService> getGamePlugins() {
+        return gamePlugins;
+    }
+
+    public Lookup getLookup() {
+        return lookup;
+    }
+
+    public Lookup.Result<IGamePluginService> getResult() {
+        return result;
+    }
+    
 }
