@@ -31,9 +31,9 @@ public class Collision implements IPostEntityProcessingService {
           for (Entity a : world.getEntities()) {
             for (Entity b : world.getEntities()) {
                 if (collides(a, b)) {
-                    System.out.println("test1");
+                    
                     collide(a, b);
-                    System.out.println("test2");
+                    
                 }
             }
         }

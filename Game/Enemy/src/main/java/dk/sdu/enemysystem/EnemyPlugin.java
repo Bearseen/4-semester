@@ -23,23 +23,29 @@ public class EnemyPlugin implements IGamePluginService {
     
     @Override
     public void start(GameData gameData, World world) {
-
+           
+        enemy = createEnemy(gameData);
+        world.addEntity(enemy);
         // Add entities to the world
-        while (totalEnemies > 0){
-            enemy = createEnemy(gameData);
-            world.addEntity(enemy);
-            totalEnemies--;
-        }
+//        while (totalEnemies > 0){
+//            enemy = createEnemy(gameData);
+//            world.addEntity(enemy);
+//            totalEnemies--;
+//        }
        
     }
 
     private Entity createEnemy(GameData gameData){
         float maxSpeed = 100;
-        float x = new Random().nextFloat() * gameData.getDisplayWidth();
-        float y = new Random().nextFloat() * gameData.getDisplayHeight();
+       // float x = new Random().nextFloat() * gameData.getDisplayWidth();
+        // float y = new Random().nextFloat() * gameData.getDisplayHeight();
+        float x = 820;
+        float y = 840/2;
         float radians = 3.1415f / 2;
+        boolean target = true;
+        float playerRadius = 100;
 
-        Entity enemy = new Enemy("enemy.png");
+        Entity enemy = new Enemy(target,playerRadius,"enemy.png");
         enemy.setRadius(8);
         enemy.add(new SimpleMovingPart(maxSpeed));
         enemy.add(new PositionPart(x, y));

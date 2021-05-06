@@ -13,14 +13,22 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.SimpleMovingPart;
 import java.util.ArrayList;
+import org.openide.util.lookup.ServiceProvider;
+import org.openide.util.lookup.ServiceProviders;
 
 /**
  *
  * @author Mustafa
  */
+
+@ServiceProviders(value = {
+    @ServiceProvider(service = IPathFinder.class),})
+
 public class Pathfinder implements IPathFinder {
 
-    Astar ai;
+    private Astar ai;
+    
+   
     
     public Pathfinder(){
         this.ai = new Astar();
@@ -30,9 +38,15 @@ public class Pathfinder implements IPathFinder {
     public void moveEnemy(GameData gameData, Entity entity, Node goal, World world) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
         SimpleMovingPart simpleMovingPart = entity.getPart(SimpleMovingPart.class);
-
+        float dt = gameData.getDelta();
+        if(dt > 200){
+            dt = 0;
+        }
+        
         if (positionPart == null || simpleMovingPart == null) {
+            
             return;
+            
         }
 
         ArrayList<Node> path = ai.aStarPath(entity, world, goal);
@@ -43,8 +57,8 @@ public class Pathfinder implements IPathFinder {
             float y = path.get(path.size() - 1).getY() - positionPart.getY();
             positionPart.setRadians((float) Math.atan2(y, x));
 
-            positionPart.setX(positionPart.getX()   + simpleMovingPart.getSpeed() * gameData.getDelta());
-            positionPart.setY(positionPart.getY()   + simpleMovingPart.getSpeed() * gameData.getDelta());
+            positionPart.setX(positionPart.getX()   + simpleMovingPart.getSpeed() * dt);
+            positionPart.setY(positionPart.getY()   + simpleMovingPart.getSpeed() * dt);
         }
     }
 
