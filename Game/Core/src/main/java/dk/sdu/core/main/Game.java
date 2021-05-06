@@ -58,7 +58,7 @@ public class Game implements ApplicationListener {
         
         gameStates.push(new MenuState(this));
 
-        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
+//        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
         result = lookup.lookupResult(IGamePluginService.class);
         result.addLookupListener(lookupListener);
@@ -73,51 +73,52 @@ public class Game implements ApplicationListener {
     @Override
     public void render() {
 //        clear screen to black
-//        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+//        clear screen to white
+//        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
         gameData.getKeys().updateMouse(Gdx.input.getX(), gameData.getDisplayHeight() - Gdx.input.getY());
 
-        update();
-        draw();
+//        update();
+//        draw();
         
         this.gameStates.peek().render();
     }
 
-    private void update() {
-        // Update
-        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
-            entityProcessorService.process(gameData, world);
-        }
-
-        // Post Update
-        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
-            postEntityProcessorService.process(gameData, world);
-        }
-    }
-
-    private void draw() {
-        try {
-            spriteBatch.begin();
-            
-            for (Entity tiles : world.getEntities(Tile.class)){
-                assetshandler.drawEntity(tiles, spriteBatch);
-            }
-            for (Entity entity : world.getEntities()){
-                if (!entity.getClass().equals(Tile.class)) {
-                    assetshandler.drawEntity(entity, spriteBatch);
-                }
-            }
- 
-        } catch (Exception e){
-            System.out.println(e);
-            
-        } finally {
-            spriteBatch.end();   
-        }
+//    private void update() {
+//        // Update
+//        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
+//            entityProcessorService.process(gameData, world);
+//        }
+//
+//        // Post Update
+//        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
+//            postEntityProcessorService.process(gameData, world);
+//        }
+//    }
+//
+//    private void draw() {
+//        try {
+//            spriteBatch.begin();
+//            
+//            for (Entity tiles : world.getEntities(Tile.class)){
+//                assetshandler.drawEntity(tiles, spriteBatch);
+//            }
+//            for (Entity entity : world.getEntities()){
+//                if (!entity.getClass().equals(Tile.class)) {
+//                    assetshandler.drawEntity(entity, spriteBatch);
+//                }
+//            }
+// 
+//        } catch (Exception e){
+//            System.out.println(e);
+//            
+//        } finally {
+//            spriteBatch.end();   
+//        }
         
         
 //        for (Entity entity : world.getEntities()) {
@@ -137,8 +138,8 @@ public class Game implements ApplicationListener {
 //
 //            sr.end();
 //        }
-        
-    }
+//        
+//    }
 
     @Override
     public void resize(int width, int height) {

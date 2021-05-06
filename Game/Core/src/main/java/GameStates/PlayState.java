@@ -31,7 +31,7 @@ public class PlayState extends GameState{
     private AssetsHandler assetsHandler;
 //    private WaveManager waveManager;
     private final Lookup lookup; 
-    private boolean paused;
+    private boolean paused = false;
     private Stack<GameState> gameStates;
     private Game game;
     private Lookup.Result<IGamePluginService> result;
