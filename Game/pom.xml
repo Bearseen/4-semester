@@ -73,6 +73,7 @@
         <module>CommonBullet</module>
         <module>Bullet</module>
         <module>Collision</module>
+        <module>AI</module>
     </modules>
 
     <properties>

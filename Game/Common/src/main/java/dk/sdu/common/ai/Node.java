@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dk.sdu.common.ai;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Mustafa
+ */
+public class Node {
+    
+    private float x;
+    private float y;
+    
+    Node parent;
+    ArrayList<Node> path;
+    
+    public Node(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+   
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+    public ArrayList<Node> getPath(){
+        path = new ArrayList<Node>();
+        Node current_Node = this;
+        path.add(current_Node);
+        
+        while(current_Node.getParent() != null){
+            current_Node = current_Node.parent;
+            path.add(current_Node);
+        }
+        return path;
+    }
+}

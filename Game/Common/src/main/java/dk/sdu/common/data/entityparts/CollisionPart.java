@@ -42,4 +42,17 @@ public class CollisionPart implements EntityPart {
         
     }
     
+     public boolean checkCollision(float nodeX, float nodeY, float posX, float posY) {
+
+        float x1 = posX - width / 2;
+        float x2 = posX + width / 2;
+        float y1 = posY - height / 2;
+        float y2 = posY + height / 2;
+
+        if (nodeX > x1 && nodeX < x2 && nodeY > y1 && nodeY < y2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

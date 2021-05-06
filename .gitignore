@@ -103,3 +103,4 @@ nbdist/
 /Game/CommonBullet/target/
 /Game/Bullet/target/
 /Game/Collision/target/
+/Game/AI/target/

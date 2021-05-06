@@ -39,7 +39,9 @@ public class SimpleMovingPart implements EntityPart {
         
         this.maxSpeed = speed;
     }
-
+    public float getSpeed(){
+        return maxSpeed;
+    }
 
     public void setLeft(boolean left) {
         this.left = left;
