@@ -62,23 +62,7 @@ public class MenuState extends GameState {
 
         this.batch = game.getSpriteBatch();
         this.gameData = game.getGameData();
-
-        startTexture = new Texture(Gdx.files.internal("skins/startButton.png"));
-        startTextureRegion = new TextureRegion(startTexture);
-        startTexRegionDrawable = new TextureRegionDrawable(startTextureRegion);
-        startButton = new ImageButton(startTexRegionDrawable);
-        startButton.setSize(180, 54);
-        startButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                System.out.println("Start game button clicked");
-                game.getGameStates().pop();
-                game.getGameStates().push(new PlayState(game));
-                dispose();
-            }
-        });
-        menuTable.add(startButton);
-        menuTable.row().space(50);
+        
 //        stage.addActor(startButton);
                 
 
@@ -97,26 +81,43 @@ public class MenuState extends GameState {
 //        });
 //        menuTable.add(settingButton);
 //        menuTable.row();
-//        //stage.addActor(settingButton);
 
-//        exitTexture = new Texture(Gdx.files.internal("skins/exitButton.png"));
-//        exitTextureRegion = new TextureRegion(exitTexture);
-//        exitTexRegionDrawable = new TextureRegionDrawable(exitTextureRegion);
-//        exitButton = new ImageButton(exitTexRegionDrawable);
-//        exitButton.setSize(204, 54);
-//        exitButton.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("Exit button clicked");
-//                System.exit(0);
-//            }
-//        });
-//        menuTable.add(exitButton);
+        exitTexture = new Texture(Gdx.files.internal("skins/exitButton.png"));
+        exitTextureRegion = new TextureRegion(exitTexture);
+        exitTexRegionDrawable = new TextureRegionDrawable(exitTextureRegion);
+        exitButton = new ImageButton(exitTexRegionDrawable);
+        exitButton.setSize(102, 27);
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Exit button clicked");
+                System.exit(0);
+            }
+        });
+        menuTable.add(exitButton);
+        menuTable.row();
+        
+        startTexture = new Texture(Gdx.files.internal("skins/startButton.png"));
+        startTextureRegion = new TextureRegion(startTexture);
+        startTexRegionDrawable = new TextureRegionDrawable(startTextureRegion);
+        startButton = new ImageButton(startTexRegionDrawable);
+        startButton.setSize(90, 27);
+        startButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Start game button clicked");
+                game.getGameStates().pop();
+                game.getGameStates().push(new PlayState(game));
+                dispose();
+            }
+        });
+        
+        menuTable.add(startButton);
         menuTable.setFillParent(true);
-        menuTable.debug();
+        menuTable.row().space(10);
+        
         stage.addActor(menuTable);
-//        stage.addActor(startButton);
-//        stage.addActor(exitButton);
+//        menuTable.debug();
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -132,8 +133,8 @@ public class MenuState extends GameState {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
         batch.begin();
-        batch.draw(gameLogo, gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
-        batch.draw(groupLogo, 45, 10);
+        batch.draw(gameLogo, gameData.getDisplayWidth() / 2 + 50, gameData.getDisplayHeight() - 280);
+        batch.draw(groupLogo, 20 , gameData.getDisplayHeight() - 150);
         batch.end();
     }
     

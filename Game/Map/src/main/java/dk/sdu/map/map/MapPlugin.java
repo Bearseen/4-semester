@@ -81,7 +81,7 @@ public class MapPlugin implements IGamePluginService {
                 PositionPart position = new PositionPart(y * tileWidth + tileWidth / 2, x * tileHeight + tileHeight / 2, 0);
                 tile.add(position);
                 
-//                Collission detectino
+//                Collission detection
 //                if (tileTypeMap[x][y].isHascollider()) {
 //                    tile.addComponent(new BoxCollider(tileHeight - 10, tileWidth - 10));
 //                }
