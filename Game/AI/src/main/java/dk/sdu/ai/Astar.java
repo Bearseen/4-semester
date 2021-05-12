@@ -44,26 +44,26 @@ public class Astar {
     }
 
     private float cost(Node node) {
-        float pCost = node.getPath().size() * cost;
+        return node.getPath().size() * this.cost;
 
-        return pCost;
+        
     }
 
     private boolean nodeChecker(Node node, World world, Entity entity) {
-        for (Entity player : world.getEntities()) {
-            if (player.equals(entity)) {
+          for (Entity entity2 : world.getEntities()) {
+            if (entity2.equals(entity)) {
                 continue;
             }
 
-            if (entity.hasPart(MovingPart.class)) {
+            if (entity.hasPart(SimpleMovingPart.class)) {
                 continue;
             }
-            if (player.hasPart(CollisionPart.class) && player.hasPart(PositionPart.class)) {
-                PositionPart positionPart = player.getPart(PositionPart.class);
-                CollisionPart collisionPart = player.getPart(CollisionPart.class);
+            if (entity2.hasPart(CollisionPart.class) && entity2.hasPart(PositionPart.class)) {
+                PositionPart position = entity2.getPart(PositionPart.class);
+                CollisionPart collider = entity2.getPart(CollisionPart.class);
 
-                boolean targetHit = collisionPart.checkCollision(node.getX(), node.getY(), positionPart.getX(), positionPart.getY());
-                if (targetHit) {
+                boolean hit = collider.checkCollision(node.getX(), node.getY(), position.getX(), position.getY());
+                if (hit) {
                     return true;
                 }
             }
@@ -89,7 +89,7 @@ public class Astar {
     private ArrayList<Node> expand(World world, Entity entity, Node node) {
 
         ArrayList<Node> neighbors = new ArrayList<>();
-        int val = 10;
+        int val = 5;
         float x = node.getX();
         float y = node.getY();
         float[][] sucessors = {{x - val, y + val}, {x, y + val}, {x + val, y + val},
@@ -117,14 +117,15 @@ public class Astar {
         while (!fringe.isEmpty()) {
            
             Node lowest = remove(goal, fringe);
+            
 
             if (collision.checkCollision(goal.getX(), goal.getY(), lowest.getX(), lowest.getY())) {
-                 System.out.println("2");
+                 
                 return lowest.getPath();
             }
             ArrayList<Node> children = expand(world, entity, lowest);
             insertAll(children, fringe);
-            System.out.println(fringe.size());
+            
             
         }
         return new ArrayList<Node>();

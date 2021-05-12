@@ -36,21 +36,21 @@ public class EnemyPlugin implements IGamePluginService {
     }
 
     private Entity createEnemy(GameData gameData){
-        float maxSpeed = 100;
+        float maxSpeed = 50;
        // float x = new Random().nextFloat() * gameData.getDisplayWidth();
         // float y = new Random().nextFloat() * gameData.getDisplayHeight();
-        float x = 820;
+        float x = 10;
         float y = 840/2;
         float radians = 3.1415f / 2;
         boolean target = true;
-        float playerRadius = 100;
+        float playerRadius = 300;
 
         Entity enemy = new Enemy(target,playerRadius,"enemy.png");
         enemy.setRadius(8);
         enemy.add(new SimpleMovingPart(maxSpeed));
         enemy.add(new PositionPart(x, y));
         enemy.add(new LifePart(4));
-        enemy.add(new CollisionPart(70,30));
+        enemy.add(new CollisionPart(75,35));
         
         
         return enemy;

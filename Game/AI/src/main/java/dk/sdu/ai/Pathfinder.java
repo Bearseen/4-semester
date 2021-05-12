@@ -12,6 +12,8 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.SimpleMovingPart;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 import java.util.ArrayList;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
@@ -52,13 +54,13 @@ public class Pathfinder implements IPathFinder {
         ArrayList<Node> path = ai.aStarPath(entity, world, goal);
 
         if (!path.isEmpty()) {
-
+            System.out.println("path:" + path.size());
             float x = path.get(path.size() - 1).getX() - positionPart.getX();
             float y = path.get(path.size() - 1).getY() - positionPart.getY();
-            positionPart.setRadians((float) Math.atan2(y, x));
+            positionPart.setRadians((float) Math.atan2(y,x));
 
             positionPart.setX(positionPart.getX()   + simpleMovingPart.getSpeed() * dt);
-            positionPart.setY(positionPart.getY()   + simpleMovingPart.getSpeed() * dt);
+            positionPart.setY(positionPart.getY()  + simpleMovingPart.getSpeed() * dt);
         }
     }
 

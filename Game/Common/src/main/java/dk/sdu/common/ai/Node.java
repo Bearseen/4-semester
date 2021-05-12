@@ -17,7 +17,7 @@ public class Node {
     private float y;
     
     Node parent;
-    ArrayList<Node> path;
+  
     
     public Node(float x, float y){
         this.x = x;
@@ -39,13 +39,16 @@ public class Node {
         this.parent = parent;
     }
     public ArrayList<Node> getPath(){
-        path = new ArrayList<Node>();
+        ArrayList<Node> path = new ArrayList<Node>();
         Node current_Node = this;
         path.add(current_Node);
         
         while(current_Node.getParent() != null){
             current_Node = current_Node.parent;
             path.add(current_Node);
+        }
+        if (path.get(path.size() - 1) != null) {
+            path.remove(path.size() - 1);
         }
         return path;
     }

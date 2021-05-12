@@ -40,6 +40,11 @@ public class EnemyControlSystem implements IEntityProcessingService {
         
         for (Entity enemy : world.getEntities(Enemy.class)) {
             Enemy currentEnemy = (Enemy) enemy;
+            PositionPart position = enemy.getPart(PositionPart.class);
+            CollisionPart collision = enemy.getPart(CollisionPart.class);
+            
+            
+            
             if(getTargetExistence(currentEnemy, world)){
                 
                 PositionPart targetPos = currentEnemy.getTarget().getPart(PositionPart.class);
@@ -118,15 +123,42 @@ public class EnemyControlSystem implements IEntityProcessingService {
        PositionPart targetPos = target.getPart(PositionPart.class);
        PositionPart enemyPos = enemy.getPart(PositionPart.class);
       
-       if(enemy.getTarget() != null && enemy.getTarget().getClass().equals(Player.class) ){
-           if(enemy.isTargeted()){
+       if(enemy.getTarget() != null){
+           if(enemy.getTarget().getClass().equals(Player.class)){
+            if(enemy.isTargeted()){
                if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
-                   
+                   System.out.println("targetting player");
                    targetPlayer(enemy, world);
                }
            
-    }    
+    }
+           damageTarget(enemy,world);
        }
+       
+    }
+    }
+    
+    private void damageTarget (Enemy enemy, World world){
+        Entity target = enemy.getTarget();
+        PositionPart enemyPos = enemy.getPart(PositionPart.class);
+        PositionPart playerPos = target.getPart(PositionPart.class);
+        
+        CollisionPart enemyCollision = enemy.getPart(CollisionPart.class);
+        CollisionPart playerCollision = enemy.getPart(CollisionPart.class);
+        
+        float x1 = enemyPos.getX() - enemyCollision.getWidth() / 2;
+        float x2 = enemyPos.getX() + enemyCollision.getWidth() / 2;
+        float x3 = playerPos.getX() - playerCollision.getWidth() / 2;
+        float x4 = playerPos.getX() + playerCollision.getWidth() / 2;
+
+        float y1 = enemyPos.getY() - enemyCollision.getHeight() / 2;
+        float y2 = enemyPos.getY() + enemyCollision.getHeight() / 2;
+        float y3 = playerPos.getY() - playerCollision.getHeight() / 2;
+        float y4 = playerPos.getY() + playerCollision.getHeight() / 2;
+        
+        if ((x1 < x4) && (x3 < x2) && (y1 < y4) && (y3 < y2)) {
+            world.removeEntity(target);
+        }
     }
 }
 
