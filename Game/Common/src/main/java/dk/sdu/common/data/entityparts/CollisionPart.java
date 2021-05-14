@@ -42,7 +42,7 @@ public class CollisionPart implements EntityPart {
         
     }
     
-     public boolean checkCollision(float nodeX, float nodeY, float posX, float posY) {
+    public boolean checkCollision(float nodeX, float nodeY, float posX, float posY) {
 
         float x1 = posX - width / 2;
         float x2 = posX + width / 2;

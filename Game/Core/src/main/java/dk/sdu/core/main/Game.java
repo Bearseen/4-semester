@@ -21,6 +21,7 @@ import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
+import dk.sdu.common.data.entityparts.LifePart;
 
 
 public class Game implements ApplicationListener {
@@ -34,12 +35,12 @@ public class Game implements ApplicationListener {
     private final GameData gameData = new GameData();
     private World world = new World();
     private ShapeRenderer sr;
-    private AssetsHandler assetshandler;
+    private AssetsHandler assetsHandler;
     private SpriteBatch spriteBatch;
 
     @Override
     public void create() {
-        assetshandler = new AssetsHandler();
+        assetsHandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
         sr = new ShapeRenderer();
         
@@ -93,11 +94,11 @@ public class Game implements ApplicationListener {
             spriteBatch.begin();
             
             for (Entity tiles : world.getEntities(Tile.class)){
-                assetshandler.drawEntity(tiles, spriteBatch);
+                assetsHandler.drawEntity(tiles, spriteBatch);
             }
             for (Entity entity : world.getEntities()){
                 if (!entity.getClass().equals(Tile.class)) {
-                    assetshandler.drawEntity(entity, spriteBatch);
+                    assetsHandler.drawEntity(entity, spriteBatch);
                 }
             }
  
@@ -105,27 +106,14 @@ public class Game implements ApplicationListener {
             System.out.println(e);
             
         } finally {
-            spriteBatch.end();   
+            spriteBatch.end();
+            
+            for (Entity entity : world.getEntities()) {
+                if (entity.hasPart(LifePart.class)) {
+                assetsHandler.drawHealth(entity);
+                }
+            }
         }
-        
-        
-//        for (Entity entity : world.getEntities()) {
-//            sr.setColor(1, 1, 1, 1);
-//
-//            sr.begin(ShapeRenderer.ShapeType.Line);
-//
-//            float[] shapex = entity.getShapeX();
-//            float[] shapey = entity.getShapeY();
-//
-//            for (int i = 0, j = shapex.length - 1;
-//                    i < shapex.length;
-//                    j = i++) {
-//
-//                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
-//            }
-//
-//            sr.end();
-//        }
         
     }
 
@@ -183,7 +171,7 @@ public class Game implements ApplicationListener {
     }
     
       public AssetsHandler getAssetsHandler() {
-        return assetshandler;
+        return assetsHandler;
     }
     
     public SpriteBatch getSpriteBatch(){

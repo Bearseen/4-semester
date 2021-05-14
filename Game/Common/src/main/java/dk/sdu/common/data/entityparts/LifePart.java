@@ -10,11 +10,15 @@ import dk.sdu.common.data.GameData;
 public class LifePart implements EntityPart {
 
     private boolean dead = false;
-    private int life;
     private boolean isHit = false;
+    private int life;
+    private int maxLife;
+    
+    
 
-    public LifePart(int life) {
-        this.life = life;
+    public LifePart(int maxLife) {
+        this.maxLife = maxLife;
+        this.life = this.maxLife;;
     }
 
     public int getLife() {
@@ -23,6 +27,14 @@ public class LifePart implements EntityPart {
 
     public void setLife(int life) {
         this.life = life;
+    }
+    
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
     }
 
     public boolean isHit() {
@@ -34,7 +46,11 @@ public class LifePart implements EntityPart {
     }
 
     public boolean isDead() {
-        return dead;
+        if (this.life <= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
