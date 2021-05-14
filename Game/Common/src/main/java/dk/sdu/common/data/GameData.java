@@ -10,8 +10,15 @@ public class GameData {
     private float delta;
     private int displayWidth;
     private int displayHeight;
+    private GameKeys key;
     private final GameKeys keys = new GameKeys();
     private List<Event> events = new CopyOnWriteArrayList<>();
+    private boolean endGame;
+    
+    public GameData() {
+        this.key = new GameKeys();
+        this.endGame = false;
+    }
 
     public void addEvent(Event e) {
         events.add(e);
@@ -51,6 +58,14 @@ public class GameData {
 
     public int getDisplayHeight() {
         return displayHeight;
+    }
+    
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
     }
 
     public <E extends Event> List<Event> getEvents(Class<E> type, String sourceID) {

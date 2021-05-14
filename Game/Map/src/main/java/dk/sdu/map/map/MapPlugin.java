@@ -86,6 +86,10 @@ public class MapPlugin implements IGamePluginService {
                 if (tileTypeMap[x][y].isHascollider()) {
                     tile.add(new CollisionPart(tileHeight - 10, tileWidth - 10));
                 }
+//                Collission detection
+//                if (tileTypeMap[x][y].isHascollider()) {
+//                    tile.addComponent(new BoxCollider(tileHeight - 10, tileWidth - 10));
+//                }
                 
                 world.addEntity(tile);
                 map[x][y] = tile;

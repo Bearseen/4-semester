@@ -12,6 +12,7 @@ import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.commonplayer.Player;
 import org.openide.util.lookup.ServiceProvider;
@@ -39,21 +40,29 @@ public class PlayerPlugin implements IGamePluginService {
     }
 
     private Entity createPlayer(GameData gameData) {
-
         float maxSpeed = 125;
         float rotationSpeed = 2;
         float x = gameData.getDisplayWidth() / 2;
         float y = gameData.getDisplayHeight() / 2;
         float radians = 3.1415f / 2;
-
+        
+        //Player
         Entity player = new Player("player.png");
         player.setRadius(4);
         player.add(new MovingPart(maxSpeed, rotationSpeed));
-        player.add(new PositionPart(x, y, radians));
+        player.add(new PositionPart(x, y, radians));        
+        player.add(new LifePart(1));    
         
         player.add(new LifePart(4));
         player.add(new CollisionPart(75,35));
-
+        // Weapon
+        int ammo = 5;
+        float reload = 3;
+        float cooldown = 0.3f;
+        String entityID = player.getID();
+        int damage = 1;
+        player.add(new RangedWeaponPart(ammo, reload, cooldown, entityID, damage));
+       
         return player;
     }
     
@@ -61,7 +70,9 @@ public class PlayerPlugin implements IGamePluginService {
     @Override
     public void stop(GameData gameData, World world) {
         // Remove entities
-        world.removeEntity(player);
+        for (Entity player : world.getEntities(Player.class)) {  
+            world.removeEntity(player);
+        }
     }
     
     

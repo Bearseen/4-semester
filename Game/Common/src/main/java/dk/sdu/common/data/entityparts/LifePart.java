@@ -5,7 +5,7 @@ import dk.sdu.common.data.GameData;
 
 /**
  *
- * @author Someone
+ * @author S
  */
 public class LifePart implements EntityPart {
 

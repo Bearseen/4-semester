@@ -6,13 +6,14 @@
 package dk.sdu.common.data.entityparts;
 
 import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.entityparts.EntityPart;
 import dk.sdu.common.data.GameData;
 
 /**
  *
  * @author Samuel
  */
-public class BulletPart extends Entity{
+public class BulletPart implements EntityPart{
     
     private String sourceId;
     private int damage;
@@ -63,9 +64,10 @@ public class BulletPart extends Entity{
 
     public void setRemove(boolean remove) {
         this.remove = remove;
-    }
-    
-    public void update(Entity entity, GameData gameData) {
+    }    
+
+    @Override
+    public void process(GameData gameData, Entity entity) {
         lifeTimer += gameData.getDelta();
         if (lifetime <= lifeTimer) {
             remove = true;

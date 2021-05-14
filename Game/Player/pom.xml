@@ -63,6 +63,7 @@
             <artifactId>org-openide-util-ui</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
+
     </dependencies>
     <properties>
         <libGDX.version>1.5.0</libGDX.version>

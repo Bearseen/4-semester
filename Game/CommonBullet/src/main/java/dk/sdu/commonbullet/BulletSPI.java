@@ -13,5 +13,5 @@ import dk.sdu.common.data.GameData;
  * @author Samuel
  */
 public interface BulletSPI {
-    Entity createBullet(Entity e, GameData gameData);
+    Entity createBullet(Entity entity, GameData gameData);
 }

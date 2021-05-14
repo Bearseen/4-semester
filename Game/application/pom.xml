@@ -61,7 +61,8 @@
             <version>${netbeans.version}</version>
         </dependency>
       
-       <dependency>
+
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Game-branding</artifactId>
             <version>${project.version}</version>
@@ -103,7 +104,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Bullet</artifactId>
+            <artifactId>Weapon</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -117,6 +118,7 @@
             <artifactId>Map</artifactId>
             <version>${project.version}</version>
         </dependency>
+       
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>AI</artifactId>

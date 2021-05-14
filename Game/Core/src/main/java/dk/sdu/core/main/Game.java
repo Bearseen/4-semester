@@ -1,5 +1,7 @@
 package dk.sdu.core.main;
 
+import dk.sdu.core.gameStates.GameState;
+import dk.sdu.core.gameStates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -22,11 +24,12 @@ import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
+import java.util.Stack;
 
 
 public class Game implements ApplicationListener {
 
-    private static OrthographicCamera cam;
+    public static OrthographicCamera cam;
     
     private final Lookup lookup = Lookup.getDefault();
     private List<IGamePluginService> gamePlugins = new CopyOnWriteArrayList<>();
@@ -37,12 +40,15 @@ public class Game implements ApplicationListener {
     private ShapeRenderer sr;
     private AssetsHandler assetsHandler;
     private SpriteBatch spriteBatch;
+    
+    private Stack<GameState> gameStates;
 
     @Override
     public void create() {
         assetsHandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
         sr = new ShapeRenderer();
+        this.gameStates = new Stack<>();
         
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
@@ -50,73 +56,96 @@ public class Game implements ApplicationListener {
         cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
+        
+        gameStates.push(new MenuState(this));
 
-        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
+//        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
         result = lookup.lookupResult(IGamePluginService.class);
         result.addLookupListener(lookupListener);
         result.allItems();
 
-        for (IGamePluginService plugin : result.allInstances()) {
-            plugin.start(gameData, world);
-            gamePlugins.add(plugin);
-        }
+//        for (IGamePluginService plugin : result.allInstances()) {
+//            plugin.start(gameData, world);
+//            gamePlugins.add(plugin);
+//        }
     }
 
     @Override
     public void render() {
-        // clear screen to black
-//        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+//        clear screen to black
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+//        clear screen to white
+//        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
+        gameData.getKeys().updateMouse(Gdx.input.getX(), gameData.getDisplayHeight() - Gdx.input.getY());
 
-        update();
-        draw();
-    }
-
-    private void update() {
-        // Update
-        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
-            entityProcessorService.process(gameData, world);
-        }
-
-        // Post Update
-        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
-            postEntityProcessorService.process(gameData, world);
-        }
-    }
-
-    private void draw() {
-        try {
-            spriteBatch.begin();
-            
-            for (Entity tiles : world.getEntities(Tile.class)){
-                assetsHandler.drawEntity(tiles, spriteBatch);
-            }
-            for (Entity entity : world.getEntities()){
-                if (!entity.getClass().equals(Tile.class)) {
-                    assetsHandler.drawEntity(entity, spriteBatch);
-                }
-            }
- 
-        } catch (Exception e){
-            System.out.println(e);
-            
-        } finally {
-            spriteBatch.end();
-            
-            for (Entity entity : world.getEntities()) {
-                if (entity.hasPart(LifePart.class)) {
-                assetsHandler.drawHealth(entity);
-                }
-            }
-        }
+//        update();
+//        draw();
         
+        this.gameStates.peek().render();
     }
 
+//    private void draw() {
+//        try {
+//            spriteBatch.begin();
+//            
+//            for (Entity tiles : world.getEntities(Tile.class)){
+//                assetsHandler.drawEntity(tiles, spriteBatch);
+//            }
+//            for (Entity entity : world.getEntities()){
+//                if (!entity.getClass().equals(Tile.class)) {
+//                    assetsHandler.drawEntity(entity, spriteBatch);
+//                }
+//            }
+// 
+//        } catch (Exception e){
+//            System.out.println(e);
+//            
+//        } finally {
+//            spriteBatch.end();
+//            
+//            for (Entity entity : world.getEntities()) {
+//                if (entity.hasPart(LifePart.class)) {
+//                assetsHandler.drawHealth(entity);
+//                }
+//            }
+//        }
+//        
+//    }
+//    private void update() {
+//        // Update
+//        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
+//            entityProcessorService.process(gameData, world);
+//        }
+//
+//        // Post Update
+//        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
+//            postEntityProcessorService.process(gameData, world);
+//        }
+//    }
+
+//        for (Entity entity : world.getEntities()) {
+//            sr.setColor(1, 1, 1, 1);
+//
+//            sr.begin(ShapeRenderer.ShapeType.Line);
+//
+//            float[] shapex = entity.getShapeX();
+//            float[] shapey = entity.getShapeY();
+//
+//            for (int i = 0, j = shapex.length - 1;
+//                    i < shapex.length;
+//                    j = i++) {
+//
+//                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+//            }
+//
+//            sr.end();
+//        }
+//    }
     @Override
     public void resize(int width, int height) {
     }
@@ -177,4 +206,29 @@ public class Game implements ApplicationListener {
     public SpriteBatch getSpriteBatch(){
         return spriteBatch;
     }
+    
+    public Stack<GameState> getGameStates() {
+        return gameStates;
+    }
+    
+    public GameData getGameData() {
+        return gameData;
+    }
+    
+    public LookupListener getLookupListener() {
+        return lookupListener;
+    }
+    
+    public List<IGamePluginService> getGamePlugins() {
+        return gamePlugins;
+    }
+
+    public Lookup getLookup() {
+        return lookup;
+    }
+
+    public Lookup.Result<IGamePluginService> getResult() {
+        return result;
+    }
+    
 }
