@@ -89,7 +89,7 @@ public class Astar {
     private ArrayList<Node> expand(World world, Entity entity, Node node) {
 
         ArrayList<Node> neighbors = new ArrayList<>();
-        int val = 5;
+        int val = 10;
         float x = node.getX();
         float y = node.getY();
         float[][] sucessors = {{x - val, y + val}, {x, y + val}, {x + val, y + val},
@@ -115,7 +115,7 @@ public class Astar {
        
 
         while (!fringe.isEmpty()) {
-           
+            
             Node lowest = remove(goal, fringe);
             
 

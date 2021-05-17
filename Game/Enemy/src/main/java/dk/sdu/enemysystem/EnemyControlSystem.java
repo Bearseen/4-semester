@@ -51,11 +51,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
                 Node goal = new Node(targetPos.getX(), targetPos.getY());
                 if(pathfinder != null){
                     
-                  
                   this.pathfinder.moveEnemy(gameData, enemy, goal, world);
-                   
-
-                   
                 }
             } else{
                 setTarget(currentEnemy, world);
@@ -124,7 +120,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
        PositionPart enemyPos = enemy.getPart(PositionPart.class);
       
        if(enemy.getTarget() != null){
-           if(enemy.getTarget().getClass().equals(Player.class)){
+           if(!enemy.getTarget().getClass().equals(Player.class)){
             if(enemy.isTargeted()){
                if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
                    System.out.println("targetting player");
@@ -133,6 +129,10 @@ public class EnemyControlSystem implements IEntityProcessingService {
            
     }
            damageTarget(enemy,world);
+       } else if(enemy.getTarget().getClass().equals(Player.class)){
+           if(((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2))){
+               damageTarget(enemy,world);
+           }
        }
        
     }

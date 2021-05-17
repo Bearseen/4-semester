@@ -40,10 +40,10 @@ public class Pathfinder implements IPathFinder {
     public void moveEnemy(GameData gameData, Entity entity, Node goal, World world) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
         SimpleMovingPart simpleMovingPart = entity.getPart(SimpleMovingPart.class);
-        float dt = gameData.getDelta();
-        if(dt > 200){
-            dt = 0;
-        }
+        
+//        if(dt > 200){
+//            dt = 0;
+//        }
         
         if (positionPart == null || simpleMovingPart == null) {
             
@@ -59,8 +59,8 @@ public class Pathfinder implements IPathFinder {
             float y = path.get(path.size() - 1).getY() - positionPart.getY();
             positionPart.setRadians((float) Math.atan2(y,x));
 
-            positionPart.setX(positionPart.getX()   + simpleMovingPart.getSpeed() * dt);
-            positionPart.setY(positionPart.getY()  + simpleMovingPart.getSpeed() * dt);
+            positionPart.setX(positionPart.getX() +  (float) cos(positionPart.getRadians())  + simpleMovingPart.getSpeed() * gameData.getDelta());
+            positionPart.setY(positionPart.getY()  +  (float) sin(positionPart.getRadians()) + simpleMovingPart.getSpeed() * gameData.getDelta());
         }
     }
 

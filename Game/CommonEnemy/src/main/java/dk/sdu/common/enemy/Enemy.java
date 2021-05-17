@@ -12,6 +12,7 @@ public class Enemy extends Entity {
     private boolean isTargeted;
     private boolean isMoving;
     private float playerRadius;
+    private float x, y;
     
     public Enemy() {
         super();
@@ -57,7 +58,17 @@ public class Enemy extends Entity {
     public void setPlayerRadius(float playerRadius) {
         this.playerRadius = playerRadius;
     }
-    
-    
-    
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+       
+    }
+    public void setX(float x){
+        this.x = x;
+    }
+    public void setY(float y){
+        this.y = y;
+    }
 }

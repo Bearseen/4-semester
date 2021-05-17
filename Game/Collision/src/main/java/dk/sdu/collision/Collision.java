@@ -12,6 +12,7 @@ import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
+import dk.sdu.common.data.entityparts.SimpleMovingPart;
 import dk.sdu.common.services.IPostEntityProcessingService;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -73,7 +74,7 @@ public class Collision implements IPostEntityProcessingService {
         float overlapX = colliderA.getWidth() / 2 + colliderB.getWidth() / 2 - Math.abs(xDifference);
         float overlapY = colliderA.getHeight() / 2 + colliderB.getHeight() / 2 - Math.abs(yDifference);
 
-        if (entityA.hasPart(MovingPart.class)) {
+        if (entityA.hasPart(MovingPart.class) || entityA.hasPart(SimpleMovingPart.class)) {
             if (overlapX >= overlapY) {
                 if (yDifference > 0) {
                     positionA.setY(positionA.getY() + overlapY);
