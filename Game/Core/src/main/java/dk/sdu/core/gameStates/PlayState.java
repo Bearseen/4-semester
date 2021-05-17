@@ -56,22 +56,7 @@ public class PlayState extends GameState{
             Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
     }
 
-    @Override
-    public void dispose() {
 
-    }
-
-    @Override
-    public void render() {
-        if (this.paused == false) {
-            update();
-            draw();
-            
-//            wave();
-//            pause();
-//            endGame();
-        }
-    }
 
     private void update() {
         // Update
@@ -108,4 +93,33 @@ public class PlayState extends GameState{
         }
     }
     
+    private void endGame() {
+        if (this.gameData.isEndGame()) {
+            System.out.println("Game ending");
+//            this.gameData.getKeys().resetKeys();
+            this.gameData.setEndGame(false);
+            for (IGamePluginService plugin : game.getGamePlugins()) {
+                plugin.stop(game.getGameData(), game.getWorld());
+            }
+
+            game.getGameStates().pop();
+            game.getGameStates().push(new GameOverState(game));
+        }
+    }
+    
+    @Override
+    public void dispose() {
+
+    }
+
+    @Override
+    public void render() {
+        if (this.paused == false) {
+            update();
+            draw();
+//            wave();
+//            pause();
+            endGame();
+        }
+    }
 }

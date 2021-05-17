@@ -9,10 +9,13 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.BulletPart;
+import dk.sdu.common.data.entityparts.CollisionPart;
+import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.data.entityparts.TimerPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.commonbullet.Bullet;
 import static java.lang.Math.cos;
@@ -21,12 +24,13 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
- *
  * @author Samuel
  */
+
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class)})
 public class WeaponProcessor implements IEntityProcessingService {
+
     
     @Override
     public void process(GameData gameData, World world) {
@@ -64,7 +68,7 @@ public class WeaponProcessor implements IEntityProcessingService {
     private void updateRangedWeapon(GameData gameData, World world, Entity entity) {
         RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
         
-        if (rangedWeaponPart.isIsAttacking() != false && !emptyMagazine(rangedWeaponPart)) {
+        if (rangedWeaponPart.isIsAttacking() && !emptyMagazine(rangedWeaponPart)) {
             
             System.out.println(rangedWeaponPart.getShotTimer());
             if (rangedWeaponPart.getShotTimer() <= 0) {
@@ -76,7 +80,9 @@ public class WeaponProcessor implements IEntityProcessingService {
             
             System.out.println(rangedWeaponPart.getAmmo());
             rangedWeaponPart.process(gameData, entity);
-            
+
+            // draw ammo counter
+
         }
         rangedWeaponPart.setIsAttacking(false);
     }
@@ -88,7 +94,8 @@ public class WeaponProcessor implements IEntityProcessingService {
         if (bulletPart == null && positionPart == null) {
             return;
         }
-        
+
+        assert bulletPart != null;
         if (bulletPart.getRemove()) {
             world.removeEntity(bullet);
             return;
@@ -105,8 +112,40 @@ public class WeaponProcessor implements IEntityProcessingService {
         
         bulletPart.process(gameData, bullet);
         
-//        projectileHit(bullet, world);
+        weaponHit(bullet, world);
         
+    }
+    
+    private void weaponHit(Bullet bullet, World world) {
+        
+        for (Entity entity : world.getEntities()) {
+            BulletPart bulletPart = bullet.getPart(BulletPart.class);
+            if (entity.getID().equals(bulletPart.getSourceId())) {
+                continue;
+            }
+            
+            if (entity.hasPart(CollisionPart.class) && entity.hasPart(PositionPart.class)) {
+                PositionPart positionPart = entity.getPart(PositionPart.class);
+                CollisionPart collider = entity.getPart(CollisionPart.class);
+                PositionPart projectilePosition = bullet.getPart(PositionPart.class);
+                
+                float x = projectilePosition.getX();
+                float y = projectilePosition.getY();
+                
+                float x1 = positionPart.getX() - collider.getWidth() / 2;
+                float x2 = positionPart.getX() + collider.getWidth() / 2;
+                float y1 = positionPart.getY() - collider.getHeight() / 2;
+                float y2 = positionPart.getY() + collider.getHeight() / 2;
+                
+                if (x > x1 && x < x2 && y > y1 && y < y2) {
+                    world.removeEntity(bullet);
+                    if (entity.hasPart(LifePart.class)) {
+                        LifePart lifePart = entity.getPart(LifePart.class);
+                        lifePart.damage(bulletPart.getDamage());
+                    }
+                }
+            }
+        }
     }
     
     private void decreaseAmmo(RangedWeaponPart part){

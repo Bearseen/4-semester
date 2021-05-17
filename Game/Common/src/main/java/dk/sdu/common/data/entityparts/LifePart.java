@@ -36,6 +36,10 @@ public class LifePart implements EntityPart {
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
     }
+    
+    public void damage(int amount) {
+        this.life -= amount;
+    }
 
     public boolean isHit() {
         return isHit;

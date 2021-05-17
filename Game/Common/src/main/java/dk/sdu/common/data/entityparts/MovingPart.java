@@ -5,39 +5,22 @@
  */
 package dk.sdu.common.data.entityparts;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
-import static dk.sdu.common.data.GameKeys.LEFT;
-import static dk.sdu.common.data.GameKeys.RIGHT;
-import static dk.sdu.common.data.GameKeys.UP;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import static java.lang.Math.sqrt;
+import dk.sdu.common.data.GameKeys;
 
 /**
- *
- * @author Samuel
+ * @author Samuel & Yusaf
  */
-public class MovingPart
-        implements EntityPart {
+public class MovingPart implements EntityPart {
 
     private float dx, dy;
     private float deceleration, acceleration;
-    private float maxSpeed, rotationSpeed;
+    private float speed;
     private boolean left, right, up, down;
 
-    public MovingPart(float maxSpeed, float rotationSpeed) {
-        this.maxSpeed = maxSpeed;
-        this.rotationSpeed = rotationSpeed;
-    }
-    
-    public MovingPart(float deceleration, float acceleration, float maxSpeed, float rotationSpeed) {
-        this.deceleration = deceleration;
-        this.acceleration = acceleration;
-        this.maxSpeed = maxSpeed;
-        this.rotationSpeed = rotationSpeed;
+    public MovingPart(float speed) {
+        this.speed = speed;
     }
 
     public float getDx() {
@@ -48,17 +31,9 @@ public class MovingPart
         return dy;
     }
 
-    public void setMaxSpeed(float maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
     public void setSpeed(float speed) {
         
-        this.maxSpeed = speed;
-    }
-
-    public void setRotationSpeed(float rotationSpeed) {
-        this.rotationSpeed = rotationSpeed;
+        this.speed = speed;
     }
 
     public void setLeft(boolean left) {
@@ -72,12 +47,58 @@ public class MovingPart
     public void setUp(boolean up) {
         this.up = up;
     }
+
     public void setDown(boolean down){
         this.down = down;
     }
 
     @Override
     public void process(GameData gameData, Entity entity) {
+        PositionPart positionPart = entity.getPart(PositionPart.class);
+        float x = positionPart.getX();
+        float y = positionPart.getY();
+        float dt = gameData.getDelta();
+
+        // movement: UP, DOWN, LEFT, RIGHT
+        if (up) {
+            y += speed * dt;
+        } else if (down) {
+            y -= speed * dt;
+        }
+
+        if (left) {
+            x -= speed * dt;
+        } else if (right) {
+            x += speed * dt;
+        }
+
+        // set position
+        x += /*dx **/ dt;
+        if (x > gameData.getDisplayWidth()) {
+            x = 0;
+        } else if (x < 0) {
+            x = gameData.getDisplayWidth();
+        }
+
+        y += /*dy **/ dt;
+        if (y > gameData.getDisplayHeight()) {
+            y = 0;
+        } else if (y < 0) {
+            y = gameData.getDisplayHeight();
+        }
+
+        positionPart.setX(x);
+        positionPart.setY(y);
+
+        // aim & look direction
+        float diffX = GameKeys.mouse_X - positionPart.getX();
+        float diffY = GameKeys.mouse_Y - positionPart.getY();
+
+        positionPart.setRadians((float) Math.atan2(diffY, diffX));
+
+        /*
+        // old movement logic
+
         PositionPart positionPart = entity.getPart(PositionPart.class);
         float x = positionPart.getX();
         float y = positionPart.getY();
@@ -89,7 +110,6 @@ public class MovingPart
         } else if (right) {            
             radians -= rotationSpeed * dt;
         }
-
 
         // accelerating
         if (up) {
@@ -121,6 +141,8 @@ public class MovingPart
         positionPart.setY(y);
 
         positionPart.setRadians(radians);
+        */
     }
+
 
 }

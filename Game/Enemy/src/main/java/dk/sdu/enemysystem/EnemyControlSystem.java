@@ -25,12 +25,8 @@ import org.openide.util.Lookup;
 
 public class EnemyControlSystem implements IEntityProcessingService {
 
-    
     private IPathFinder pathfinder;
     private final Lookup lookup = Lookup.getDefault();
-    
-    
-    
 
     @Override
     public void process(GameData gameData, World world) {
@@ -43,37 +39,28 @@ public class EnemyControlSystem implements IEntityProcessingService {
             PositionPart position = enemy.getPart(PositionPart.class);
             CollisionPart collision = enemy.getPart(CollisionPart.class);
             
-            
-            
             if(getTargetExistence(currentEnemy, world)){
-                
                 PositionPart targetPos = currentEnemy.getTarget().getPart(PositionPart.class);
                 Node goal = new Node(targetPos.getX(), targetPos.getY());
                 if(pathfinder != null){
-                    
-                  this.pathfinder.moveEnemy(gameData, enemy, goal, world);
+                    this.pathfinder.moveEnemy(gameData, enemy, goal, world);
                 }
             } else{
                 setTarget(currentEnemy, world);
             }
-            handleTarget(currentEnemy, world);
-            
-            
-
-//         
+            handleTarget(currentEnemy, world, gameData);
+            handleLife(currentEnemy, world);
         }
     }
     
     private void setTarget(Enemy enemy, World world){
         if(enemy.isTargeted()){
-            targetPlayer(enemy, world);
-            
+            targetPlayer(enemy, world); 
         }
     }
     
     private void targetPlayer (Enemy enemy, World world){
         if(world.getEntities(Player.class).isEmpty()){
-            
             return;
         }
         
@@ -101,14 +88,12 @@ public class EnemyControlSystem implements IEntityProcessingService {
         if (entity == null) {
             return false;
         } else {
-            
-            
             return true;
             
         }
     }
     
-    private void handleTarget(Enemy enemy, World world){
+    private void handleTarget(Enemy enemy, World world, GameData gameData){
        if(world.getEntities(Player.class).isEmpty()){
            return;
        } 
@@ -125,26 +110,26 @@ public class EnemyControlSystem implements IEntityProcessingService {
                if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
                    System.out.println("targetting player");
                    targetPlayer(enemy, world);
-               }
+                    }
            
-    }
-           damageTarget(enemy,world);
+                }
+            damageTarget(enemy, world, gameData);
        } else if(enemy.getTarget().getClass().equals(Player.class)){
-           if(((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2))){
-               damageTarget(enemy,world);
-           }
-       }
-       
-    }
+           if ((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
+                damageTarget(enemy, world, gameData);
+                }
+            }
+        }
     }
     
-    private void damageTarget (Enemy enemy, World world){
+    private void damageTarget (Enemy enemy, World world, GameData gameData){
         Entity target = enemy.getTarget();
         PositionPart enemyPos = enemy.getPart(PositionPart.class);
         PositionPart playerPos = target.getPart(PositionPart.class);
+        LifePart lifePart = target.getPart(LifePart.class);
         
         CollisionPart enemyCollision = enemy.getPart(CollisionPart.class);
-        CollisionPart playerCollision = enemy.getPart(CollisionPart.class);
+        CollisionPart playerCollision = target.getPart(CollisionPart.class);
         
         float x1 = enemyPos.getX() - enemyCollision.getWidth() / 2;
         float x2 = enemyPos.getX() + enemyCollision.getWidth() / 2;
@@ -157,7 +142,24 @@ public class EnemyControlSystem implements IEntityProcessingService {
         float y4 = playerPos.getY() + playerCollision.getHeight() / 2;
         
         if ((x1 < x4) && (x3 < x2) && (y1 < y4) && (y3 < y2)) {
-            world.removeEntity(target);
+//            world.removeEntity(target);
+            if(lifePart.getLife() >= -1){
+                lifePart.setIsHit(true);
+                if (lifePart.isDead()){
+                    world.removeEntity(target);
+                    gameData.setEndGame(true);
+                }
+            }
+        }
+    }
+    
+    private void handleLife(Enemy enemy, World world) {
+        LifePart lifePart = enemy.getPart(LifePart.class);
+        if (lifePart == null) {
+            return;
+        }
+        if (lifePart.isDead()) {
+            world.removeEntity(enemy);
         }
     }
 }

@@ -19,11 +19,11 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
- *
- * @author Samuel & Mustafa
+ * @author Samuel, Mustafa & Yusaf
  */
-@ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class),})
+
+@ServiceProviders(value = {@ServiceProvider(service = IGamePluginService.class),})
+
 public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
@@ -37,11 +37,11 @@ public class PlayerPlugin implements IGamePluginService {
         // Add entities to the world
         player = createPlayer(gameData);
         world.addEntity(player);
+
     }
 
     private Entity createPlayer(GameData gameData) {
-        float maxSpeed = 125;
-        float rotationSpeed = 2;
+        float speed = 200; // player movement speed
         float x = gameData.getDisplayWidth() / 2;
         float y = gameData.getDisplayHeight() / 2;
         float radians = 3.1415f / 2;
@@ -49,7 +49,7 @@ public class PlayerPlugin implements IGamePluginService {
         //Player
         Entity player = new Player("player.png");
         player.setRadius(4);
-        player.add(new MovingPart(maxSpeed, rotationSpeed));
+        player.add(new MovingPart(speed));
         player.add(new PositionPart(x, y, radians));        
         player.add(new LifePart(1));    
         
@@ -65,7 +65,6 @@ public class PlayerPlugin implements IGamePluginService {
        
         return player;
     }
-    
 
     @Override
     public void stop(GameData gameData, World world) {
@@ -74,6 +73,5 @@ public class PlayerPlugin implements IGamePluginService {
             world.removeEntity(player);
         }
     }
-    
-    
+
 }
