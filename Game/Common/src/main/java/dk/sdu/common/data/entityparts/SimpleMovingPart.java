@@ -90,9 +90,9 @@ public class SimpleMovingPart implements EntityPart {
 
     @Override
     public void process( GameData gameData, Entity entity) {
-        PositionPart position = entity.getPart(PositionPart.class);
-        float x = position.getX();
-        float y = position.getY();
+        PositionPart positionPart = entity.getPart(PositionPart.class);
+        float x = positionPart.getX();
+        float y = positionPart.getY();
         float dt = gameData.getDelta();
 
         if (up) {
@@ -119,13 +119,32 @@ public class SimpleMovingPart implements EntityPart {
             dx = (dx / vec) * speed;
             dy = (dy / vec) * speed;
         }
-        // set position
+        
         x += dx * dt;
         y += dy * dt;
+        
+        // set position
+        x += /*dx **/ dt;
+        if (x > gameData.getDisplayWidth()) {
+            x = 0;
+        } else if (x < 0) {
+            x = gameData.getDisplayWidth();
+        }
 
-        position.setX(x);
-        position.setY(y);
+        y += /*dy **/ dt;
+        if (y > gameData.getDisplayHeight()) {
+            y = 0;
+        } else if (y < 0) {
+            y = gameData.getDisplayHeight();
+        }
 
+        positionPart.setX(x);
+        positionPart.setY(y);
+        
+//        x += dx * dt;
+//        y += dy * dt;
+//        positionPart.setX(x);
+//        positionPart.setY(y);
     }
     
 }

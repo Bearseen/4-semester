@@ -15,9 +15,12 @@ import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
+import dk.sdu.common.services.IWaveProcessingService;
 import dk.sdu.core.main.Game;
 import dk.sdu.core.managers.AssetsHandler;
 import dk.sdu.core.managers.GameInputProcessor;
+import dk.sdu.core.managers.WaveHandler;
+import java.util.Collection;
 import java.util.Stack;
 import org.openide.util.Lookup;
 
@@ -30,7 +33,7 @@ public class PlayState extends GameState{
     private GameData gameData;
     private World world;
     private AssetsHandler assetsHandler;
-//    private WaveManager waveManager;
+    private WaveHandler waveHandler;
     private final Lookup lookup; 
     private boolean paused = false;
     private Stack<GameState> gameStates;
@@ -44,7 +47,7 @@ public class PlayState extends GameState{
             this.gameData = game.getGameData();
             this.world = game.getWorld();
             this.assetsHandler = game.getAssetsHandler();
-    //        this.waveManager = new WaveManager();
+            this.waveHandler = new WaveHandler();
             this.lookup = game.getLookup();
             this.paused = false;
             this.gameStates = game.getGameStates();
@@ -93,6 +96,27 @@ public class PlayState extends GameState{
         }
     }
     
+    private void wave() {
+        Collection<? extends IWaveProcessingService> waves = lookup.lookupAll(IWaveProcessingService.class);
+
+        boolean endWave = false;
+        for (IWaveProcessingService wave : waves) {
+            if (wave.stopWave(gameData, world)) {
+                endWave = true;
+                break;
+            }
+        }
+
+        if (endWave) {
+            this.waveHandler.setNextWave();
+
+            for (IWaveProcessingService wave : waves) {
+                wave.startWave(this.gameData, this.world, this.waveHandler.getCurrentWave());
+            }
+        }
+    }
+    
+    
     private void endGame() {
         if (this.gameData.isEndGame()) {
             System.out.println("Game ending");
@@ -107,6 +131,7 @@ public class PlayState extends GameState{
         }
     }
     
+    
     @Override
     public void dispose() {
 
@@ -117,7 +142,7 @@ public class PlayState extends GameState{
         if (this.paused == false) {
             update();
             draw();
-//            wave();
+            wave();
 //            pause();
             endGame();
         }
