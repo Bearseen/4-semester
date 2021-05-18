@@ -88,21 +88,21 @@ public class Astar {
 
     private ArrayList<Node> expand(World world, Entity entity, Node node) {
 
-        ArrayList<Node> neighbors = new ArrayList<>();
+        ArrayList<Node> sucessors = new ArrayList<>();
         int val = 10;
         float x = node.getX();
         float y = node.getY();
-        float[][] sucessors = {{x - val, y + val}, {x, y + val}, {x + val, y + val},
+        float[][] neighbours = {{x - val, y + val}, {x, y + val}, {x + val, y + val},
         {x - val, y}, {x + val, y}, {x - val, y - val}, {x, y - val}, {x + val, y - val}};
 
-        for (float[] element : sucessors) {
+        for (float[] element : neighbours) {
             Node neighbor = new Node(element[0], element[1]);
             if (nodeChecker(neighbor, world, entity) == false) {
                 neighbor.setParent(node);
-                neighbors.add(neighbor);
+                sucessors.add(neighbor);
             }
         }
-        return neighbors;
+        return sucessors;
     }
 
     public ArrayList<Node> aStarPath(Entity entity, World world, Node goal) {

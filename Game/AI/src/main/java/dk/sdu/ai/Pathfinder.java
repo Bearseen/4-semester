@@ -54,13 +54,13 @@ public class Pathfinder implements IPathFinder {
         ArrayList<Node> path = ai.aStarPath(entity, world, goal);
 
         if (!path.isEmpty()) {
-            System.out.println("path:" + path.size());
+            
             float x = path.get(path.size() - 1).getX() - positionPart.getX();
             float y = path.get(path.size() - 1).getY() - positionPart.getY();
             positionPart.setRadians((float) Math.atan2(y,x));
 
-            positionPart.setX(positionPart.getX() +  (float) cos(positionPart.getRadians())  + simpleMovingPart.getSpeed() * gameData.getDelta());
-            positionPart.setY(positionPart.getY()  +  (float) sin(positionPart.getRadians()) + simpleMovingPart.getSpeed() * gameData.getDelta());
+            positionPart.setX(positionPart.getX() +  (float) cos(positionPart.getRadians())  * simpleMovingPart.getSpeed() * gameData.getDelta());
+            positionPart.setY(positionPart.getY() +  (float) sin(positionPart.getRadians()) * simpleMovingPart.getSpeed() * gameData.getDelta());
         }
     }
 
