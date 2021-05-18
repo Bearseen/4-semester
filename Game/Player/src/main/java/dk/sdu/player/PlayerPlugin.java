@@ -51,12 +51,11 @@ public class PlayerPlugin implements IGamePluginService {
         player.setRadius(4);
         player.add(new MovingPart(speed));
         player.add(new PositionPart(x, y, radians));        
-        player.add(new LifePart(1));    
-        
-        player.add(new LifePart(4));
+        player.add(new LifePart(4));    
         player.add(new CollisionPart(75,35));
+        
         // Weapon
-        int ammo = 5;
+        int ammo = 10;
         float reload = 3;
         float cooldown = 0.3f;
         String entityID = player.getID();

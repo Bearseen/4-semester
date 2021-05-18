@@ -37,7 +37,6 @@ public class WeaponProcessor implements IEntityProcessingService {
         
         for (Entity entity : world.getEntities()) {
             if (entity.hasPart(RangedWeaponPart.class)) {
-                System.out.println("Found rangedWeaponPart" + entity.toString());
                 updateRangedWeapon(gameData, world, entity);
             }
         }
@@ -48,23 +47,6 @@ public class WeaponProcessor implements IEntityProcessingService {
         }     
     }
         
-//        for (Entity bullet : world.getEntities(Bullet.class)) {
-//
-//            PositionPart positionPart = bullet.getPart(PositionPart.class);
-//            MovingPart movingPart = bullet.getPart(MovingPart.class);
-//            TimerPart timerPart = bullet.getPart(TimerPart.class);
-//            
-//            movingPart.setUp(true);
-//            
-//            if (timerPart.getExpiration() < 0) {
-//                world.removeEntity(bullet);
-//            }
-//            timerPart.process(gameData, bullet);
-//            movingPart.process(gameData, bullet);
-//            positionPart.process(gameData, bullet);
-//
-//        }
-//    }
     private void updateRangedWeapon(GameData gameData, World world, Entity entity) {
         RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
         

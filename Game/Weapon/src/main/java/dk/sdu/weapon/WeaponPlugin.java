@@ -47,35 +47,6 @@ public class WeaponPlugin implements IGamePluginService, BulletSPI {
         
         return bullet;
         
-//        PositionPart shooterPos = shooter.getPart(PositionPart.class);
-//        MovingPart shooterMovingPart = shooter.getPart(MovingPart.class);
-//        RangedWeaponPart rangedWeaponPart = shooter.getPart(RangedWeaponPart.class);
-//
-//        rangedWeaponPart.setAmmo(MAX_BULLETS);
-//
-//        float x = shooterPos.getX();
-//        float y = shooterPos.getY();
-//        float radians = shooterPos.getRadians();
-//        float dt = gameData.getDelta();
-//        float speed = 350;
-//
-//        Entity bullet = new Bullet("bullet.png");
-//        bullet.setRadius(2);
-//
-//
-//        float bx = (float) cos(radians) * shooter.getRadius() * bullet.getRadius();
-//        float by = (float) sin(radians) * shooter.getRadius() * bullet.getRadius();
-//
-//        bullet.add(new PositionPart(bx + x, by + y, radians));
-//        bullet.add(new LifePart(1));
-//        bullet.add(new MovingPart(0, 5000000, speed, 5));
-//        bullet.add(new TimerPart(1));
-//        bullet.add(new RangedWeaponPart(rangedWeaponPart.getAmmo(),rangedWeaponPart.getEntityId(), 1));
-//
-//        bullet.setShapeX(new float[2]);
-//        bullet.setShapeY(new float[2]);
-//
-//        return bullet;
     }
 
     @Override

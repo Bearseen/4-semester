@@ -60,7 +60,7 @@ public class PlayerProcessor implements IEntityProcessingService{
             // reload weapon
             if (gameData.getKeys().isDown(GameKeys.R)){
                 rangedWeaponPart.setIsAttacking(false);
-                rangedWeaponPart.setAmmo(5);
+                rangedWeaponPart.setAmmo(10);
             }
             
             // endGame when player is dead
