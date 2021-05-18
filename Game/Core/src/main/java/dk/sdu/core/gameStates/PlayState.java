@@ -6,15 +6,18 @@
 package dk.sdu.core.gameStates;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
+import dk.sdu.commonplayer.Player;
 import dk.sdu.core.main.Game;
 import dk.sdu.core.managers.AssetsHandler;
 import dk.sdu.core.managers.GameInputProcessor;
@@ -36,9 +39,17 @@ public class PlayState extends GameState{
     private Stack<GameState> gameStates;
     private Game game;
     private Lookup.Result<IGamePluginService> result;
+    
+    private int score = 0;
+    private String scoreName;
+    BitmapFont font;
+
 
     public PlayState(Game game) { 
         super(game);
+            scoreName = "score: 0";
+            font = new BitmapFont();
+            
             this.game = game;
             this.spriteBatch = game.getSpriteBatch();
             this.gameData = game.getGameData();
@@ -72,7 +83,7 @@ public class PlayState extends GameState{
 
     private void draw() {
         spriteBatch.begin();
-
+        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         for (Entity entity : world.getEntities(Tile.class)) {
             assetsHandler.drawEntity(entity, this.spriteBatch);
         }
@@ -83,6 +94,12 @@ public class PlayState extends GameState{
 
             }
         }
+        
+        
+        
+    
+        font.draw(spriteBatch, scoreName, 25, 100);
+        
 
         spriteBatch.end();
 

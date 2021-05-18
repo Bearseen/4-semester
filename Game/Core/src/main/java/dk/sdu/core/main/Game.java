@@ -5,6 +5,7 @@ import dk.sdu.core.gameStates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -27,6 +28,11 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
 import java.util.Stack;
@@ -49,6 +55,12 @@ public class Game implements ApplicationListener {
     private Stack<GameState> gameStates;
 
     private BitmapFont font;
+    private int score;
+    private String scoreName;
+    private Stage stage;
+    private Table table;
+    private Label label;
+    
     private RangedWeaponPart rangedWeaponPart; // skal måske instantieres
 
     @Override
@@ -58,7 +70,7 @@ public class Game implements ApplicationListener {
         sr = new ShapeRenderer();
 
         this.gameStates = new Stack<>();
-
+                
         /** ToDo: SET FONT
          *
          * Burde hente font fra fonts folder: "Core/src/Main/resources/fonts/"
@@ -99,6 +111,7 @@ public class Game implements ApplicationListener {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
         gameData.getKeys().updateMouse(Gdx.input.getX(), gameData.getDisplayHeight() - Gdx.input.getY());
+
 
 //        update();
 //        draw();
@@ -157,7 +170,7 @@ public class Game implements ApplicationListener {
                     assetsHandler.drawEntity(entity, spriteBatch);
                 }
             }
-
+            
             /**
              * ToDo: Draw Ammo Counter:
              *
@@ -193,6 +206,7 @@ public class Game implements ApplicationListener {
    
     @Override
     public void resize(int width, int height) {
+  
     }
 
     @Override
