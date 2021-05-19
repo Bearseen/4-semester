@@ -16,11 +16,13 @@ import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
+import dk.sdu.common.services.IHighscoreProcessingService;
 import dk.sdu.common.services.IPostEntityProcessingService;
 import dk.sdu.common.services.IWaveProcessingService;
 import dk.sdu.core.main.Game;
 import dk.sdu.core.managers.AssetsHandler;
 import dk.sdu.core.managers.GameInputProcessor;
+import dk.sdu.core.managers.HighscoreHandler;
 import dk.sdu.core.managers.WaveHandler;
 import java.util.Collection;
 import java.util.Stack;
@@ -42,7 +44,9 @@ public class PlayState extends GameState{
     private Game game;
     private Lookup.Result<IGamePluginService> result;
     
-    private int score = 0;
+    private HighscoreHandler highscoreHandler;
+    
+    private int score = 10;
     private String scoreName;
     BitmapFont font;
 
@@ -61,6 +65,8 @@ public class PlayState extends GameState{
             this.lookup = game.getLookup();
             this.paused = false;
             this.gameStates = game.getGameStates();
+            
+            this.highscoreHandler = new HighscoreHandler();
 
             for (IGamePluginService plugin : game.getResult().allInstances()) {
                 plugin.start(gameData, world);
@@ -85,7 +91,7 @@ public class PlayState extends GameState{
 
     private void draw() {
         spriteBatch.begin();
-        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        
         for (Entity entity : world.getEntities(Tile.class)) {
             assetsHandler.drawEntity(entity, this.spriteBatch);
         }
@@ -98,10 +104,6 @@ public class PlayState extends GameState{
         }
         
         
-        
-    
-        font.draw(spriteBatch, scoreName, 25, 100);
-        
 
         spriteBatch.end();
 
@@ -113,6 +115,7 @@ public class PlayState extends GameState{
     }
     
     private void wave() {
+        highscore();
         Collection<? extends IWaveProcessingService> waves = lookup.lookupAll(IWaveProcessingService.class);
 
         boolean endWave = false;
@@ -130,6 +133,7 @@ public class PlayState extends GameState{
                 wave.startWave(this.gameData, this.world, this.waveHandler.getCurrentWave());
             }
         }
+        
     }
     
     
@@ -143,7 +147,7 @@ public class PlayState extends GameState{
             }
 
             game.getGameStates().pop();
-            game.getGameStates().push(new GameOverState(game));
+            //game.getGameStates().push(new GameOverState(game));
         }
     }
     
@@ -163,4 +167,19 @@ public class PlayState extends GameState{
             endGame();
         }
     }
+    
+    public void highscore(){
+        Collection<? extends IHighscoreProcessingService> highscores = lookup.lookupAll(IHighscoreProcessingService.class);
+        for(IHighscoreProcessingService highscore : highscores){
+            if(highscore.highscoreProcess(gameData, world)){
+                highscoreHandler.addScore(5);
+            }
+        }
+        spriteBatch.begin();
+        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        font.draw(spriteBatch, "Score: "+String.valueOf(highscoreHandler.getScore()), 25, 100);
+        spriteBatch.end();
+    }
+    
+
 }

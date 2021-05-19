@@ -10,6 +10,7 @@ import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.SimpleMovingPart;
 import dk.sdu.common.enemy.Enemy;
 import dk.sdu.common.services.IGamePluginService;
+import dk.sdu.common.services.IHighscoreProcessingService;
 import dk.sdu.common.services.IWaveProcessingService;
 import dk.sdu.common.spawn.Spawn;
 import java.util.ArrayList;

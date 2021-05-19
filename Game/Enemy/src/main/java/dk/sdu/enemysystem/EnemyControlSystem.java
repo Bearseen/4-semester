@@ -17,17 +17,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.ai.IPathFinder;
 import dk.sdu.common.ai.Node;
 import dk.sdu.common.data.entityparts.CollisionPart;
+import dk.sdu.common.services.IHighscoreProcessingService;
 import dk.sdu.commonplayer.Player;
 import org.openide.util.Lookup;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),})
 
-public class EnemyControlSystem implements IEntityProcessingService {
+public class EnemyControlSystem implements IEntityProcessingService, IHighscoreProcessingService {
 
     private IPathFinder pathfinder;
     private final Lookup lookup = Lookup.getDefault();
-
+    
     @Override
     public void process(GameData gameData, World world) {
         
@@ -160,7 +161,34 @@ public class EnemyControlSystem implements IEntityProcessingService {
         }
         if (lifePart.isDead()) {
             world.removeEntity(enemy);
+            
         }
+    }
+    
+    private boolean handleDeath(Enemy enemy, World world){
+        LifePart lifePart = enemy.getPart(LifePart.class);
+        boolean dead = false;
+        if (lifePart == null) {
+            return false;
+        }
+        if (lifePart.isDead()) {
+            world.removeEntity(enemy);
+            dead = true;
+        }
+        return dead;
+    }
+
+    
+    @Override
+    public boolean highscoreProcess(GameData data, World world) {
+        System.out.println("Highscoreprocess");
+        boolean isDead = false;
+        for (Entity enemy : world.getEntities(Enemy.class)) {
+            Enemy currentEnemy = (Enemy) enemy;
+            
+            isDead = handleDeath(currentEnemy, world);
+        }
+        return isDead;
     }
 }
 
