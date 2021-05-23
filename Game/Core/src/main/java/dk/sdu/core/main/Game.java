@@ -1,7 +1,7 @@
 package dk.sdu.core.main;
 
-import dk.sdu.core.gameStates.GameState;
-import dk.sdu.core.gameStates.MenuState;
+import dk.sdu.core.gamestates.GameState;
+import dk.sdu.core.gamestates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

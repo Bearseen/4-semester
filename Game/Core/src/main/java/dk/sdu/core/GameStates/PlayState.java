@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.core.gameStates;
+package dk.sdu.core.gamestates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -47,13 +47,13 @@ public class PlayState extends GameState{
     private HighscoreHandler highscoreHandler;
     
    // private int score = 10;
-    private String scoreName;
+
     BitmapFont font;
 
 
     public PlayState(Game game) { 
         super(game);
-            scoreName = "score: 0";
+        
             font = new BitmapFont();
             
             this.game = game;
@@ -66,7 +66,7 @@ public class PlayState extends GameState{
             this.paused = false;
             this.gameStates = game.getGameStates();
             
-            this.highscoreHandler = new HighscoreHandler();
+            this.highscoreHandler = new HighscoreHandler(0);
 
             for (IGamePluginService plugin : game.getResult().allInstances()) {
                 plugin.start(gameData, world);
@@ -147,7 +147,13 @@ public class PlayState extends GameState{
             }
 
             game.getGameStates().pop();
-            //game.getGameStates().push(new GameOverState(game));
+            game.getGameStates().push(new GameOverState(game, highscoreHandler.getScore()));
+            
+            Collection<? extends IHighscoreProcessingService> highscores = lookup.lookupAll(IHighscoreProcessingService.class);
+            for (IHighscoreProcessingService highscore : highscores) {
+                highscore.resetScore();
+
+            }
         }
     }
     
@@ -177,6 +183,7 @@ public class PlayState extends GameState{
         }
         spriteBatch.begin();
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        font.setScale(3);
         font.draw(spriteBatch, "Score: "+String.valueOf(highscoreHandler.getScore()), 25, 100);
         spriteBatch.end();
     }

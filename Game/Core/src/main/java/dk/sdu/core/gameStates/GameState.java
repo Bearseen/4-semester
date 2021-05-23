@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.core.gameStates;
+package dk.sdu.core.gamestates;
 
 import dk.sdu.core.main.Game;
 

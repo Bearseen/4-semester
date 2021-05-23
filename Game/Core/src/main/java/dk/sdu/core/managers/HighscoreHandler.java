@@ -7,13 +7,13 @@ package dk.sdu.core.managers;
 
 /**
  *
- * @author tarik
+ * @author Villy
  */
 public class HighscoreHandler {
     
     private int score;
     
-    public HighscoreHandler(){
+    public HighscoreHandler(int score){
         this.score = 0;
     }
     

@@ -178,6 +178,13 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
        
         return this.kills*5;
     }
+
+    @Override
+    public void resetScore() {
+        this.kills = 0;
+    }
+    
+    
     
 }
 
