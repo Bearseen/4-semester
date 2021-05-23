@@ -115,10 +115,12 @@ public class Game implements ApplicationListener {
 
 //        update();
 //        draw();
-        
+        try {
         this.gameStates.peek().render();
+    } catch(Exception e){
+        
     }
-
+    }
 //    private void draw() {
 //        try {
 //            spriteBatch.begin();

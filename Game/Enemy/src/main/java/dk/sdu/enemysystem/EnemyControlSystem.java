@@ -18,16 +18,22 @@ import dk.sdu.common.ai.IPathFinder;
 import dk.sdu.common.ai.Node;
 import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.services.IHighscoreProcessingService;
+import dk.sdu.common.spawn.Spawn;
 import dk.sdu.commonplayer.Player;
+import java.util.List;
 import org.openide.util.Lookup;
 
 @ServiceProviders(value = {
-    @ServiceProvider(service = IEntityProcessingService.class),})
+    @ServiceProvider(service = IEntityProcessingService.class),
+    @ServiceProvider(service = IHighscoreProcessingService.class)})
 
 public class EnemyControlSystem implements IEntityProcessingService, IHighscoreProcessingService {
 
     private IPathFinder pathfinder;
     private final Lookup lookup = Lookup.getDefault();
+    private boolean isDead;
+    
+    private int kills = 0;
     
     @Override
     public void process(GameData gameData, World world) {
@@ -155,40 +161,23 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
     }
     
     private void handleLife(Enemy enemy, World world) {
+        isDead = false;
         LifePart lifePart = enemy.getPart(LifePart.class);
         if (lifePart == null) {
             return;
         }
         if (lifePart.isDead()) {
+            kills++;
             world.removeEntity(enemy);
-            
         }
+        
     }
-    
-    private boolean handleDeath(Enemy enemy, World world){
-        LifePart lifePart = enemy.getPart(LifePart.class);
-        boolean dead = false;
-        if (lifePart == null) {
-            return false;
-        }
-        if (lifePart.isDead()) {
-            world.removeEntity(enemy);
-            dead = true;
-        }
-        return dead;
-    }
-
     
     @Override
-    public boolean highscoreProcess(GameData data, World world) {
-        System.out.println("Highscoreprocess");
-        boolean isDead = false;
-        for (Entity enemy : world.getEntities(Enemy.class)) {
-            Enemy currentEnemy = (Enemy) enemy;
-            
-            isDead = handleDeath(currentEnemy, world);
-        }
-        return isDead;
+    public int highscoreProcess(GameData data, World world) {
+       
+        return this.kills*5;
     }
+    
 }
 

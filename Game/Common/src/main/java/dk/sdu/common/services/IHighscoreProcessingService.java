@@ -14,5 +14,5 @@ import dk.sdu.common.data.World;
  */
 public interface IHighscoreProcessingService {
     
-    boolean highscoreProcess(GameData data, World world);
+    int highscoreProcess(GameData data, World world);
 }

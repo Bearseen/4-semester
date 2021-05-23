@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: dk/sdu/bullet/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
-OpenIDE-Module-Implementation-Version: 1.0-20210519
-OpenIDE-Module-Build-Version: 202105191019
+OpenIDE-Module-Implementation-Version: 1.0-20210523
+OpenIDE-Module-Build-Version: 202105231433
 OpenIDE-Module: dk.sdu.Weapon
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1

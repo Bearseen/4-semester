@@ -46,7 +46,7 @@ public class PlayState extends GameState{
     
     private HighscoreHandler highscoreHandler;
     
-    private int score = 10;
+   // private int score = 10;
     private String scoreName;
     BitmapFont font;
 
@@ -163,6 +163,7 @@ public class PlayState extends GameState{
             update();
             draw();
             wave();
+            highscore();
 //            pause();
             endGame();
         }
@@ -171,9 +172,8 @@ public class PlayState extends GameState{
     public void highscore(){
         Collection<? extends IHighscoreProcessingService> highscores = lookup.lookupAll(IHighscoreProcessingService.class);
         for(IHighscoreProcessingService highscore : highscores){
-            if(highscore.highscoreProcess(gameData, world)){
-                highscoreHandler.addScore(5);
-            }
+                highscoreHandler.setScore(highscore.highscoreProcess(gameData, world));
+            
         }
         spriteBatch.begin();
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
