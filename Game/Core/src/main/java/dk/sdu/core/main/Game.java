@@ -33,7 +33,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import dk.sdu.common.assets.Tile;
+import dk.sdu.common.tile.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
 import java.util.Stack;
 
@@ -119,44 +119,6 @@ public class Game implements ApplicationListener {
         this.gameStates.peek().render();
     }
 
-//    private void draw() {
-//        try {
-//            spriteBatch.begin();
-//            
-//            for (Entity tiles : world.getEntities(Tile.class)){
-//                assetsHandler.drawEntity(tiles, spriteBatch);
-//            }
-//            for (Entity entity : world.getEntities()){
-//                if (!entity.getClass().equals(Tile.class)) {
-//                    assetsHandler.drawEntity(entity, spriteBatch);
-//                }
-//            }
-// 
-//        } catch (Exception e){
-//            System.out.println(e);
-//            
-//        } finally {
-//            spriteBatch.end();
-//            
-//            for (Entity entity : world.getEntities()) {
-//                if (entity.hasPart(LifePart.class)) {
-//                assetsHandler.drawHealth(entity);
-//                }
-//            }
-//        }
-//        
-//    }
-//    private void update() {
-//        // Update
-//        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
-//            entityProcessorService.process(gameData, world);
-//        }
-//
-//        // Post Update
-//        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
-//            postEntityProcessorService.process(gameData, world);
-//        }
-//    }
 
     private void draw() {
         try {
@@ -185,23 +147,7 @@ public class Game implements ApplicationListener {
             spriteBatch.end();   
         }
         
-//        for (Entity entity : world.getEntities()) {
-//            sr.setColor(1, 1, 1, 1);
-//
-//            sr.begin(ShapeRenderer.ShapeType.Line);
-//
-//            float[] shapex = entity.getShapeX();
-//            float[] shapey = entity.getShapeY();
-//
-//            for (int i = 0, j = shapex.length - 1;
-//                    i < shapex.length;
-//                    j = i++) {
-//
-//                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
-//            }
-//
-//            sr.end();
-//        }
+
     }
    
     @Override

@@ -9,18 +9,18 @@ import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.ArtificialMovingPart;
 import dk.sdu.common.enemy.Enemy;
 import dk.sdu.common.services.IGamePluginService;
-import dk.sdu.common.services.IWaveProcessingService;
 import dk.sdu.common.spawn.Spawn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
+import dk.sdu.common.services.IWavePluginService;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IGamePluginService.class),
-    @ServiceProvider(service = IWaveProcessingService.class)})
-public class EnemyPlugin implements IGamePluginService, IWaveProcessingService {
+    @ServiceProvider(service = IWavePluginService.class)})
+public class EnemyPlugin implements IGamePluginService, IWavePluginService {
 
     private int totalEnemies = 0;
     
