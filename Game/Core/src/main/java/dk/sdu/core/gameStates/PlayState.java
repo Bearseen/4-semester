@@ -13,7 +13,7 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;

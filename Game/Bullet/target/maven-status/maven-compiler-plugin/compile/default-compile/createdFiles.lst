@@ -1,0 +1,5 @@
+META-INF\services\dk.sdu.commonbullet.BulletSPI
+dk\sdu\bullet\BulletPlugin.class
+dk\sdu\bullet\BulletProcessor.class
+META-INF\services\dk.sdu.common.services.IGamePluginService
+META-INF\services\dk.sdu.common.services.IEntityProcessingService

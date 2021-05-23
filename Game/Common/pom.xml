@@ -18,13 +18,13 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publicPackages>
-                        <publicPackage>dk.sdu.common.ai</publicPackage>
+                        <publicPackage>dk.sdu.common.node</publicPackage>
                         <publicPackage>dk.sdu.common.assets</publicPackage>
                         <publicPackage>dk.sdu.common.data</publicPackage>
                         <publicPackage>dk.sdu.common.data.entityparts</publicPackage>
                         <publicPackage>dk.sdu.common.events</publicPackage>
                         <publicPackage>dk.sdu.common.services</publicPackage>
-                        <publicPackage>dk.sdu.common.spawn</publicPackage>
+                        
                     </publicPackages>
                 </configuration>
             </plugin>

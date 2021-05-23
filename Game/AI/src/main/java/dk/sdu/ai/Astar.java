@@ -5,13 +5,12 @@
  */
 package dk.sdu.ai;
 
-import dk.sdu.common.ai.Node;
+import dk.sdu.common.node.Node;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.CollisionPart;
-import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.SimpleMovingPart;
+import dk.sdu.common.data.entityparts.ArtificialMovingPart;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +43,8 @@ public class Astar {
     }
 
     private float cost(Node node) {
+        
+        
         return node.getPath().size() * this.cost;
 
         
@@ -55,7 +56,7 @@ public class Astar {
                 continue;
             }
 
-            if (entity.hasPart(SimpleMovingPart.class)) {
+            if (entity.hasPart(ArtificialMovingPart.class)) {
                 continue;
             }
             if (entity2.hasPart(CollisionPart.class) && entity2.hasPart(PositionPart.class)) {
@@ -106,11 +107,11 @@ public class Astar {
     }
 
     public ArrayList<Node> aStarPath(Entity entity, World world, Node goal) {
-        PositionPart position = entity.getPart(PositionPart.class);
-        CollisionPart collision = entity.getPart(CollisionPart.class);
+        PositionPart positionPart = entity.getPart(PositionPart.class);
+        CollisionPart collisionPart = entity.getPart(CollisionPart.class);
 
         ArrayList<Node> fringe = new ArrayList<>();
-        Node node = new Node(position.getX(), position.getY());
+        Node node = new Node(positionPart.getX(), positionPart.getY());
         insert(node, fringe);
        
 
@@ -119,7 +120,7 @@ public class Astar {
             Node lowest = remove(goal, fringe);
             
 
-            if (collision.checkCollision(goal.getX(), goal.getY(), lowest.getX(), lowest.getY())) {
+            if (collisionPart.checkCollision(goal.getX(), goal.getY(), lowest.getX(), lowest.getY())) {
                  
                 return lowest.getPath();
             }

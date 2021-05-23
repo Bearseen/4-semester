@@ -5,9 +5,8 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.SimpleMovingPart;
+import dk.sdu.common.data.entityparts.ArtificialMovingPart;
 import dk.sdu.common.enemy.Enemy;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IWaveProcessingService;
@@ -25,25 +24,22 @@ public class EnemyPlugin implements IGamePluginService, IWaveProcessingService {
 
     private int totalEnemies = 0;
     
-    private final Random random = new Random();
+    private final Random random;
+    
+    public EnemyPlugin(){
+        this.random = new Random();
+    }
 
     @Override
     public void start(GameData gameData, World world) {
         // Adding 4 enemies at start
         for (int i = 0; i < 3; i++) {
             world.addEntity(createSpawn());
-           
-//        world.addEntity(enemy);
-        // Add entities to the world
-//        while (totalEnemies > 0){
-//            enemy = createEnemy(gameData);
-//            world.addEntity(enemy);
-//            totalEnemies--;
+        
         }       
     }
     
     public int getRandomNumber(int min, int max) {
-        Random random = new Random();
         return random.nextInt(max - min) + min;
     }
     
@@ -56,7 +52,7 @@ public class EnemyPlugin implements IGamePluginService, IWaveProcessingService {
         float x2 = getRandomNumber(650, 750);
         float y2 = getRandomNumber(100, 740);
         
-        Random random = new Random();
+        
         Boolean r = random.nextBoolean();
         
         Entity spawn1 = new Spawn();
@@ -81,18 +77,13 @@ public class EnemyPlugin implements IGamePluginService, IWaveProcessingService {
 
     private Entity createEnemy(float x, float y){
         float maxSpeed = 50;
-//        float x = new Random().nextFloat() * gameData.getDisplayWidth();
-//        float y = new Random().nextFloat() * gameData.getDisplayHeight();
-//        float x = 10;
-//        float y = 840/2;
-        float radians = 3.1415f / 2;
         boolean target = true;
         float playerRadius = 250;
         float acceleration = 50;
 
         Entity enemy = new Enemy(target,playerRadius,"enemy.png");
         enemy.setRadius(4);
-        enemy.add(new SimpleMovingPart(maxSpeed, acceleration));
+        enemy.add(new ArtificialMovingPart(maxSpeed, acceleration));
         enemy.add(new PositionPart(x, y));
         enemy.add(new LifePart(3));
         enemy.add(new CollisionPart(75,35));
@@ -127,7 +118,7 @@ public class EnemyPlugin implements IGamePluginService, IWaveProcessingService {
         if (wave >= totalEnemies) {
             int x = 0;
             while (x <= 3 * multiplier) {
-                Entity spawn = spawns.get(this.random.nextInt(spawns.size()));
+                Entity spawn = spawns.get(random.nextInt(spawns.size()));
                 PositionPart positionPart = spawn.getPart(PositionPart.class);
                 float spawnX = positionPart.getX();
                 float spawnY = positionPart.getY();

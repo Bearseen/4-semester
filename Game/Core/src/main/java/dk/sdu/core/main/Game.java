@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -61,7 +61,7 @@ public class Game implements ApplicationListener {
     private Table table;
     private Label label;
     
-    private RangedWeaponPart rangedWeaponPart; // skal måske instantieres
+    private WeaponPart WeaponPart;
 
     @Override
     public void create() {
