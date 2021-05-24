@@ -35,6 +35,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
+import dk.sdu.core.gamestates.PlayState;
 import java.util.Stack;
 
 
@@ -87,9 +88,9 @@ public class Game implements ApplicationListener {
         cam.update();
         
         gameStates.push(new MenuState(this));
-
+        //gameStates.push(new PlayState(this));
 //        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
-
+        
         result = lookup.lookupResult(IGamePluginService.class);
         result.addLookupListener(lookupListener);
         result.allItems();

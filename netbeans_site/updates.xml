@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.5//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_5.dtd">
-<<<<<<< HEAD
-<module_updates timestamp="49/14/12/26/04/2021">
+<module_updates timestamp="34/00/13/24/05/2021">
 
 
 
-<module autoload="true" codenamebase="org.netbeans.modules.autoupdate.services" distribution="org-netbeans-modules-autoupdate-services-RELEASE112.nbm" downloadsize="361333" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+<module codenamebase="dk.sdu.AI" distribution="AI-1.0-SNAPSHOT.nbm" downloadsize="7278" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
         
-    <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.modules.autoupdate.services" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="The AutoUpdate feature provides several services: download and install available updates of installed modules, search and install new modules from subscribed Update Centers, view and manage the modules." OpenIDE-Module-Module-Dependencies="org.netbeans.api.progress/1 &gt; 1.40, org.netbeans.api.progress.nb &gt; 1.40, org.netbeans.bootstrap/1 &gt; 2.74, org.netbeans.core.startup/1 &gt; 1.60, org.netbeans.core.startup.base &gt; 1.60, org.openide.filesystems &gt; 9.0, org.openide.modules &gt; 7.25, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0, org.openide.util.ui &gt; 9.3" OpenIDE-Module-Name="Auto Update Services" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Support for searching for module updates on Update Center and for downloading and installing modules" OpenIDE-Module-Specification-Version="1.59"/>
+    <manifest OpenIDE-Module="dk.sdu.AI" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="AI" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
         
 
 </module>
@@ -25,33 +24,64 @@
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.bootstrap/1" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="This module provides the initial infrastructure that loads all other parts of the application. It cannot be disabled." OpenIDE-Module-Module-Dependencies="org.openide.modules &gt; 7.44, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="Bootstrap" OpenIDE-Module-Recommends="org.netbeans.NetigsoFramework" OpenIDE-Module-Short-Description="The core bootstrap of NetBeans-based applications." OpenIDE-Module-Specification-Version="2.84"/>
         
 
-=======
-<module_updates timestamp="26/52/11/05/05/2021">
-
-
-
-<module codenamebase="org.openide.util" distribution="org-openide-util-RELEASE112.nbm" downloadsize="207267" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.util" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Various helper methods and basic concept definitions including lookup, parallel execution and branding support." OpenIDE-Module-Module-Dependencies="org.openide.util.lookup &gt; 8.14" OpenIDE-Module-Name="Base Utilities API" OpenIDE-Module-Short-Description="Base Utilities API." OpenIDE-Module-Specification-Version="9.13"/>
-    
 </module>
 
-<module codenamebase="org.netbeans.bootstrap" distribution="org-netbeans-bootstrap-RELEASE112.nbm" downloadsize="557290" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.bootstrap/1" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="This module provides the initial infrastructure that loads all other parts of the application. It cannot be disabled." OpenIDE-Module-Module-Dependencies="org.openide.modules &gt; 7.44, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="Bootstrap" OpenIDE-Module-Recommends="org.netbeans.NetigsoFramework" OpenIDE-Module-Short-Description="The core bootstrap of NetBeans-based applications." OpenIDE-Module-Specification-Version="2.84"/>
-    
+<module codenamebase="dk.sdu.Collision" distribution="Collision-1.0-SNAPSHOT.nbm" downloadsize="5224" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Collision" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Collision" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
 </module>
 
-<module codenamebase="dk.sdu.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="8909158" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Common" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
->>>>>>> gamemenu
+<module codenamebase="dk.sdu.Common" distribution="Common-1.0-SNAPSHOT.nbm" downloadsize="8911968" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Common" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Common" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
 </module>
 
 <module autoload="true" codenamebase="org.netbeans.api.annotations.common" distribution="org-netbeans-api-annotations-common-RELEASE112.nbm" downloadsize="28286" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.api.annotations.common/1" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Long-Description="Contains annotations useful for static analysis, such as a @SuppressWarnings usable by FindBugs." OpenIDE-Module-Name="Common Annotations" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Common annotations, namely for defect detection." OpenIDE-Module-Specification-Version="1.33"/>
-    
+        
+
 </module>
 
-<<<<<<< HEAD
+<module codenamebase="dk.sdu.CommonBullet" distribution="CommonBullet-1.0-SNAPSHOT.nbm" downloadsize="4310" license="13255ACB" needsrestart="false" releasedate="2021/05/24">
+        
+    <manifest OpenIDE-Module="dk.sdu.CommonBullet" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonBullet" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
+</module>
+
+<module codenamebase="dk.sdu.CommonEnemy" distribution="CommonEnemy-1.0-SNAPSHOT.nbm" downloadsize="4373" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.CommonEnemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonEnemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
+</module>
+
+<module codenamebase="dk.sdu.CommonPlayer" distribution="CommonPlayer-1.0-SNAPSHOT.nbm" downloadsize="3964" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.CommonPlayer" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonPlayer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
+</module>
+
+<module codenamebase="dk.sdu.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="10197834" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Core" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util &gt; 9.13, org.openide.util.lookup &gt; 8.39, dk.sdu.Common &gt; 1.0, org.openide.util.ui &gt; 9.14, dk.sdu.Player &gt; 1.0" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
+</module>
+
+<module codenamebase="dk.sdu.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="9276" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Enemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonEnemy &gt; 1.0, dk.sdu.Common &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14, dk.sdu.CommonPlayer &gt; 1.0" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
+</module>
+
 <module codenamebase="org.openide.filesystems" distribution="org-openide-filesystems-RELEASE112.nbm" downloadsize="345635" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
         
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.filesystems" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Allows access to file like resources in a way independent on actual OS files. Supports notification of changes on disk." OpenIDE-Module-Module-Dependencies="org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.17" OpenIDE-Module-Name="File System API" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Virtual File System API." OpenIDE-Module-Specification-Version="9.16"/>
@@ -59,152 +89,95 @@
 
 </module>
 
-<module autoload="true" codenamebase="org.netbeans.api.io" distribution="org-netbeans-api-io-RELEASE112.nbm" downloadsize="41733" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+<module codenamebase="dk.sdu.Game.branding" distribution="Game-branding-1.0-SNAPSHOT.nbm" downloadsize="5625" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
         
-    <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.api.io" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Long-Description="API classes for creating output panes (e.g. tabs in output window) and for writing data into them.&#10;SPI for custom implementations of output window." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.25, org.netbeans.api.intent &gt; 1.0, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.26" OpenIDE-Module-Name="I/O API and SPI" OpenIDE-Module-Recommends="org.netbeans.spi.io.InputOutputProvider" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="APIs and SPIs related to displaying output." OpenIDE-Module-Specification-Version="1.9"/>
-        
-
-</module>
-
-<module autoload="true" codenamebase="org.openide.io" distribution="org-openide-io-RELEASE112.nbm" downloadsize="50835" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-        
-    <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.io" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Long-Description="Contains classes from org.openide.windows.* relating to creating output tabs, displaying output, and hyperlinking it." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.15, org.netbeans.api.intent &gt; 1.0, org.netbeans.api.io &gt; 1.0, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="I/O APIs - Swing" OpenIDE-Module-Recommends="org.openide.windows.IOProvider, org.openide.windows.IOContainer$Provider" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Open APIs relating to displaying output." OpenIDE-Module-Specification-Version="1.55"/>
+    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="dk.sdu.Game.branding" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33" OpenIDE-Module-Name="Game-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
         
 
-</module>
-
-<module autoload="true" codenamebase="org.netbeans.api.intent" distribution="org-netbeans-api-intent-RELEASE112.nbm" downloadsize="37932" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-        
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.api.intent" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="API for invoking intended operations (described by suitable type of object, e.g. URI) by some of registered handlers.&#10;SPI for handlers of possible intended operations." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.25, org.openide.filesystems &gt; 9.1, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.26" OpenIDE-Module-Name="Intent API" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Performing intended operations by suitable handlers" OpenIDE-Module-Specification-Version="1.8"/>
-        
-
-=======
-<module codenamebase="dk.sdu.CommonBullet" distribution="CommonBullet-1.0-SNAPSHOT.nbm" downloadsize="4291" license="13255ACB" needsrestart="false" releasedate="2021/05/05">
-    <manifest OpenIDE-Module="dk.sdu.CommonBullet" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonBullet" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
-</module>
-
-<module codenamebase="dk.sdu.CommonEnemy" distribution="CommonEnemy-1.0-SNAPSHOT.nbm" downloadsize="3926" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.CommonEnemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonEnemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
-</module>
-
-<module codenamebase="dk.sdu.CommonPlayer" distribution="CommonPlayer-1.0-SNAPSHOT.nbm" downloadsize="3945" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.CommonPlayer" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="CommonPlayer" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
-</module>
-
-<module codenamebase="dk.sdu.Core" distribution="Core-1.0-SNAPSHOT.nbm" downloadsize="9894963" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Core" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.openide.util &gt; 9.13, org.openide.util.lookup &gt; 8.39, dk.sdu.Common &gt; 1.0, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Core" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
-</module>
-
-<module codenamebase="dk.sdu.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="5923" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Enemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonEnemy &gt; 1.0, dk.sdu.Common &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
-</module>
-
-<module codenamebase="org.openide.filesystems" distribution="org-openide-filesystems-RELEASE112.nbm" downloadsize="345635" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.filesystems" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Allows access to file like resources in a way independent on actual OS files. Supports notification of changes on disk." OpenIDE-Module-Module-Dependencies="org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.17" OpenIDE-Module-Name="File System API" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Virtual File System API." OpenIDE-Module-Specification-Version="9.16"/>
-    
-</module>
-
-<module codenamebase="dk.sdu.Game.branding" distribution="Game-branding-1.0-SNAPSHOT.nbm" downloadsize="5606" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest AutoUpdate-Essential-Module="true" OpenIDE-Module="dk.sdu.Game.branding" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33" OpenIDE-Module-Name="Game-branding" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
->>>>>>> gamemenu
 </module>
 
 <module codenamebase="org.openide.util.lookup" distribution="org-openide-util-lookup-RELEASE112.nbm" downloadsize="137825" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.util.lookup" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="Many APIs in NetBeans use Lookup as an observable collection of services. The default lookup is the global service registry; selections, project capabilities, and more are also modeled as Lookup instances." OpenIDE-Module-Name="Lookup API" OpenIDE-Module-Short-Description="Generic service discovery mechanism used throughout NetBeans." OpenIDE-Module-Specification-Version="8.39"/>
-    
+        
+
 </module>
 
-<<<<<<< HEAD
-=======
-<module codenamebase="dk.sdu.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="5365" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Map" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
+<module codenamebase="dk.sdu.Map" distribution="Map-1.0-SNAPSHOT.nbm" downloadsize="5490" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Map" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="Map" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
 </module>
 
->>>>>>> gamemenu
 <module codenamebase="org.openide.modules" distribution="org-openide-modules-RELEASE112.nbm" downloadsize="42577" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.modules" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="Allows to get list of installed modules, inspect their properties and dependencies." OpenIDE-Module-Module-Dependencies="org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="Module System API" OpenIDE-Module-Short-Description="APIs for getting information about installed modules." OpenIDE-Module-Specification-Version="7.54"/>
-    
+        
+
 </module>
 
 <module autoload="true" codenamebase="org.netbeans.modules.netbinox" distribution="org-netbeans-modules-netbinox-RELEASE112.nbm" downloadsize="1300706" homepage="http://www.netbeans.org/" license="84E1DC18" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.modules.netbinox" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Module-Dependencies="org.netbeans.core.netigso &gt; 1.14, org.netbeans.libs.osgi &gt; 1.0, org.openide.modules &gt; 7.11, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0.0.1" OpenIDE-Module-Name="NetBeans Equinox Integration" OpenIDE-Module-Provides="org.osgi.framework.launch.FrameworkFactory, org.netbeans.Netbinox" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Specification-Version="1.47"/>
-    
+        
+
 </module>
 
 <module autoload="true" codenamebase="org.netbeans.core.netigso" distribution="org-netbeans-core-netigso-RELEASE112.nbm" downloadsize="45262" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.core.netigso" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Module-Dependencies="org.netbeans.bootstrap/1 &gt; 2.50, org.netbeans.core.startup/1 &gt; 1.60, org.netbeans.libs.osgi &gt; 1.0, org.openide.modules &gt; 7.25, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="NetBeans OSGi Integration" OpenIDE-Module-Needs="org.osgi.framework.launch.FrameworkFactory" OpenIDE-Module-Provides="org.netbeans.NetigsoFramework" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Specification-Version="1.37"/>
-    
+        
+
 </module>
 
 <module autoload="true" codenamebase="org.netbeans.libs.osgi" distribution="org-netbeans-libs-osgi-RELEASE112.nbm" downloadsize="1747771" homepage="http://www.netbeans.org/" license="36E5412B" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.libs.osgi" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Name="OSGi Specification" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Specification-Version="1.28"/>
-    
+        
+
 </module>
 
 <module codenamebase="org.netbeans.libs.asm" distribution="org-netbeans-libs-asm-RELEASE112.nbm" downloadsize="246017" homepage="http://www.netbeans.org/" license="E6B6E7BE" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.libs.asm" OpenIDE-Module-Display-Category="Libraries" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="This module bundles OW2 ASM (bytecode manipulation library)." OpenIDE-Module-Name="OW2 ASM" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Bundles OW2 ASM (bytecode manipulation)" OpenIDE-Module-Specification-Version="5.9"/>
-    
-</module>
-
-<<<<<<< HEAD
-<module autoload="true" codenamebase="org.netbeans.api.progress" distribution="org-netbeans-api-progress-RELEASE112.nbm" downloadsize="52799" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-        
-    <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.api.progress/1" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="Lets modules register long-running tasks or processes in a central place." OpenIDE-Module-Module-Dependencies="org.openide.modules &gt; 7.44, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="Progress API" OpenIDE-Module-Recommends="org.netbeans.modules.progress.spi.ProgressUIWorkerProvider, org.netbeans.modules.progress.spi.RunOffEDTProvider" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Task progress visualization APIs." OpenIDE-Module-Specification-Version="1.53"/>
         
 
 </module>
 
-<module autoload="true" codenamebase="org.netbeans.api.progress.nb" distribution="org-netbeans-api-progress-nb-RELEASE112.nbm" downloadsize="31776" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+<module codenamebase="dk.sdu.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="6531" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
         
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.api.progress.nb" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Long-Description="Swing specific progress visualization APIs." OpenIDE-Module-Module-Dependencies="org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0, org.openide.awt &gt; 6.2, org.netbeans.api.progress/1 &gt; 1.45" OpenIDE-Module-Name="Progress API - Swing" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Swing based task progress visualization APIs." OpenIDE-Module-Specification-Version="1.53"/>
-        
-
-</module>
-
-<module codenamebase="dk.sdu.SilentUpdate" distribution="SilentUpdate-1.0-SNAPSHOT.nbm" downloadsize="10958" license="13255ACB" needsrestart="false" releasedate="2021/04/26" targetcluster="game">
-        
-    <manifest OpenIDE-Module="dk.sdu.SilentUpdate" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1.0-20210426" OpenIDE-Module-Long-Description="A service installing updates of your NetBeans Platform Application with as few as possible user's interactions." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, org.openide.modules &gt; 7.54, org.netbeans.modules.autoupdate.services &gt; 1.59, org.openide.io &gt; 1.55, org.openide.util &gt; 9.13" OpenIDE-Module-Name="Silent Update" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Silent Update of Application" OpenIDE-Module-Specification-Version="1.0"/>
+    <manifest OpenIDE-Module="dk.sdu.Player" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonPlayer &gt; 1.0, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
         
 
-=======
-<module codenamebase="dk.sdu.Player" distribution="Player-1.0-SNAPSHOT.nbm" downloadsize="6675" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Player" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonPlayer &gt; 1.0, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14" OpenIDE-Module-Name="Player" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
->>>>>>> gamemenu
 </module>
 
 <module codenamebase="org.netbeans.core.startup" distribution="org-netbeans-core-startup-RELEASE112.nbm" downloadsize="419534" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.core.startup/1" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.7" OpenIDE-Module-Long-Description="This module provides the central additional functionality to Bootstrap to locate and enable the right modules." OpenIDE-Module-Module-Dependencies="org.netbeans.bootstrap/1 &gt; 2.81, org.openide.filesystems &gt; 9.0, org.openide.modules &gt; 7.41, org.openide.util.ui &gt; 9.3, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.1, org.netbeans.libs.asm &gt; 5.0, org.netbeans.core.startup.base = 1" OpenIDE-Module-Name="Startup" OpenIDE-Module-Provides="org.openide.modules.InstalledFileLocator" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Loads and enables modules." OpenIDE-Module-Specification-Version="1.68.0.1"/>
-    
+        
+
 </module>
 
 <module codenamebase="org.netbeans.core.startup.base" distribution="org-netbeans-core-startup-base-RELEASE112.nbm" downloadsize="60799" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
-    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.core.startup.base" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Module-Dependencies="org.openide.filesystems &gt; 9.4, org.openide.modules &gt; 7.46, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.30" OpenIDE-Module-Name="Startup Base" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="NetBeans startup commons" OpenIDE-Module-Specification-Version="1.68.0.1"/>
-    
-</module>
-
-<module autoload="true" codenamebase="org.openide.awt" distribution="org-openide-awt-RELEASE112.nbm" downloadsize="322126" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
         
-    <manifest AutoUpdate-Essential-Module="true" AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.awt" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Helper methods for various UI related tasks." OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.13, org.openide.filesystems &gt; 9.0, org.openide.util.ui &gt; 9.12, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.0" OpenIDE-Module-Name="UI Utilities API" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="User interface utilities." OpenIDE-Module-Specification-Version="7.74"/>
+    <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.netbeans.core.startup.base" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1" OpenIDE-Module-Java-Dependencies="Java &gt; 1.6" OpenIDE-Module-Module-Dependencies="org.openide.filesystems &gt; 9.4, org.openide.modules &gt; 7.46, org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.30" OpenIDE-Module-Name="Startup Base" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="NetBeans startup commons" OpenIDE-Module-Specification-Version="1.68.0.1"/>
         
 
 </module>
 
 <module codenamebase="org.openide.util.ui" distribution="org-openide-util-ui-RELEASE112.nbm" downloadsize="123741" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
+        
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.util.ui" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Various helper methods and basic concept definitions related to thick client desktop environment including actions and image handling." OpenIDE-Module-Module-Dependencies="org.openide.util &gt; 9.3, org.openide.util.lookup &gt; 8.14" OpenIDE-Module-Name="Utilities API" OpenIDE-Module-Short-Description="Desktop Utilities API." OpenIDE-Module-Specification-Version="9.14"/>
-    
+        
+
 </module>
 
-<module codenamebase="dk.sdu.Weapon" distribution="Weapon-1.0-SNAPSHOT.nbm" downloadsize="6978" license="13255ACB" needsrestart="false" releasedate="2021/05/05" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Weapon" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210505" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0" OpenIDE-Module-Name="Weapon" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
-    
+<module codenamebase="dk.sdu.Weapon" distribution="Weapon-1.0-SNAPSHOT.nbm" downloadsize="7632" license="13255ACB" needsrestart="false" releasedate="2021/05/24" targetcluster="game">
+        
+    <manifest OpenIDE-Module="dk.sdu.Weapon" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210524" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0" OpenIDE-Module-Name="Weapon" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+        
+
 </module>
 
 <license name="E6B6E7BE">
