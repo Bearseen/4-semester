@@ -1,7 +1,7 @@
 package dk.sdu.core.main;
 
-import dk.sdu.core.gamestates.GameState;
-import dk.sdu.core.gamestates.MenuState;
+import dk.sdu.core.gameStates.GameState;
+import dk.sdu.core.gameStates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -35,7 +35,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import dk.sdu.common.assets.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.core.gamestates.PlayState;
+import dk.sdu.core.gameStates.PlayState;
 import java.util.Stack;
 
 
@@ -87,7 +87,7 @@ public class Game implements ApplicationListener {
         cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
         
-        gameStates.push(new MenuState(this));
+        gameStates.push(new MenuState(this)); 
         //gameStates.push(new PlayState(this));
 //        Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
         

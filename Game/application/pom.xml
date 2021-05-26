@@ -82,11 +82,11 @@
             <artifactId>CommonEnemy</artifactId>
             <version>${project.version}</version>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Enemy</artifactId>
             <version>${project.version}</version>
-        </dependency>       -->
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>CommonPlayer</artifactId>
@@ -125,11 +125,11 @@
             <version>${project.version}</version>
         </dependency>
         
-        <dependency>
+<!--        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>SilentUpdate</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
         
         <dependency>
             <groupId>junit</groupId>
