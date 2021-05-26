@@ -19,9 +19,9 @@ import org.openide.util.Lookup;
 
 public class ApplicationTest extends NbTestCase {
     
-    private static final String ADD_ENEMY_UPDATES_FILE = "d:\\GitHub\\4-semester\\Game\\application\\src\\test\\resources\\enemy\\updates.xml";
-    private static final String REMOVE_ENEMY_UPDATES_FILE = "d:\\GitHub\\4-semester\\Game\\application\\src\\test\\resources\\reenemy\\updates.xml";
-    private static final String UPDATES_FILE = "d:\\GitHub\\4-semester\\netbeans_site\\updates.xml";
+    private static final String ADD_ENEMY_UPDATES_FILE = "c:\\Users\\Thang og Thao\\IdeaProjects\\4-semester\\Game\\application\\src\\test\\resources\\enemy\\updates.xml";
+    private static final String REMOVE_ENEMY_UPDATES_FILE = "c:\\Users\\Thang og Thao\\IdeaProjects\\4-semester\\Game\\application\\src\\test\\resources\\reenemy\\updates.xml";
+    private static final String UPDATES_FILE = "c:\\Users\\Thang og Thao\\IdeaProjects\\4-semester\\netbeans_site\\updates.xml";
     
     public static Test suite() {
         return NbModuleSuite.createConfiguration(ApplicationTest.class).
@@ -52,26 +52,28 @@ public class ApplicationTest extends NbTestCase {
         
         System.out.println("Pre Assert");
         // PRE ASSERT
-        assertEquals("3 processors", 3, processors.size());
-        assertEquals("4 plugins", 4, plugins.size());
+        assertEquals("2 processors", 2, processors.size());
+        assertEquals("3 plugins", 3, plugins.size());
         
         //TEST: unLoad Enemy via UC
         
-        copy(get(REMOVE_ENEMY_UPDATES_FILE), get(UPDATES_FILE), REPLACE_EXISTING);
-        waitForUpdate(processors, plugins);
-
-        
-        // ASSERT ENEMY LOADED
-        assertEquals("No processors", 2, processors.size());
-        assertEquals("No plugins", 3, plugins.size());
-        
-        //TEST: load Enemy via UC
+        System.out.println("Load Enemy Module");
         copy(get(ADD_ENEMY_UPDATES_FILE), get(UPDATES_FILE), REPLACE_EXISTING);
         waitForUpdate(processors, plugins);
+
+        System.out.println("Testing if enemy is loaded");
+        // ASSERT ENEMY LOADED
+        assertEquals("3 processors", 3, processors.size());
+        assertEquals("4 plugins", 4, plugins.size());
         
+        System.out.println("Unload Enemy Module");
+        copy(get(REMOVE_ENEMY_UPDATES_FILE), get(UPDATES_FILE), REPLACE_EXISTING);
+        waitForUpdate(processors, plugins);
+        
+        System.out.println("Testing if enemy is unloaded");
         // ASSERT ENEMY UNLOADED
-        assertEquals("No processors", 3, processors.size());
-        assertEquals("No plugins", 4, plugins.size());
+        assertEquals("2 processors", 2, processors.size());
+        assertEquals("3 plugins", 3, plugins.size());
     }
         
         private void waitForUpdate(List<IEntityProcessingService> processors, List<IGamePluginService> plugins) throws InterruptedException, IOException{
