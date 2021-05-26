@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.common.assets;
+package dk.sdu.common.tile;
 
 import dk.sdu.common.data.Entity;
 

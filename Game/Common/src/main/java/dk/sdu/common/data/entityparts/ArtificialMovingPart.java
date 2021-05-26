@@ -13,13 +13,13 @@ import static java.lang.Math.sqrt;
  *
  * @author musta
  */
-public class SimpleMovingPart implements EntityPart {
+public class ArtificialMovingPart implements EntityPart {
     
     private float dx, dy, acceleration, speed;
     private boolean left, right, up, down;
   
 
-    public SimpleMovingPart(float acceleration, float speed) {
+    public ArtificialMovingPart(float acceleration, float speed) {
         this.acceleration = acceleration;
         this.speed = speed;
     }

@@ -14,7 +14,7 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.commonbullet.BulletSPI;
 import dk.sdu.commonplayer.Player;
@@ -38,7 +38,7 @@ public class PlayerProcessor implements IEntityProcessingService{
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
             LifePart lifePart = player.getPart(LifePart.class);
-            RangedWeaponPart rangedWeaponPart = player.getPart(RangedWeaponPart.class);
+            WeaponPart weaponPart = player.getPart(WeaponPart.class);
 
             movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
@@ -54,13 +54,13 @@ public class PlayerProcessor implements IEntityProcessingService{
 
             // shooting
             if (gameData.getKeys().isDown(GameKeys.MOUSE_LEFT) || gameData.getKeys().isDown(GameKeys.SPACE)) {               
-                rangedWeaponPart.setIsAttacking(true);
+                weaponPart.setIsAttacking(true);
             }
 
             // reload weapon
             if (gameData.getKeys().isDown(GameKeys.R)){
-                rangedWeaponPart.setIsAttacking(false);
-                rangedWeaponPart.setAmmo(10);
+                weaponPart.setIsAttacking(false);
+                weaponPart.setAmmo(10);
             }
             
             // endGame when player is dead
@@ -74,7 +74,7 @@ public class PlayerProcessor implements IEntityProcessingService{
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
             lifePart.process(gameData, player);
-            rangedWeaponPart.process(gameData, player);
+            weaponPart.process(gameData, player);
             
         }                
     }

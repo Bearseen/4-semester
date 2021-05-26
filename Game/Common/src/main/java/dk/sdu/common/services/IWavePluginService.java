@@ -12,7 +12,7 @@ import dk.sdu.common.data.World;
  *
  * @author Samuel
  */
-public interface IWaveProcessingService {
+public interface IWavePluginService {
     public void startWave(GameData gameData, World world, int wave);
     
     public boolean stopWave(GameData gameData, World world);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.common.ai;
+package dk.sdu.common.node;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class Node {
         this.parent = parent;
     }
     public ArrayList<Node> getPath(){
-        ArrayList<Node> path = new ArrayList<Node>();
+        ArrayList<Node> path = new ArrayList<>();
         Node current_Node = this;
         path.add(current_Node);
         

@@ -48,5 +48,10 @@ public class GameKeys {
     public boolean isPressed(int k) {
         return keys[k] && !pkeys[k];
     }
+    
+    public void updateKeys() {
+        this.keys = new boolean[NUM_KEYS];
+        this.pkeys = new boolean[NUM_KEYS];
+    }
 
 }

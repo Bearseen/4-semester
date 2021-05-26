@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -33,7 +33,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import dk.sdu.common.assets.Tile;
+import dk.sdu.common.tile.Tile;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.core.gameStates.PlayState;
 import java.util.Stack;
@@ -62,7 +62,7 @@ public class Game implements ApplicationListener {
     private Table table;
     private Label label;
     
-    private RangedWeaponPart rangedWeaponPart; // skal måske instantieres
+    private WeaponPart WeaponPart;
 
     @Override
     public void create() {
@@ -117,49 +117,12 @@ public class Game implements ApplicationListener {
 //        update();
 //        draw();
         try {
-        this.gameStates.peek().render();
-    } catch(Exception e){
+            this.gameStates.peek().render();
         
+        } catch(Exception e){
+        
+        }
     }
-    }
-//    private void draw() {
-//        try {
-//            spriteBatch.begin();
-//            
-//            for (Entity tiles : world.getEntities(Tile.class)){
-//                assetsHandler.drawEntity(tiles, spriteBatch);
-//            }
-//            for (Entity entity : world.getEntities()){
-//                if (!entity.getClass().equals(Tile.class)) {
-//                    assetsHandler.drawEntity(entity, spriteBatch);
-//                }
-//            }
-// 
-//        } catch (Exception e){
-//            System.out.println(e);
-//            
-//        } finally {
-//            spriteBatch.end();
-//            
-//            for (Entity entity : world.getEntities()) {
-//                if (entity.hasPart(LifePart.class)) {
-//                assetsHandler.drawHealth(entity);
-//                }
-//            }
-//        }
-//        
-//    }
-//    private void update() {
-//        // Update
-//        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
-//            entityProcessorService.process(gameData, world);
-//        }
-//
-//        // Post Update
-//        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
-//            postEntityProcessorService.process(gameData, world);
-//        }
-//    }
 
     private void draw() {
         try {
@@ -188,23 +151,7 @@ public class Game implements ApplicationListener {
             spriteBatch.end();   
         }
         
-//        for (Entity entity : world.getEntities()) {
-//            sr.setColor(1, 1, 1, 1);
-//
-//            sr.begin(ShapeRenderer.ShapeType.Line);
-//
-//            float[] shapex = entity.getShapeX();
-//            float[] shapey = entity.getShapeY();
-//
-//            for (int i = 0, j = shapex.length - 1;
-//                    i < shapex.length;
-//                    j = i++) {
-//
-//                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
-//            }
-//
-//            sr.end();
-//        }
+
     }
    
     @Override

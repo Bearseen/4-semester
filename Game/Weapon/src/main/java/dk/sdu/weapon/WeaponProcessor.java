@@ -13,7 +13,6 @@ import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.data.entityparts.TimerPart;
 import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
@@ -36,7 +35,7 @@ public class WeaponProcessor implements IEntityProcessingService {
     public void process(GameData gameData, World world) {
         
         for (Entity entity : world.getEntities()) {
-            if (entity.hasPart(RangedWeaponPart.class)) {
+            if (entity.hasPart(WeaponPart.class)) {
                 updateRangedWeapon(gameData, world, entity);
             }
         }
@@ -48,25 +47,25 @@ public class WeaponProcessor implements IEntityProcessingService {
     }
         
     private void updateRangedWeapon(GameData gameData, World world, Entity entity) {
-        RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
+        WeaponPart weaponPart = entity.getPart(WeaponPart.class);
         
-        if (rangedWeaponPart.isIsAttacking() && !emptyMagazine(rangedWeaponPart)) {
+        if (weaponPart.isIsAttacking() && !emptyMagazine(weaponPart)) {
             
-            System.out.println(rangedWeaponPart.getShotTimer());
-            if (rangedWeaponPart.getShotTimer() <= 0) {
-                rangedWeaponPart.setShotTimer(rangedWeaponPart.getShotCooldown());
+            System.out.println(weaponPart.getShotTimer());
+            if (weaponPart.getShotTimer() <= 0) {
+                weaponPart.setShotTimer(weaponPart.getShotCooldown());
                 WeaponPlugin w = new WeaponPlugin();
                 world.addEntity(w.createBullet(entity, gameData));
-                decreaseAmmo(rangedWeaponPart);
+                decreaseAmmo(weaponPart);
             }
             
-            System.out.println(rangedWeaponPart.getAmmo());
-            rangedWeaponPart.process(gameData, entity);
+            System.out.println(weaponPart.getAmmo());
+            weaponPart.process(gameData, entity);
 
             // draw ammo counter
 
         }
-        rangedWeaponPart.setIsAttacking(false);
+        weaponPart.setIsAttacking(false);
     }
     
     private void updateBullet(GameData gameData, World world, Bullet bullet) {
@@ -130,11 +129,11 @@ public class WeaponProcessor implements IEntityProcessingService {
         }
     }
     
-    private void decreaseAmmo(RangedWeaponPart part){
+    private void decreaseAmmo(WeaponPart part){
         part.setAmmo(part.getAmmo()-1);
     }
     
-    private boolean emptyMagazine(RangedWeaponPart part){
+    private boolean emptyMagazine(WeaponPart part){
         boolean empty = false;
         if(part.getAmmo() <= 0){
             empty = true;

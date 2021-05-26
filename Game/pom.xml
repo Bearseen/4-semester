@@ -74,6 +74,7 @@
         <module>Collision</module>
         <module>AI</module>
         <module>Weapon</module>
+        <module>CommonSpawn</module>
     </modules>
 
     <properties>

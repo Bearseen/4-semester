@@ -4,24 +4,21 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.SimpleMovingPart;
 import dk.sdu.common.enemy.Enemy;
 import dk.sdu.common.services.IEntityProcessingService;
-import java.util.Random;
+
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import dk.sdu.common.ai.IPathFinder;
-import dk.sdu.common.ai.Node;
+
+import dk.sdu.common.node.Node;
 import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.services.IHighscoreProcessingService;
 import dk.sdu.common.spawn.Spawn;
 import dk.sdu.commonplayer.Player;
 import java.util.List;
 import org.openide.util.Lookup;
+import dk.sdu.common.services.IPathFinderService;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),
@@ -29,7 +26,7 @@ import org.openide.util.Lookup;
 
 public class EnemyControlSystem implements IEntityProcessingService, IHighscoreProcessingService {
 
-    private IPathFinder pathfinder;
+    private IPathFinderService pathfinder;
     private final Lookup lookup = Lookup.getDefault();
     private boolean isDead;
     
@@ -38,21 +35,20 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
     @Override
     public void process(GameData gameData, World world) {
         
-        this.pathfinder = lookup.lookup(IPathFinder.class);
+        pathfinder = lookup.lookup(IPathFinderService.class);
         
         
         for (Entity enemy : world.getEntities(Enemy.class)) {
             Enemy currentEnemy = (Enemy) enemy;
-            PositionPart position = enemy.getPart(PositionPart.class);
-            CollisionPart collision = enemy.getPart(CollisionPart.class);
+          
             
             if(getTargetExistence(currentEnemy, world)){
                 PositionPart targetPos = currentEnemy.getTarget().getPart(PositionPart.class);
                 Node goal = new Node(targetPos.getX(), targetPos.getY());
                 if(pathfinder != null){
-                    this.pathfinder.moveEnemy(gameData, enemy, goal, world);
+                    pathfinder.moveEnemy(gameData, enemy, goal, world);
                 }
-            } else{
+            } else {
                 setTarget(currentEnemy, world);
             }
             handleTarget(currentEnemy, world, gameData);
@@ -81,8 +77,6 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
         
         if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
            enemy.setTarget(target);
-          
-           
         }
     }
     private boolean getTargetExistence(Enemy enemy, World world){
@@ -112,21 +106,16 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
        PositionPart enemyPos = enemy.getPart(PositionPart.class);
       
        if(enemy.getTarget() != null){
-           if(!enemy.getTarget().getClass().equals(Player.class)){
-            if(enemy.isTargeted()){
-               if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
-                   System.out.println("targetting player");
-                   targetPlayer(enemy, world);
+           if(enemy.getTarget().getClass().equals(Player.class)){
+                if(enemy.isTargeted()){
+                    if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
+                        damageTarget(enemy, world, gameData); 
                     }
-           
                 }
-            damageTarget(enemy, world, gameData);
-       } else if(enemy.getTarget().getClass().equals(Player.class)){
-           if ((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
-                damageTarget(enemy, world, gameData);
-                }
-            }
-        }
+           } else {
+               targetPlayer(enemy, world);
+           }
+       } 
     }
     
     private void damageTarget (Enemy enemy, World world, GameData gameData){
@@ -149,7 +138,6 @@ public class EnemyControlSystem implements IEntityProcessingService, IHighscoreP
         float y4 = playerPos.getY() + playerCollision.getHeight() / 2;
         
         if ((x1 < x4) && (x3 < x2) && (y1 < y4) && (y3 < y2)) {
-//            world.removeEntity(target);
             if(lifePart.getLife() >= -1){
                 lifePart.setIsHit(true);
                 if (lifePart.isDead()){

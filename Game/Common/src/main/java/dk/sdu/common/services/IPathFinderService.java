@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.common.ai;
+package dk.sdu.common.services;
 
+import dk.sdu.common.node.Node;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
@@ -13,6 +14,6 @@ import dk.sdu.common.data.World;
  *
  * @author Mustafa
  */
-public interface IPathFinder {
+public interface IPathFinderService {
     public void moveEnemy(GameData gameData, Entity entity, Node goal, World world );
 }

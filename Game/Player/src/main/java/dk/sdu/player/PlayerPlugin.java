@@ -12,7 +12,7 @@ import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.commonplayer.Player;
 import org.openide.util.lookup.ServiceProvider;
@@ -60,7 +60,7 @@ public class PlayerPlugin implements IGamePluginService {
         float cooldown = 0.3f;
         String entityID = player.getID();
         int damage = 1;
-        player.add(new RangedWeaponPart(ammo, reload, cooldown, entityID, damage));
+        player.add(new WeaponPart(ammo, reload, cooldown, entityID, damage));
        
         return player;
     }

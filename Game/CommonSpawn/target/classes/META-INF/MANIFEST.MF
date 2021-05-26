@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: dk/sdu/commonspawn/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
 OpenIDE-Module-Implementation-Version: 1.0-20210526
-OpenIDE-Module-Build-Version: 202105261631
+OpenIDE-Module-Build-Version: 202105261841
 OpenIDE-Module: dk.sdu.CommonSpawn
 OpenIDE-Module-Public-Packages: dk.sdu.common.spawn.*
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
