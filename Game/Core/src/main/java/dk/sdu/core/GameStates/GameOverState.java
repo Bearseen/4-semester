@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -28,15 +29,19 @@ public class GameOverState extends GameState {
 
     private Texture restartTexture;
     private Texture menuTexture;
+    private Texture gameOverTexture;
 
     private TextureRegion restartTextureRegion;
     private TextureRegion menuTextureRegion;
+    private TextureRegion gameOverTextureRegion;
 
     private TextureRegionDrawable restartTexRegionDrawable;
     private TextureRegionDrawable menuTexRegionDrawable;
+    private TextureRegionDrawable gameOverRegionDrawable;
 
     private ImageButton restartButton;
     private ImageButton menuButton;
+    private Image gameOverButton;
 
     private SpriteBatch batch;
     private Texture imageGameOver;
@@ -49,11 +54,22 @@ public class GameOverState extends GameState {
         super(game);
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
-        imageGameOver = new Texture("skins/gameOverLogo.png");
+        
+        
+        
+//        imageGameOver = new Texture("skins/gameOverLogo.png");
 
         menuTable = new Table();
+        
+        gameOverTexture = new Texture(Gdx.files.internal("skins/gameOverLogo.png"));
+        gameOverTextureRegion = new TextureRegion(gameOverTexture);
+        gameOverRegionDrawable = new TextureRegionDrawable(gameOverTextureRegion);
+        gameOverButton = new Image(gameOverRegionDrawable);
 
-        restartTexture = new Texture(Gdx.files.internal("skins/restartButton.png"));
+        menuTable.add(gameOverButton);
+        menuTable.row().space(20);
+
+        restartTexture = new Texture(Gdx.files.internal("skins/returnButton.png"));
         restartTextureRegion = new TextureRegion(restartTexture);
         restartTexRegionDrawable = new TextureRegionDrawable(restartTextureRegion);
         restartButton = new ImageButton(restartTexRegionDrawable);
@@ -74,7 +90,7 @@ public class GameOverState extends GameState {
             }
         });
         menuTable.add(restartButton);
-        menuTable.row().space(10);
+        menuTable.row().space(20);
 
         menuTexture = new Texture(Gdx.files.internal("skins/menuButton.png"));
         menuTextureRegion = new TextureRegion(menuTexture);
@@ -122,7 +138,7 @@ public class GameOverState extends GameState {
         stage.draw();
 
         batch.begin();
-        batch.draw(imageGameOver, 150, 550);
+//        batch.draw(imageGameOver, 150, 550);
         batch.end();
     }
     

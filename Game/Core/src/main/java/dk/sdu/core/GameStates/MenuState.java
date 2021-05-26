@@ -65,21 +65,6 @@ public class MenuState extends GameState {
         
 //        stage.addActor(startButton);
                 
-        settingsTexture = new Texture(Gdx.files.internal("skins/settingsButton.png"));
-        settingsTextureRegion = new TextureRegion(settingsTexture);
-        settingsTexRegionDrawable = new TextureRegionDrawable(settingsTextureRegion);
-        settingsButton = new ImageButton(settingsTexRegionDrawable);
-        settingsButton.setSize(300, 54);
-        settingsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Settings button clicked");
-                game.getGameStates().pop();
-                game.getGameStates().push(new SettingsState(game));
-            }
-        });
-        menuTable.add(settingsButton);
-        menuTable.row();
 
         startTexture = new Texture(Gdx.files.internal("skins/startButton.png"));
         startTextureRegion = new TextureRegion(startTexture);
@@ -97,6 +82,22 @@ public class MenuState extends GameState {
         });        
         menuTable.add(startButton);
         menuTable.row();
+        
+        settingsTexture = new Texture(Gdx.files.internal("skins/settingsButton.png"));
+        settingsTextureRegion = new TextureRegion(settingsTexture);
+        settingsTexRegionDrawable = new TextureRegionDrawable(settingsTextureRegion);
+        settingsButton = new ImageButton(settingsTexRegionDrawable);
+        settingsButton.setSize(300, 54);
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Settings button clicked");
+                game.getGameStates().pop();
+                game.getGameStates().push(new SettingsState(game));
+            }
+        });
+        menuTable.add(settingsButton);
+        menuTable.row().space(50);
 
         exitTexture = new Texture(Gdx.files.internal("skins/exitButton.png"));
         exitTextureRegion = new TextureRegion(exitTexture);
@@ -112,7 +113,7 @@ public class MenuState extends GameState {
         });
         menuTable.add(exitButton);
         menuTable.setFillParent(true);
-        menuTable.row().space(10);
+        menuTable.row().space(50);
         menuTable.toFront();
         stage.addActor(menuTable);
         
@@ -131,7 +132,7 @@ public class MenuState extends GameState {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         
         batch.begin();
-        batch.draw(gameLogo, -318 , 0);
+        batch.draw(gameLogo, 47 , 47);
         batch.draw(groupLogo, 20 , 20);
         batch.end();
         

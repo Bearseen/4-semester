@@ -123,7 +123,7 @@ public class ModuleHandler {
     }
 
     private static boolean isNodeInvalid(Node node) {
-        String[] excludedModules = {"Common", "SilentUpdate", "branding", "Game", "Map"};
+        String[] excludedModules = {"Common", "SilentUpdate", "branding", "Map", "Core"};
         Element e = (Element) node;
         String name = e.getAttribute("codenamebase");
 

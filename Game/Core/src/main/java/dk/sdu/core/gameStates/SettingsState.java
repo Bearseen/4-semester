@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -46,9 +47,16 @@ public class SettingsState extends GameState{
     private CheckBox sheep;
 
     private Texture menuTexture;
+    private Texture settingsTexture;
+    
     private TextureRegion menuTextureRegion;
-    private TextureRegionDrawable menuTexRegionDrawable;
+    private TextureRegion settingsTextureRegion;
+    
+    private TextureRegionDrawable menuTextRegionDrawable;
+    private TextureRegionDrawable settingsTextRegionDrawable;
+    
     private ImageButton menuButton;
+    private Image settingsImage;
 
     private Stack<GameState> gameStates;
     private Game game;
@@ -86,22 +94,25 @@ public class SettingsState extends GameState{
 
     public SettingsState(Game game) {
         super(game);
-
         this.moduleHandler = ModuleHandler.getInstance();
-
         this.gameStates = game.getGameStates();
-        this.game = game;
+        this.game = game;        
+        
         stage = new Stage(new ScreenViewport());
         skin();
+        
         batch = new SpriteBatch();
-        imageSetting = new Texture("skins/settingsLogo.png");
+        
         mainTable = new Table();
         addModules();
+        
+        settingsTexture = new Texture(Gdx.files.internal("skins/settingsLogo.png"));
+        
 
         menuTexture = new Texture(Gdx.files.internal("skins/returnButton.png"));
         menuTextureRegion = new TextureRegion(menuTexture);
-        menuTexRegionDrawable = new TextureRegionDrawable(menuTextureRegion);
-        menuButton = new ImageButton(menuTexRegionDrawable);
+        menuTextRegionDrawable = new TextureRegionDrawable(menuTextureRegion);
+        menuButton = new ImageButton(menuTextRegionDrawable);
         if (playStateOn()) {
             menuButton.addListener(new ClickListener() {
                 @Override
@@ -124,12 +135,14 @@ public class SettingsState extends GameState{
                 }
             });
         }
-
         mainTable.add(menuButton);
         mainTable.row();
         mainTable.setFillParent(true);
+        
         stage.addActor(mainTable);
         Gdx.input.setInputProcessor(stage);
+        
+        
     }
 
     private boolean playStateOn() {
@@ -148,12 +161,12 @@ public class SettingsState extends GameState{
         skin.add("default", font);
 
         Pixmap pixmap = new Pixmap((int) Gdx.graphics.getWidth() / 3, (int) Gdx.graphics.getHeight() / 13, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
+        pixmap.setColor(Color.RED);
         pixmap.fill();
         skin.add("background", new Texture(pixmap));
         CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
-        checkBoxStyle.up = skin.newDrawable("background", Color.WHITE);
-        checkBoxStyle.fontColor = Color.DARK_GRAY;
+        checkBoxStyle.up = skin.newDrawable("background", Color.BLACK);
+        checkBoxStyle.fontColor = Color.RED;
         checkBoxStyle.font = skin.getFont("default");
         skin.add("default", checkBoxStyle);
     }
@@ -166,7 +179,7 @@ public class SettingsState extends GameState{
         stage.draw();
 
         batch.begin();
-        batch.draw(imageSetting, 50, 590);
+        batch.draw(settingsTexture, 145, 620);
         batch.end();
     }
 

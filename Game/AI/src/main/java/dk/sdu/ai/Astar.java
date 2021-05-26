@@ -79,7 +79,7 @@ public class Astar {
     private Node remove(Node goal, ArrayList<Node> fringe) {
         Node lowestNode = fringe.get(0);
         for (Node node : fringe) {
-            if (evaluationFunc(node, goal) < evaluationFunc(lowestNode, goal)) {
+            if (evaluationFunc(lowestNode, goal) > evaluationFunc(node, goal)) {
                 lowestNode = node;
             }
         }
