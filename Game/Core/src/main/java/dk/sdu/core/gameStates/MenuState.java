@@ -30,19 +30,19 @@ public class MenuState extends GameState {
     private Table menuTable;
 
     private Texture startTexture;
-    private Texture settingTexture;
+    private Texture settingsTexture;
     private Texture exitTexture;
 
     private TextureRegion startTextureRegion;
-    private TextureRegion settingTextureRegion;
+    private TextureRegion settingsTextureRegion;
     private TextureRegion exitTextureRegion;
 
     private TextureRegionDrawable startTexRegionDrawable;
-    private TextureRegionDrawable settingTexRegionDrawable;
+    private TextureRegionDrawable settingsTexRegionDrawable;
     private TextureRegionDrawable exitTexRegionDrawable;
 
     private ImageButton startButton;
-    private ImageButton settingButton;
+    private ImageButton settingsButton;
     private ImageButton exitButton;
 
     private SpriteBatch batch;
@@ -65,22 +65,22 @@ public class MenuState extends GameState {
         
 //        stage.addActor(startButton);
                 
+        settingsTexture = new Texture(Gdx.files.internal("skins/settingsButton.png"));
+        settingsTextureRegion = new TextureRegion(settingsTexture);
+        settingsTexRegionDrawable = new TextureRegionDrawable(settingsTextureRegion);
+        settingsButton = new ImageButton(settingsTexRegionDrawable);
+        settingsButton.setSize(300, 54);
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Settings button clicked");
+                game.getGameStates().pop();
+                game.getGameStates().push(new SettingsState(game));
+            }
+        });
+        menuTable.add(settingsButton);
+        menuTable.row();
 
-//        settingTexture = new Texture(Gdx.files.internal("skin/settingButton.png"));
-//        settingTextureRegion = new TextureRegion(settingTexture);
-//        settingTexRegionDrawable = new TextureRegionDrawable(settingTextureRegion);
-//        settingButton = new ImageButton(settingTexRegionDrawable);
-//        settingButton.setSize(300, 54);
-//        settingButton.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("Settings button clicked");
-//                game.getGameStates().pop();
-//                game.getGameStates().push(new Load(game));
-//            }
-//        });
-//        menuTable.add(settingButton);
-//        menuTable.row();
         startTexture = new Texture(Gdx.files.internal("skins/startButton.png"));
         startTextureRegion = new TextureRegion(startTexture);
         startTexRegionDrawable = new TextureRegionDrawable(startTextureRegion);

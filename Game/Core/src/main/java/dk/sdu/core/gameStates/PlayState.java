@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.tile.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
+import dk.sdu.common.data.GameKeys;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.WeaponPart;
@@ -96,13 +97,9 @@ public class PlayState extends GameState{
 
             }
         }
-        
-        
-        
-    
-        font.draw(spriteBatch, scoreName, 25, 100);
-        
 
+        font.draw(spriteBatch, scoreName, 25, 100);
+     
         spriteBatch.end();
 
         for (Entity entity : world.getEntities()) {
@@ -110,6 +107,21 @@ public class PlayState extends GameState{
                 assetsHandler.drawHealth(entity);
             }
         }
+    }
+    
+    private void pause() {
+
+        if (this.gameData.getKeys().isDown(GameKeys.ESCAPE)) {
+//            this.gameData.getInput().setKeyStatus(Input.ESCAPE, false);
+            this.gameData.getKeys().updateKeys();
+            this.paused = true;
+            System.out.println("Pause Game");
+            this.game.getGameStates().push(new SettingsState(this.game));
+        }
+    }
+    
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
     
     private void wave() {
@@ -159,7 +171,7 @@ public class PlayState extends GameState{
             update();
             draw();
             wave();
-//            pause();
+            pause();
             endGame();
         }
     }

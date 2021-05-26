@@ -8,10 +8,7 @@ package dk.sdu.common.data.entityparts;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 
-/**
- *
- * @author Alexander
- */
+
 public interface EntityPart {
 
     void process(GameData gameData, Entity entity);

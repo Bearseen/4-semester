@@ -8,16 +8,17 @@ package dk.sdu.core.gameStates;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import dk.sdu.common.assets.Tile;
+import dk.sdu.common.tile.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
+import dk.sdu.common.data.GameKeys;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
-import dk.sdu.common.services.IWaveProcessingService;
+import dk.sdu.common.services.IWavePluginService;
 import dk.sdu.core.main.Game;
 import dk.sdu.core.managers.AssetsHandler;
 import dk.sdu.core.managers.GameInputProcessor;
@@ -96,13 +97,9 @@ public class PlayState extends GameState{
 
             }
         }
-        
-        
-        
-    
-        font.draw(spriteBatch, scoreName, 25, 100);
-        
 
+        font.draw(spriteBatch, scoreName, 25, 100);
+     
         spriteBatch.end();
 
         for (Entity entity : world.getEntities()) {
@@ -112,11 +109,26 @@ public class PlayState extends GameState{
         }
     }
     
+    private void pause() {
+
+        if (this.gameData.getKeys().isDown(GameKeys.ESCAPE)) {
+//            this.gameData.getInput().setKeyStatus(Input.ESCAPE, false);
+            this.gameData.getKeys().updateKeys();
+            this.paused = true;
+            System.out.println("Pause Game");
+            this.game.getGameStates().push(new SettingsState(this.game));
+        }
+    }
+    
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+    
     private void wave() {
-        Collection<? extends IWaveProcessingService> waves = lookup.lookupAll(IWaveProcessingService.class);
+        Collection<? extends IWavePluginService> waves = lookup.lookupAll(IWavePluginService.class);
 
         boolean endWave = false;
-        for (IWaveProcessingService wave : waves) {
+        for (IWavePluginService wave : waves) {
             if (wave.stopWave(gameData, world)) {
                 endWave = true;
                 break;
@@ -126,7 +138,7 @@ public class PlayState extends GameState{
         if (endWave) {
             this.waveHandler.setNextWave();
 
-            for (IWaveProcessingService wave : waves) {
+            for (IWavePluginService wave : waves) {
                 wave.startWave(this.gameData, this.world, this.waveHandler.getCurrentWave());
             }
         }
@@ -159,7 +171,7 @@ public class PlayState extends GameState{
             update();
             draw();
             wave();
-//            pause();
+            pause();
             endGame();
         }
     }
