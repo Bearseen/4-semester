@@ -9,7 +9,6 @@ import dk.sdu.common.ai.Node;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.CollisionPart;
-import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.SimpleMovingPart;
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class Astar {
                 PositionPart position = entity2.getPart(PositionPart.class);
                 CollisionPart collider = entity2.getPart(CollisionPart.class);
 
-                boolean hit = collider.checkCollision(node.getX(), node.getY(), position.getX(), position.getY());
+                boolean hit = collider.nodeCollision(node.getX(), node.getY(), position.getX(), position.getY());
                 if (hit) {
                     return true;
                 }
@@ -119,7 +118,7 @@ public class Astar {
             Node lowest = remove(goal, fringe);
             
 
-            if (collision.checkCollision(goal.getX(), goal.getY(), lowest.getX(), lowest.getY())) {
+            if (collision.nodeCollision(goal.getX(), goal.getY(), lowest.getX(), lowest.getY())) {
                  
                 return lowest.getPath();
             }

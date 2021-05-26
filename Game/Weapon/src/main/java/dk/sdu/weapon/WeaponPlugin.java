@@ -9,17 +9,11 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.BulletPart;
-import dk.sdu.common.data.entityparts.LifePart;
-import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.RangedWeaponPart;
-import dk.sdu.common.data.entityparts.TimerPart;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.commonbullet.Bullet;
 import dk.sdu.commonbullet.BulletSPI;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import java.util.ArrayList;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 

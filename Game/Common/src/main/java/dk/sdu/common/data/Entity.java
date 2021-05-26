@@ -2,8 +2,6 @@ package dk.sdu.common.data;
 
 import dk.sdu.common.data.entityparts.EntityPart;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
-    private HashMap<Class, EntityPart> components;
 
     private float[] shapeX = new float[4];
     private float[] shapeY = new float[4];

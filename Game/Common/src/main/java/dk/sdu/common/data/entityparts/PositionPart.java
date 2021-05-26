@@ -8,10 +8,6 @@ package dk.sdu.common.data.entityparts;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 
-/**
- *
- * @author Alexander
- */
 public class PositionPart implements EntityPart {
 
     private float x;

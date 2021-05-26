@@ -9,7 +9,6 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.CollisionPart;
-import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
 import dk.sdu.common.data.entityparts.SimpleMovingPart;
@@ -23,8 +22,13 @@ import org.openide.util.lookup.ServiceProvider;
 
 @ServiceProvider(service = IPostEntityProcessingService.class)
 public class Collision implements IPostEntityProcessingService {
-
     
+    private PositionPart posA;
+    private PositionPart posB;
+    private CollisionPart colliderPartA;
+    private CollisionPart colliderPartB;
+    private float dx;
+    private float dy;
     
     @Override
     public void process(GameData gameData, World world) {
@@ -39,54 +43,52 @@ public class Collision implements IPostEntityProcessingService {
             }
         }
     }
-
+    
+    // entityDiff gets the position & position parts, and dx & dy of pos A & B.
+    private void entityDiff(Entity a, Entity b){
+        posA = a.getPart(PositionPart.class);
+        posB = b.getPart(PositionPart.class);
+        colliderPartA = a.getPart(CollisionPart.class);
+        colliderPartB = b.getPart(CollisionPart.class);
+        dx = posA.getX() - posB.getX();
+        dy = posA.getY() - posB.getY();
+    }
     
     private boolean collides(Entity a, Entity b) {
-        if (a.equals(b)) {
+        entityDiff(a, b);
+        if (a.equals(b) || 
+            posA == null || 
+            posB == null || 
+            colliderPartA == null || 
+            colliderPartB == null) {
             return false;
         }
-        PositionPart posA = a.getPart(PositionPart.class);
-        PositionPart posB = b.getPart(PositionPart.class);
-        CollisionPart boxA = a.getPart(CollisionPart.class);
-        CollisionPart boxB = b.getPart(CollisionPart.class);
+        
+        float width = (colliderPartA.getWidth() + colliderPartB.getWidth()) / 2;
+        float height = (colliderPartA.getHeight() + colliderPartB.getHeight()) / 2;
 
-        if (posA == null || posB == null || boxA == null || boxB == null) {
-            return false;
-        }
-
-        float w = (boxA.getWidth() + boxB.getWidth()) / 2;
-        float h = (boxA.getHeight() + boxB.getHeight()) / 2;
-        float dx = posA.getX() - posB.getX();
-        float dy = posA.getY() - posB.getY();
-
-        return Math.abs(dx) <= w && Math.abs(dy) <= h;
+        return Math.abs(dx) <= width && Math.abs(dy) <= height;
     }
 
-    private void collide(Entity entityA, Entity entityB) {
-        PositionPart positionA = entityA.getPart(PositionPart.class);
-        PositionPart positionB = entityB.getPart(PositionPart.class);
-        CollisionPart colliderA = entityA.getPart(CollisionPart.class);
-        CollisionPart colliderB = entityB.getPart(CollisionPart.class);
+    private void collide(Entity a, Entity b) {
+        entityDiff(a, b);
 
-        float xDifference = positionA.getX() - positionB.getX();
-        float yDifference = positionA.getY() - positionB.getY();
+        float overlapX = colliderPartA.getWidth() / 2 + colliderPartB.getWidth() / 2 - Math.abs(dx);
+        float overlapY = colliderPartA.getHeight() / 2 + colliderPartB.getHeight() / 2 - Math.abs(dy);
 
-        float overlapX = colliderA.getWidth() / 2 + colliderB.getWidth() / 2 - Math.abs(xDifference);
-        float overlapY = colliderA.getHeight() / 2 + colliderB.getHeight() / 2 - Math.abs(yDifference);
-
-        if (entityA.hasPart(MovingPart.class) || entityA.hasPart(SimpleMovingPart.class)) {
+        if (a.hasPart(MovingPart.class) || a.hasPart(SimpleMovingPart.class)) {
             if (overlapX >= overlapY) {
-                if (yDifference > 0) {
-                    positionA.setY(positionA.getY() + overlapY);
+                if (dy > 0) {
+                    posA.setY(posA.getY() + overlapY);
                 } else {
-                    positionA.setY(positionA.getY() - overlapY);
+                    posA.setY(posA.getY() - overlapY);
 
                 }
             } else {
-                if (xDifference > 0) {
-                    positionA.setX(positionA.getX() + overlapX);
+                if (dx > 0) {
+                    posA.setX(posA.getX() + overlapX);
                 } else {
-                    positionA.setX(positionA.getX() - overlapX);
+                    posA.setX(posA.getX() - overlapX);
                 }
             }
 
