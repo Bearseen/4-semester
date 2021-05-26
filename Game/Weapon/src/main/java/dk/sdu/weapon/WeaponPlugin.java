@@ -10,7 +10,7 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.entityparts.BulletPart;
 import dk.sdu.common.data.entityparts.PositionPart;
-import dk.sdu.common.data.entityparts.RangedWeaponPart;
+import dk.sdu.common.data.entityparts.WeaponPart;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.commonbullet.Bullet;
 import dk.sdu.commonbullet.BulletSPI;
@@ -30,11 +30,11 @@ public class WeaponPlugin implements IGamePluginService, BulletSPI {
     @Override
     public Entity createBullet(Entity entity, GameData gameData) {
         PositionPart entityPosition = entity.getPart(PositionPart.class);
-        RangedWeaponPart rangedWeaponPart = entity.getPart(RangedWeaponPart.class);
+        WeaponPart weaponPart = entity.getPart(WeaponPart.class);
         
         Bullet bullet = new Bullet(600f, "bullet.png");
         PositionPart positionPart = new PositionPart(entityPosition.getX(), entityPosition.getY(), entityPosition.getRadians());
-        BulletPart bulletPart = new BulletPart(entity.getID(), rangedWeaponPart.getDamage(), 5);
+        BulletPart bulletPart = new BulletPart(entity.getID(), weaponPart.getDamage(), 5);
         
         bullet.add(bulletPart);
         bullet.add(positionPart);

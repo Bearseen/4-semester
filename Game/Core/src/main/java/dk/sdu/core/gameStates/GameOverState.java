@@ -5,21 +5,28 @@
  */
 package dk.sdu.core.gameStates;
 
+import dk.sdu.core.gameStates.GameState;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import dk.sdu.core.main.Game;
 import dk.sdu.common.services.IGamePluginService;
-
+import dk.sdu.common.services.IHighscoreProcessingService;
+import dk.sdu.core.managers.HighscoreHandler;
+import java.util.Collection;
 /**
  *
  * @author Samuel
@@ -28,15 +35,19 @@ public class GameOverState extends GameState {
 
     private Texture restartTexture;
     private Texture menuTexture;
+    private Texture gameOverTexture;
 
     private TextureRegion restartTextureRegion;
     private TextureRegion menuTextureRegion;
+    private TextureRegion gameOverTextureRegion;
 
     private TextureRegionDrawable restartTexRegionDrawable;
     private TextureRegionDrawable menuTexRegionDrawable;
+    private TextureRegionDrawable gameOverRegionDrawable;
 
     private ImageButton restartButton;
     private ImageButton menuButton;
+    private Image gameOverButton;
 
     private SpriteBatch batch;
     private Texture imageGameOver;
@@ -44,16 +55,31 @@ public class GameOverState extends GameState {
     private Stage stage;
     private Table menuTable;
     
+    BitmapFont font;
+    
+    int finalScore;
+    
    
-    public GameOverState(Game game) {
+    public GameOverState(Game game, int finalscore) {
         super(game);
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
         imageGameOver = new Texture("skins/gameOverLogo.png");
 
-        menuTable = new Table();
+        this.finalScore = finalscore;
+        
 
-        restartTexture = new Texture(Gdx.files.internal("skins/restartButton.png"));
+        menuTable = new Table();
+        
+        gameOverTexture = new Texture(Gdx.files.internal("skins/gameOverLogo.png"));
+        gameOverTextureRegion = new TextureRegion(gameOverTexture);
+        gameOverRegionDrawable = new TextureRegionDrawable(gameOverTextureRegion);
+        gameOverButton = new Image(gameOverRegionDrawable);
+
+        menuTable.add(gameOverButton);
+        menuTable.row().space(20);
+
+        restartTexture = new Texture(Gdx.files.internal("skins/returnButton.png"));
         restartTextureRegion = new TextureRegion(restartTexture);
         restartTexRegionDrawable = new TextureRegionDrawable(restartTextureRegion);
         restartButton = new ImageButton(restartTexRegionDrawable);
@@ -74,7 +100,7 @@ public class GameOverState extends GameState {
             }
         });
         menuTable.add(restartButton);
-        menuTable.row().space(10);
+        menuTable.row().space(20);
 
         menuTexture = new Texture(Gdx.files.internal("skins/menuButton.png"));
         menuTextureRegion = new TextureRegion(menuTexture);
@@ -99,6 +125,12 @@ public class GameOverState extends GameState {
         menuTable.add(menuButton);
         menuTable.row();
         //stage.addActor(settingButton);
+        font = new BitmapFont();
+        font.setScale(3);
+        LabelStyle textStyle = new LabelStyle();
+        textStyle.font = font;
+
+        Label label = new Label("You received a score of: " + String.valueOf(finalScore), textStyle);
 
         menuTable.setFillParent(true);
         //menuTable.debug();
@@ -122,7 +154,7 @@ public class GameOverState extends GameState {
         stage.draw();
 
         batch.begin();
-        batch.draw(imageGameOver, 150, 550);
+//        batch.draw(imageGameOver, 150, 550);
         batch.end();
     }
     

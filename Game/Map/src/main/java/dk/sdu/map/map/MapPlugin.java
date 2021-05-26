@@ -6,8 +6,8 @@
 package dk.sdu.map.map;
 
 import org.openide.util.lookup.ServiceProvider;
-import dk.sdu.common.assets.Tiletype;
-import dk.sdu.common.assets.Tile;
+import dk.sdu.common.tile.Tiletype;
+import dk.sdu.common.tile.Tile;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;

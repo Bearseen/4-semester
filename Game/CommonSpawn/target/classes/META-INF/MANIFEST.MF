@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: dk/sdu/commonspawn/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Implementation-Version: 1.0-20210526
+OpenIDE-Module-Build-Version: 202105261952
+OpenIDE-Module: dk.sdu.CommonSpawn
+OpenIDE-Module-Public-Packages: dk.sdu.common.spawn.*
+OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
+OpenIDE-Module-Display-Category: dk.sdu
+OpenIDE-Module-Name: CommonSpawn
+OpenIDE-Module-Short-Description: <undefined>
+OpenIDE-Module-Long-Description: <undefined>
+OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
+ n/1 > 1.33, dk.sdu.Common > 1.0
+

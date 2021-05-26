@@ -29,5 +29,4 @@ public abstract class GameState {
     public void setGame(Game game) {
         this.game = game;
     }
-
 }
