@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.CommonSpawn">
-    <module_version install_time="1622066517485" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1622072458874" last="true" origin="installer" specification_version="1.0">
         <file crc="1154713343" name="config/Modules/dk-sdu-CommonSpawn.xml"/>
-        <file crc="659018024" name="modules/dk-sdu-CommonSpawn.jar"/>
+        <file crc="460931969" name="modules/dk-sdu-CommonSpawn.jar"/>
     </module_version>
 </module>

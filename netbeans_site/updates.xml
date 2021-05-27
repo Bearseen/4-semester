@@ -3,10 +3,7 @@
 
 
 
-<module codenamebase="dk.sdu.AI" distribution="AI-1.0-SNAPSHOT.nbm" downloadsize="7266" license="13255ACB" needsrestart="false" releasedate="2021/05/26" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.AI" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210526" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="AI" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
 
-</module>
 
 <module codenamebase="org.openide.util" distribution="org-openide-util-RELEASE112.nbm" downloadsize="207267" homepage="http://www.netbeans.org/" license="3617C072" moduleauthor="" needsrestart="false" releasedate="2019/10/19" targetcluster="platform">
     <manifest AutoUpdate-Show-In-Client="false" OpenIDE-Module="org.openide.util" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="11.2-d04fb24027334c4b6fd8397b5d0cdd33187a8f54" OpenIDE-Module-Java-Dependencies="Java &gt; 1.8" OpenIDE-Module-Long-Description="Various helper methods and basic concept definitions including lookup, parallel execution and branding support." OpenIDE-Module-Module-Dependencies="org.openide.util.lookup &gt; 8.14" OpenIDE-Module-Name="Base Utilities API" OpenIDE-Module-Short-Description="Base Utilities API." OpenIDE-Module-Specification-Version="9.13"/>
@@ -125,10 +122,7 @@
 
 </module>
 
-<module codenamebase="dk.sdu.Weapon" distribution="Weapon-1.0-SNAPSHOT.nbm" downloadsize="7564" license="13255ACB" needsrestart="false" releasedate="2021/05/26" targetcluster="game">
-    <manifest OpenIDE-Module="dk.sdu.Weapon" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210526" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0" OpenIDE-Module-Name="Weapon" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
 
-</module>
 
 <license name="E6B6E7BE">
                                  Apache License
@@ -2367,6 +2361,15 @@ modules/ext/osgi.core-7.0.0.jar                                       Apache-2.0
    See the License for the specific language governing permissions and
    limitations under the License.
 </license>
+
+<module codenamebase="dk.sdu.Weapon" distribution="Weapon-1.0-SNAPSHOT.nbm" downloadsize="7564" license="13255ACB" needsrestart="false" releasedate="2021/05/26" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.Weapon" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210526" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0, dk.sdu.CommonBullet &gt; 1.0" OpenIDE-Module-Name="Weapon" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+
+</module>
+<module codenamebase="dk.sdu.AI" distribution="AI-1.0-SNAPSHOT.nbm" downloadsize="7266" license="13255ACB" needsrestart="false" releasedate="2021/05/26" targetcluster="game">
+    <manifest OpenIDE-Module="dk.sdu.AI" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210526" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.Common &gt; 1.0" OpenIDE-Module-Name="AI" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
+
+</module>
 <module codenamebase="dk.sdu.Enemy" distribution="Enemy-1.0-SNAPSHOT.nbm" downloadsize="9038" license="13255ACB" needsrestart="false" releasedate="2021/05/26" targetcluster="game">
     <manifest OpenIDE-Module="dk.sdu.Enemy" OpenIDE-Module-Display-Category="dk.sdu" OpenIDE-Module-Implementation-Version="1.0-20210526" OpenIDE-Module-Long-Description="&lt;undefined&gt;" OpenIDE-Module-Module-Dependencies="org.netbeans.api.annotations.common/1 &gt; 1.33, dk.sdu.CommonEnemy &gt; 1.0, dk.sdu.Common &gt; 1.0, org.openide.util.lookup &gt; 8.39, org.openide.modules &gt; 7.54, org.openide.util.ui &gt; 9.14, dk.sdu.CommonPlayer &gt; 1.0, dk.sdu.CommonSpawn &gt; 1.0" OpenIDE-Module-Name="Enemy" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="&lt;undefined&gt;" OpenIDE-Module-Specification-Version="1.0"/>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="dk.sdu.Weapon">
-    <module_version install_time="1622066530410" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1622072472978" last="true" origin="installer" specification_version="1.0">
         <file crc="677455384" name="config/Modules/dk-sdu-Weapon.xml"/>
-        <file crc="3857876115" name="modules/dk-sdu-Weapon.jar"/>
+        <file crc="2712278559" name="modules/dk-sdu-Weapon.jar"/>
     </module_version>
 </module>

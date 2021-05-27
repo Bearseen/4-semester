@@ -49,7 +49,7 @@ public class WeaponProcessor implements IEntityProcessingService {
         
         if (weaponPart.isIsAttacking() && !emptyMagazine(weaponPart)) {
             
-            System.out.println(weaponPart.getShotTimer());
+//            System.out.println(weaponPart.getShotTimer());
             if (weaponPart.getShotTimer() <= 0) {
                 weaponPart.setShotTimer(weaponPart.getShotCooldown());
                 WeaponPlugin w = new WeaponPlugin();
@@ -57,7 +57,7 @@ public class WeaponProcessor implements IEntityProcessingService {
                 decreaseAmmo(weaponPart);
             }
             
-            System.out.println(weaponPart.getAmmo());
+//            System.out.println(weaponPart.getAmmo());
             weaponPart.process(gameData, entity);
 
             // draw ammo counter
