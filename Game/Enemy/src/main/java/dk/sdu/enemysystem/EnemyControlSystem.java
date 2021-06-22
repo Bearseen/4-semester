@@ -14,59 +14,153 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import dk.sdu.common.ai.IPathFinder;
+import dk.sdu.common.ai.Node;
+import dk.sdu.common.data.entityparts.CollisionPart;
+import dk.sdu.commonplayer.Player;
+import org.openide.util.Lookup;
 
 @ServiceProviders(value = {
     @ServiceProvider(service = IEntityProcessingService.class),})
 
 public class EnemyControlSystem implements IEntityProcessingService {
 
-    private Entity enemy;
+    private IPathFinder pathfinder;
+    private final Lookup lookup = Lookup.getDefault();
 
     @Override
     public void process(GameData gameData, World world) {
-
+        
+        this.pathfinder = lookup.lookup(IPathFinder.class);
+        
+        
         for (Entity enemy : world.getEntities(Enemy.class)) {
-            PositionPart positionPart = enemy.getPart(PositionPart.class);
-            SimpleMovingPart simpleMovingPart = enemy.getPart(SimpleMovingPart.class);
-            LifePart lifePart = enemy.getPart(LifePart.class);
-
-            Random rand = new Random();
-
-            simpleMovingPart.setUp(rand.nextBoolean());
-            simpleMovingPart.setRight(rand.nextBoolean());
-            simpleMovingPart.setLeft(rand.nextBoolean());
-            simpleMovingPart.setDown(rand.nextBoolean());
+            Enemy currentEnemy = (Enemy) enemy;
+            PositionPart position = enemy.getPart(PositionPart.class);
+            CollisionPart collision = enemy.getPart(CollisionPart.class);
             
-            
-            simpleMovingPart.process(gameData, enemy);
-            positionPart.process(gameData, enemy);
-            lifePart.process(gameData, enemy);
-
-//            updateShape(enemy);
+            if(getTargetExistence(currentEnemy, world)){
+                PositionPart targetPos = currentEnemy.getTarget().getPart(PositionPart.class);
+                Node goal = new Node(targetPos.getX(), targetPos.getY());
+                if(pathfinder != null){
+                    this.pathfinder.moveEnemy(gameData, enemy, goal, world);
+                }
+            } else{
+                setTarget(currentEnemy, world);
+            }
+            handleTarget(currentEnemy, world, gameData);
+            handleLife(currentEnemy, world);
         }
     }
+    
+    private void setTarget(Enemy enemy, World world){
+        if(enemy.isTargeted()){
+            targetPlayer(enemy, world); 
+        }
+    }
+    
+    private void targetPlayer (Enemy enemy, World world){
+        if(world.getEntities(Player.class).isEmpty()){
+            return;
+        }
+        
+        Entity target = world.getEntities(Player.class).get(0);
+        if(target == null){
+            return;
+        }
+        
+        PositionPart targetPos = target.getPart(PositionPart.class);
+        PositionPart enemyPos = enemy.getPart(PositionPart.class);
+        
+        if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
+           enemy.setTarget(target);
+          
+           
+        }
+    }
+    private boolean getTargetExistence(Enemy enemy, World world){
+        Entity target = enemy.getTarget();
+        if (target == null) {
 
-//    private void updateShape(Entity entity) {
-//        float[] shapex = new float[4];
-//        float[] shapey = new float[4];
-//        PositionPart positionPart = entity.getPart(PositionPart.class);
-//        float x = positionPart.getX();
-//        float y = positionPart.getY();
-//        float radians = positionPart.getRadians();
-//
-//        shapex[0] = (float) (x + Math.cos(radians - 2 * 3.1415f / 4) * (entity.getRadius() - 2 * 3.1415f));
-//        shapey[0] = (float) (y + Math.sin(radians - 2 * 3.1415f / 4) * (entity.getRadius() - 2 * 3.1415f));
-//
-//        shapex[1] = (float) (x + Math.cos(radians + 2 * 3.1415f / 4) * (entity.getRadius() - 2 * 3.1415f));
-//        shapey[1] = (float) (y + Math.sin(radians + 2 * 3.1415f / 4) * (entity.getRadius() - 2 * 3.1415f));
-//
-//        shapex[2] = (float) (x + Math.cos(radians + 3 * 3.1415f / 4) * entity.getRadius());
-//        shapey[2] = (float) (y + Math.sin(radians + 3 * 3.1415f / 4) * entity.getRadius());
-//
-//        shapex[3] = (float) (x + Math.cos(radians - 3 * 3.1415f / 4) * entity.getRadius());
-//        shapey[3] = (float) (y + Math.sin(radians - 3 * 3.1415f / 4) * entity.getRadius());
-//
-//        entity.setShapeX(shapex);
-//        entity.setShapeY(shapey);
-//    }
+            return false;
+        }
+        Entity entity = world.getEntity(target.getID());
+        if (entity == null) {
+            return false;
+        } else {
+            return true;
+            
+        }
+    }
+    
+    private void handleTarget(Enemy enemy, World world, GameData gameData){
+       if(world.getEntities(Player.class).isEmpty()){
+           return;
+       } 
+       Entity target = world.getEntities(Player.class).get(0);
+       if(target == null){
+           return;
+       }
+       PositionPart targetPos = target.getPart(PositionPart.class);
+       PositionPart enemyPos = enemy.getPart(PositionPart.class);
+      
+       if(enemy.getTarget() != null){
+           if(!enemy.getTarget().getClass().equals(Player.class)){
+            if(enemy.isTargeted()){
+               if((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
+                   System.out.println("targetting player");
+                   targetPlayer(enemy, world);
+                    }
+           
+                }
+            damageTarget(enemy, world, gameData);
+       } else if(enemy.getTarget().getClass().equals(Player.class)){
+           if ((Math.pow(targetPos.getX() - enemyPos.getX(), 2) + Math.pow(targetPos.getY() - enemyPos.getY(), 2)) < Math.pow(enemy.getPlayerRadius(), 2)){
+                damageTarget(enemy, world, gameData);
+                }
+            }
+        }
+    }
+    
+    private void damageTarget (Enemy enemy, World world, GameData gameData){
+        Entity target = enemy.getTarget();
+        PositionPart enemyPos = enemy.getPart(PositionPart.class);
+        PositionPart playerPos = target.getPart(PositionPart.class);
+        LifePart lifePart = target.getPart(LifePart.class);
+        
+        CollisionPart enemyCollision = enemy.getPart(CollisionPart.class);
+        CollisionPart playerCollision = target.getPart(CollisionPart.class);
+        
+        float x1 = enemyPos.getX() - enemyCollision.getWidth() / 2;
+        float x2 = enemyPos.getX() + enemyCollision.getWidth() / 2;
+        float x3 = playerPos.getX() - playerCollision.getWidth() / 2;
+        float x4 = playerPos.getX() + playerCollision.getWidth() / 2;
+
+        float y1 = enemyPos.getY() - enemyCollision.getHeight() / 2;
+        float y2 = enemyPos.getY() + enemyCollision.getHeight() / 2;
+        float y3 = playerPos.getY() - playerCollision.getHeight() / 2;
+        float y4 = playerPos.getY() + playerCollision.getHeight() / 2;
+        
+        if ((x1 < x4) && (x3 < x2) && (y1 < y4) && (y3 < y2)) {
+//            world.removeEntity(target);
+            if(lifePart.getLife() >= -1){
+                lifePart.setIsHit(true);
+                if (lifePart.isDead()){
+                    world.removeEntity(target);
+                    gameData.setEndGame(true);
+                }
+            }
+        }
+    }
+    
+    private void handleLife(Enemy enemy, World world) {
+        LifePart lifePart = enemy.getPart(LifePart.class);
+        if (lifePart == null) {
+            return;
+        }
+        if (lifePart.isDead()) {
+            world.removeEntity(enemy);
+        }
+    }
 }
+

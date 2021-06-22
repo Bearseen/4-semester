@@ -8,6 +8,7 @@ package dk.sdu.player;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.CollisionPart;
 import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.MovingPart;
 import dk.sdu.common.data.entityparts.PositionPart;
@@ -18,11 +19,11 @@ import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
 /**
- *
- * @author Samuel & Mustafa
+ * @author Samuel, Mustafa & Yusaf
  */
-@ServiceProviders(value = {
-    @ServiceProvider(service = IGamePluginService.class),})
+
+@ServiceProviders(value = {@ServiceProvider(service = IGamePluginService.class),})
+
 public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
@@ -36,11 +37,11 @@ public class PlayerPlugin implements IGamePluginService {
         // Add entities to the world
         player = createPlayer(gameData);
         world.addEntity(player);
+
     }
 
     private Entity createPlayer(GameData gameData) {
-        float maxSpeed = 125;
-        float rotationSpeed = 2;
+        float speed = 200; // player movement speed
         float x = gameData.getDisplayWidth() / 2;
         float y = gameData.getDisplayHeight() / 2;
         float radians = 3.1415f / 2;
@@ -48,10 +49,12 @@ public class PlayerPlugin implements IGamePluginService {
         //Player
         Entity player = new Player("player.png");
         player.setRadius(4);
-        player.add(new MovingPart(maxSpeed, rotationSpeed));
+        player.add(new MovingPart(speed));
         player.add(new PositionPart(x, y, radians));        
         player.add(new LifePart(1));    
         
+        player.add(new LifePart(4));
+        player.add(new CollisionPart(75,35));
         // Weapon
         int ammo = 5;
         float reload = 3;
@@ -59,11 +62,9 @@ public class PlayerPlugin implements IGamePluginService {
         String entityID = player.getID();
         int damage = 1;
         player.add(new RangedWeaponPart(ammo, reload, cooldown, entityID, damage));
-
        
         return player;
     }
-    
 
     @Override
     public void stop(GameData gameData, World world) {
@@ -72,6 +73,5 @@ public class PlayerPlugin implements IGamePluginService {
             world.removeEntity(player);
         }
     }
-    
-    
+
 }

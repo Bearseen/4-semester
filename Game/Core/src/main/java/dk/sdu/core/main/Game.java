@@ -1,15 +1,19 @@
 package dk.sdu.core.main;
 
-import dk.sdu.core.GameStates.GameState;
-import dk.sdu.core.GameStates.MenuState;
+import dk.sdu.core.gameStates.GameState;
+import dk.sdu.core.gameStates.MenuState;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
+import dk.sdu.common.data.entityparts.RangedWeaponPart;
 import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -18,11 +22,13 @@ import dk.sdu.core.managers.GameInputProcessor;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.common.assets.Tile;
+import dk.sdu.common.data.entityparts.LifePart;
 import java.util.Stack;
 
 
@@ -37,17 +43,29 @@ public class Game implements ApplicationListener {
     private final GameData gameData = new GameData();
     private World world = new World();
     private ShapeRenderer sr;
-    private AssetsHandler assetshandler;
+    private AssetsHandler assetsHandler;
     private SpriteBatch spriteBatch;
     
     private Stack<GameState> gameStates;
 
+    private BitmapFont font;
+    private RangedWeaponPart rangedWeaponPart; // skal måske instantieres
+
     @Override
     public void create() {
-        assetshandler = new AssetsHandler();
+        assetsHandler = new AssetsHandler();
         spriteBatch = new SpriteBatch();
         sr = new ShapeRenderer();
+
         this.gameStates = new Stack<>();
+
+        /** ToDo: SET FONT
+         *
+         * Burde hente font fra fonts folder: "Core/src/Main/resources/fonts/"
+         * Ikke sikker på om den henter fonten, derfor har jeg udkommenteret det...
+         * */
+        //FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Hyperspace Bold.ttf")); // todo: hent font
+        //font = gen.generateFont(20);
         
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
@@ -64,10 +82,10 @@ public class Game implements ApplicationListener {
         result.addLookupListener(lookupListener);
         result.allItems();
 
-        for (IGamePluginService plugin : result.allInstances()) {
-            plugin.start(gameData, world);
-            gamePlugins.add(plugin);
-        }
+//        for (IGamePluginService plugin : result.allInstances()) {
+//            plugin.start(gameData, world);
+//            gamePlugins.add(plugin);
+//        }
     }
 
     @Override
@@ -88,6 +106,33 @@ public class Game implements ApplicationListener {
         this.gameStates.peek().render();
     }
 
+//    private void draw() {
+//        try {
+//            spriteBatch.begin();
+//            
+//            for (Entity tiles : world.getEntities(Tile.class)){
+//                assetsHandler.drawEntity(tiles, spriteBatch);
+//            }
+//            for (Entity entity : world.getEntities()){
+//                if (!entity.getClass().equals(Tile.class)) {
+//                    assetsHandler.drawEntity(entity, spriteBatch);
+//                }
+//            }
+// 
+//        } catch (Exception e){
+//            System.out.println(e);
+//            
+//        } finally {
+//            spriteBatch.end();
+//            
+//            for (Entity entity : world.getEntities()) {
+//                if (entity.hasPart(LifePart.class)) {
+//                assetsHandler.drawHealth(entity);
+//                }
+//            }
+//        }
+//        
+//    }
 //    private void update() {
 //        // Update
 //        for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
@@ -99,27 +144,33 @@ public class Game implements ApplicationListener {
 //            postEntityProcessorService.process(gameData, world);
 //        }
 //    }
-//
-//    private void draw() {
-//        try {
-//            spriteBatch.begin();
-//            
-//            for (Entity tiles : world.getEntities(Tile.class)){
-//                assetshandler.drawEntity(tiles, spriteBatch);
-//            }
-//            for (Entity entity : world.getEntities()){
-//                if (!entity.getClass().equals(Tile.class)) {
-//                    assetshandler.drawEntity(entity, spriteBatch);
-//                }
-//            }
-// 
-//        } catch (Exception e){
-//            System.out.println(e);
-//            
-//        } finally {
-//            spriteBatch.end();   
-//        }
-        
+
+    private void draw() {
+        try {
+            spriteBatch.begin();
+            
+            for (Entity tiles : world.getEntities(Tile.class)){
+                assetsHandler.drawEntity(tiles, spriteBatch);
+            }
+            for (Entity entity : world.getEntities()){
+                if (!entity.getClass().equals(Tile.class)) {
+                    assetsHandler.drawEntity(entity, spriteBatch);
+                }
+            }
+
+            /**
+             * ToDo: Draw Ammo Counter:
+             *
+             * Bliver ikke drawet, måske drawes det bag tiles?
+             **/
+            font.draw(spriteBatch, /*Integer.toString(rangedWeaponPart.getAmmo())*/"ammo: 5", 10, 10);
+ 
+        } catch (Exception e){
+            System.out.println(e);
+            
+        } finally {
+            spriteBatch.end();   
+        }
         
 //        for (Entity entity : world.getEntities()) {
 //            sr.setColor(1, 1, 1, 1);
@@ -138,9 +189,8 @@ public class Game implements ApplicationListener {
 //
 //            sr.end();
 //        }
-//        
-//    }
-
+    }
+   
     @Override
     public void resize(int width, int height) {
     }
@@ -195,7 +245,7 @@ public class Game implements ApplicationListener {
     }
     
       public AssetsHandler getAssetsHandler() {
-        return assetshandler;
+        return assetsHandler;
     }
     
     public SpriteBatch getSpriteBatch(){
@@ -225,5 +275,5 @@ public class Game implements ApplicationListener {
     public Lookup.Result<IGamePluginService> getResult() {
         return result;
     }
-    
+   
 }

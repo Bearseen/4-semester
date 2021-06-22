@@ -23,6 +23,7 @@
                         <publicPackage>dk.sdu.common.data.entityparts</publicPackage>
                         <publicPackage>dk.sdu.common.events</publicPackage>
                         <publicPackage>dk.sdu.common.services</publicPackage>
+                        <publicPackage>dk.sdu.common.ai</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>

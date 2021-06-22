@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.entityparts.LifePart;
 import dk.sdu.common.data.entityparts.PositionPart;
 /**
  *
@@ -64,18 +65,18 @@ public class AssetsHandler {
         }
     }
 
-//    public void drawHealth(Entity entity) {
-//        Health health = entity.getComponent(Health.class);
-//        PositionPart position = entity.getComponent(PositionPart.class);
-//        Texture texture = this.assetManager.get("assets/" + entity.getImage());
-//
-//        float totalBarWidth = 50;
-//        float width = (float) health.getHealth() / (float) health.getMaxHealth() * totalBarWidth;
-//        this.sr.begin(ShapeType.Filled);
-//        this.sr.setColor(Color.GREEN);
-//        this.sr.rect(position.getX() - 50 / 2, position.getY() + texture.getHeight() * 0.35f / 2 + 15, width, 5);
-//        this.sr.end();
-//
-//    }
+    public void drawHealth(Entity entity) {
+        LifePart lifePart = entity.getPart(LifePart.class);
+        PositionPart position = entity.getPart(PositionPart.class);
+        Texture texture = this.assetManager.get("assets/" + entity.getImage());
+
+        float totalBarWidth = 35;
+        float width = (float) lifePart.getLife() / (float) lifePart.getMaxLife() * totalBarWidth;
+        this.sr.begin(ShapeType.Filled);
+        this.sr.setColor(Color.GREEN);
+        this.sr.rect(position.getX() - 50 / 2, position.getY() + texture.getHeight() * 0.35f / 2 + 15, width, 5);
+        this.sr.end();
+
+    }
     
 }

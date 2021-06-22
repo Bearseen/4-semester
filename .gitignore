@@ -102,4 +102,9 @@ nbdist/
 /Game/Map/target/
 /Game/CommonBullet/target/
 /Game/Bullet/target/
+<<<<<<< HEAD
+/Game/Collision/target/
+/Game/AI/target/
+=======
 /Game/Weapon/target/
+>>>>>>> gamemenu

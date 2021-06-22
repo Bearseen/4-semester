@@ -25,7 +25,7 @@ import org.openide.util.lookup.ServiceProviders;
 
 /**
  *
- * @author Samuel & Mustafa
+ * @author Samuel, Mustafa, Villy & Yusaf
  */
 
 @ServiceProviders(value = {
@@ -44,19 +44,30 @@ public class PlayerProcessor implements IEntityProcessingService{
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
             movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
             movingPart.setDown(gameData.getKeys().isDown(GameKeys.DOWN));
-            
+
+            /*
             float diffX = GameKeys.mouse_X - positionPart.getX();
             float diffY = GameKeys.mouse_Y - positionPart.getY();
             
-            positionPart.setRadians((float) Math.atan2(diffY, diffX));
-            
+            positionPart.setRadians((float) Math.atan2(diffY, diffX)); // ødelægger normal movement
+            */
+
+            // shooting
             if (gameData.getKeys().isDown(GameKeys.MOUSE_LEFT) || gameData.getKeys().isDown(GameKeys.SPACE)) {               
                 rangedWeaponPart.setIsAttacking(true);
-                System.out.println("Left click");
             }
-            if (gameData.getKeys().isDown(GameKeys.SHIFT)){
+
+            // reload weapon
+            if (gameData.getKeys().isDown(GameKeys.R)){
                 rangedWeaponPart.setIsAttacking(false);
                 rangedWeaponPart.setAmmo(5);
+            }
+            
+            // endGame when player is dead
+            if (lifePart.isDead()) {
+                gameData.setEndGame(true);
+                world.removeEntity(player);
+                return;
             }
             
             

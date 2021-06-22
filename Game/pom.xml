@@ -71,6 +71,8 @@
         <module>Player</module>
         <module>Map</module>
         <module>CommonBullet</module>
+        <module>Collision</module>
+        <module>AI</module>
         <module>Weapon</module>
     </modules>
 
